@@ -2,8 +2,8 @@
 export default function AboutPage() {
     return (
       <div>
-        <h1 className="text-3xl font-bold">About Me</h1>
-        <p>This is the About page content.</p>
+        <h1 className="text-3xl font-bold">About</h1>
+        <p>Oleksandr Pryvalov (born 1987) spent his childhood in Mykolaiv, Ukraine, but his artistic passion grew in Argentina after immigrating there with his parents. While exploring various interests in his youth, art, particularly drawing and painting, remained a constant. As a self-taught artist, Pryvalov's fascination with capturing the world visually became a defining force in his life. Finally, in France, he met the conditions to take oil painting to a serious level.</p>
       </div>
     );
   }

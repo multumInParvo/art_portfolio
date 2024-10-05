@@ -1,25 +1,41 @@
-// src/app/page.tsx
-"use client";
+import Slider from '../app/components/Slider'
 
-import Slider from '../app/components/slider';
-
-const images = [
+const paintings = [
   {
-    src: '/path-to-image-1.jpg',
-    description: 'Description of Image 1',
+    src: "/images/azaylerideau.webp",
+    title: "Levitation",
+    description: "An abstract painting with warm colors",
+    dimensions: "60 x 68 inches, oil on canvas",
+    year: 2024
   },
   {
-    src: '/path-to-image-2.jpg',
-    description: 'Description of Image 2',
+    src: "/images/campestre.webp",
+    title: "Levitation",
+    description: "An abstract painting with warm colors",
+    dimensions: "60 x 68 inches, oil on canvas",
+    year: 2024
   },
-  // Add more images as needed
-];
+  {
+    src: "/images/sixpm.webp",
+    title: "Levitation",
+    description: "An abstract painting with warm colors",
+    dimensions: "60 x 68 inches, oil on canvas",
+    year: 2024
+  },
+  {
+    src: "/images/campestre_2.webp",
+    title: "Levitation",
+    description: "An abstract painting with warm colors",
+    dimensions: "60 x 68 inches, oil on canvas",
+    year: 2024
+  }
+  // Add more paintings here
+]
 
-export default function HomePage() {
+export default function Home() {
   return (
-    <div>
-      {/* Other components and structure */}
-      <Slider images={images} />
-    </div>
-  );
+    <main className="flex-grow">
+      <Slider paintings={paintings} />
+    </main>
+  )
 }

@@ -17,10 +17,10 @@ export default function RootLayout({
       <body>
         <div className="flex h-screen">
           {/* Left Side Menu */}
-          <aside className="w-1/4 p-8 fixed h-full left-0 top-0">
+          <aside className="w-1/4 p-8 h-full">
             <div className="space-y-8">
               <Link href="/" className="text-2xl font-bold">Oleksandr Pryvalov</Link>
-              <div className="text-lg">
+              <div className="text-lg flex flex-col">
                 <p className="text-gray-500">Paintings</p>
                 <Link href="/about">About</Link>
                 <Link href="/contact">Contact</Link>
@@ -29,7 +29,7 @@ export default function RootLayout({
           </aside>
 
           {/* Right Side Content */}
-          <main className="ml-1/4 p-8 w-3/4">
+          <main className="p-8 w-3/4">
             {children}
           </main>
         </div>

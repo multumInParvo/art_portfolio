@@ -1,56 +1,57 @@
-// src/components/Slider.tsx
-"use client"; 
+'use client';
 
-import { useState } from 'react';
+import { useState } from 'react'
+import Image from 'next/image'
 
-interface Image {
-  src: string;
-  description: string;
+type Painting = {
+  src: string
+  title: string
+  description: string
+  dimensions: string
+  year: number
 }
 
-interface SliderProps {
-  images: Image[];
+type SliderProps = {
+  paintings: Painting[]
 }
 
-const Slider: React.FC<SliderProps> = ({ images }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export default function Slider({ paintings }: SliderProps) {
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  const nextImage = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
+  const goToPrevious = () => {
+    const isFirstSlide = currentIndex === 0
+    const newIndex = isFirstSlide ? paintings.length - 1 : currentIndex - 1
+    setCurrentIndex(newIndex)
+  }
 
-  const prevImage = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
+  const goToNext = () => {
+    const isLastSlide = currentIndex === paintings.length - 1
+    const newIndex = isLastSlide ? 0 : currentIndex + 1
+    setCurrentIndex(newIndex)
+  }
+
+  const currentPainting = paintings[currentIndex]
 
   return (
-    <div className="relative">
-      <img
-        src={images[currentIndex].src}
-        alt={`Image ${currentIndex + 1}`}
-        className="w-full h-auto"
+    <div className="relative h-screen w-full">
+      <Image 
+        src={currentPainting.src}
+        alt={currentPainting.title}
+        fill
+        style={{ objectFit: 'contain' }}
+        priority
       />
-      {/* Description */}
-      <p className="absolute bottom-2 left-2 text-white bg-black bg-opacity-50 p-2">
-        {images[currentIndex].description}
-      </p>
-      {/* Arrows */}
-      <button
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 text-white"
-        onClick={prevImage}
-      >
-        ←
+      <button onClick={goToPrevious} className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10">
+        ← {/* Replace with an arrow icon */}
       </button>
-      <button
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white"
-        onClick={nextImage}
-      >
-        →
+      <button onClick={goToNext} className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10">
+        → {/* Replace with an arrow icon */}
       </button>
+      <div className="absolute bottom-4 left-4 text-sm z-10">
+        <p>{currentPainting.title}</p>
+        <p>{currentPainting.dimensions}</p>
+        <p>{currentPainting.year}</p>
+      </div>
     </div>
-  );
-};
-
-export default Slider;
+  )
+}
