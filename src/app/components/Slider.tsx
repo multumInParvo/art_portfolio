@@ -33,7 +33,7 @@ export default function Slider({ paintings }: SliderProps) {
   const currentPainting = paintings[currentIndex]
 
   return (
-    <div className="relative h-screen w-full">
+    <div className="relative h-[calc(100vh-4rem)] w-full">
       <Image 
         src={currentPainting.src}
         alt={currentPainting.title}
