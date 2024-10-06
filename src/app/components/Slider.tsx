@@ -47,7 +47,7 @@ export default function Slider({ paintings }: SliderProps) {
       <button onClick={goToNext} className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10">
         → {/* Replace with an arrow icon */}
       </button>
-      <div className="absolute bottom-4 left-4 text-sm z-10">
+      <div className="absolute bottom-4 left-0 text-sm">
         <p>{currentPainting.title}</p>
         <p>{currentPainting.dimensions}</p>
         <p>{currentPainting.year}</p>
