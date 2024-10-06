@@ -19,7 +19,7 @@ export default function RootLayout({
           {/* Left Side Menu */}
           <aside className="w-1/4 p-8 h-full">
             <div className="space-y-8">
-              <Link href="/" className="text-2xl font-bold">Oleksandr Pryvalov</Link>
+              <Link href="/" className="text-2xl font-bold uppercase">Oleksandr <br /> Pryvalov</Link>
               <div className="text-lg flex flex-col">
                 <p className="text-gray-500">Paintings</p>
                 <Link href="/about">About</Link>
