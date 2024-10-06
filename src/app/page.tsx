@@ -10,7 +10,7 @@ const paintings = [
   },
   {
     src: "/images/campestre.webp",
-    title: "Levitation",
+    title: "Camembert",
     description: "An abstract painting with warm colors",
     dimensions: "60 x 68 inches, oil on canvas",
     year: 2024
@@ -34,8 +34,6 @@ const paintings = [
 
 export default function Home() {
   return (
-    <main className="flex-grow">
-      <Slider paintings={paintings} />
-    </main>
+    <Slider paintings={paintings} />
   )
 }
