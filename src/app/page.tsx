@@ -4,7 +4,7 @@ const paintings = [
   {
     src: "/images/azaylerideau.webp",
     title: "Levitation",
-    description: "An abstract painting with warm colors",
+    description: "The house with red doors",
     dimensions: "60 x 68 inches, oil on canvas",
     year: 2024
   },
@@ -18,14 +18,14 @@ const paintings = [
   {
     src: "/images/sixpm.webp",
     title: "Levitation",
-    description: "An abstract painting with warm colors",
+    description: "A jar with cheese",
     dimensions: "60 x 68 inches, oil on canvas",
     year: 2024
   },
   {
     src: "/images/campestre_2.webp",
     title: "Levitation",
-    description: "An abstract painting with warm colors",
+    description: "Apples",
     dimensions: "60 x 68 inches, oil on canvas",
     year: 2024
   }
