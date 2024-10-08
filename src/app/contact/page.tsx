@@ -1,10 +1,11 @@
-// src/app/contact/page.tsx
+import React from 'react';
+import { Form } from '../components/Form';
+
 export default function ContactPage() {
     return (
-      <div>
-        <h1 className="text-3xl font-bold">Contact</h1>
-        <p>Contact page</p>
-      </div>
+        <div className="flex flex-col items-start">
+            <h1 className="text-6xl font-extrabold opacity-10 mb-12">Contact</h1>
+            <Form />
+        </div>
     );
-  }
-  
+}
