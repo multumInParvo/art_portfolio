@@ -12,6 +12,9 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        cinzel: ['Cinzel', 'serif'],  // Add Cinzel font
+      },
     },
   },
   plugins: [],
