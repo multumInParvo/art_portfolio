@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { usePainting } from '../context/PaintingContext';
 
 type Painting = {
   src: string;
@@ -17,6 +18,11 @@ type SliderProps = {
 
 export default function Slider({ paintings }: SliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { setCurrentPainting } = usePainting();
+
+  useEffect(() => {
+    setCurrentPainting(paintings[currentIndex]);
+  }, [currentIndex, paintings, setCurrentPainting]);
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -32,20 +38,9 @@ export default function Slider({ paintings }: SliderProps) {
 
   const currentPainting = paintings[currentIndex];
 
-  useEffect(() => {
-    const titleElement = document.getElementById('paintingTitle');
-    const descriptionElement = document.getElementById('paintingDescription');
-    const dimensionsElement = document.getElementById('paintingDimensions');
-    const yearElement = document.getElementById('paintingYear');
-
-    if (titleElement) titleElement.textContent = currentPainting.title;
-    if (descriptionElement) descriptionElement.textContent = currentPainting.description;
-    if (dimensionsElement) dimensionsElement.textContent = currentPainting.dimensions;
-    if (yearElement) yearElement.textContent = currentPainting.year.toString();
-  }, [currentPainting]);
-
   return (
     <div className="relative h-[calc(100vh-5rem)] w-full">
+      {/* Painting Image */}
       <Image
         src={currentPainting.src}
         alt={currentPainting.title}
