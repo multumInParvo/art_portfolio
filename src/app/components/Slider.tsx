@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { usePainting } from '../context/PaintingContext';
 
@@ -18,29 +18,33 @@ type SliderProps = {
 
 export default function Slider({ paintings }: SliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { setCurrentPainting } = usePainting();
+  const { setCurrentPainting, setGoToPrevious, setGoToNext } = usePainting();
+
+  const goToPrevious = useCallback(() => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? paintings.length - 1 : prevIndex - 1
+    );
+  }, [paintings.length]);
+
+  const goToNext = useCallback(() => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === paintings.length - 1 ? 0 : prevIndex + 1
+    );
+  }, [paintings.length]);
 
   useEffect(() => {
     setCurrentPainting(paintings[currentIndex]);
   }, [currentIndex, paintings, setCurrentPainting]);
 
-  const goToPrevious = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? paintings.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
-
-  const goToNext = () => {
-    const isLastSlide = currentIndex === paintings.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
-  };
+  useEffect(() => {
+    setGoToPrevious(() => goToPrevious);
+    setGoToNext(() => goToNext);
+  }, [goToPrevious, goToNext, setGoToPrevious, setGoToNext]);
 
   const currentPainting = paintings[currentIndex];
 
   return (
     <div className="relative h-[calc(100vh-5rem)] w-full">
-      {/* Painting Image */}
       <Image
         src={currentPainting.src}
         alt={currentPainting.title}
@@ -49,7 +53,6 @@ export default function Slider({ paintings }: SliderProps) {
         priority
       />
 
-      {/* Previous Arrow */}
       <button
         onClick={goToPrevious}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white bg-opacity-50 rounded-full shadow-lg hover:bg-opacity-75 transition-all ease-in-out"
@@ -66,7 +69,6 @@ export default function Slider({ paintings }: SliderProps) {
         </svg>
       </button>
 
-      {/* Next Arrow */}
       <button
         onClick={goToNext}
         className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white bg-opacity-50 rounded-full shadow-lg hover:bg-opacity-75 transition-all ease-in-out"

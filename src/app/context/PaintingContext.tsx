@@ -13,15 +13,21 @@ type Painting = {
 type PaintingContextType = {
   currentPainting: Painting | null;
   setCurrentPainting: React.Dispatch<React.SetStateAction<Painting | null>>;
+  goToPrevious: () => void;
+  goToNext: () => void;
+  setGoToPrevious: React.Dispatch<React.SetStateAction<() => void>>;
+  setGoToNext: React.Dispatch<React.SetStateAction<() => void>>;
 };
 
 const PaintingContext = createContext<PaintingContextType | undefined>(undefined);
 
 export const PaintingProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [currentPainting, setCurrentPainting] = useState<Painting | null>(null);
+  const [goToPrevious, setGoToPrevious] = useState<() => void>(() => {});
+  const [goToNext, setGoToNext] = useState<() => void>(() => {});
 
   return (
-    <PaintingContext.Provider value={{ currentPainting, setCurrentPainting }}>
+    <PaintingContext.Provider value={{ currentPainting, setCurrentPainting, goToPrevious, goToNext, setGoToPrevious, setGoToNext }}>
       {children}
     </PaintingContext.Provider>
   );

@@ -3,7 +3,7 @@
 import { usePainting } from '../context/PaintingContext';
 
 export default function PaintingDetails() {
-  const { currentPainting } = usePainting();
+  const { currentPainting, goToPrevious, goToNext } = usePainting();
 
   if (!currentPainting) return null;
 
@@ -13,6 +13,11 @@ export default function PaintingDetails() {
       <p>{currentPainting.description}</p>
       <p>{currentPainting.dimensions}</p>
       <p>{currentPainting.year}</p>
+      <div className="mt-4 text-sm">
+        <button onClick={goToPrevious} className="hover:underline">prev</button>
+        <span className="mx-2">/</span>
+        <button onClick={goToNext} className="hover:underline">next</button>
+      </div>
     </div>
   );
 }
