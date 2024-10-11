@@ -2,16 +2,19 @@
 
 import Link from 'next/link';
 import PaintingDetails from './PaintingDetails';
+import { usePathname } from 'next/navigation';
 
 export default function ClientLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
       {/* Left Side Menu */}
-      <aside className="w-64 p-10 flex flex-col">
+      <aside className="w-64 p-10 flex flex-col justify-between">
         <div className="space-y-8">
           <div className="space-y-1">
             <Link href="/" className="uppercase font-cinzel text-3xl text-gray-700">
@@ -24,7 +27,7 @@ export default function ClientLayout({
             <Link href="/contact">Contact</Link>
           </div>
         </div>
-        <PaintingDetails />
+        {pathname === '/' && <PaintingDetails />}
       </aside>
 
       {/* Right Side Content */}
