@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import PaintingDetails from './PaintingDetails';
 import { usePathname } from 'next/navigation';
+import { FaInstagram } from 'react-icons/fa'; // Import Instagram icon from react-icons
 
 export default function ClientLayout({
   children,
@@ -22,9 +23,12 @@ export default function ClientLayout({
             </Link>
             <p className="text-gray-600 italic font-cinzel tracking-widest">paintings</p>
           </div>
-          <div className="text-lg flex flex-col space-y-2">
+          <div className="text-lg flex flex-col space-y-2 font-semibold text-gray-700">
             <Link href="/about">About</Link>
             <Link href="/contact">Contact</Link>
+            <Link href="https://www.instagram.com/oleksandrpryv/" target="_blank">
+              <FaInstagram className="text-s text-gray-700 hover:text-gray-900" />
+            </Link>
           </div>
         </div>
         {pathname === '/' && <PaintingDetails />}
