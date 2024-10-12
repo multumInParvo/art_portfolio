@@ -14,6 +14,7 @@ const config: Config = {
       },
       fontFamily: {
         cinzel: ['Cinzel', 'serif'],  // Add Cinzel font
+        proxima: ['"Proxima Nova"', 'sans-serif'],
       },
     },
   },
