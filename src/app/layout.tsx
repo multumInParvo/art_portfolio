@@ -4,8 +4,11 @@ import { PaintingProvider } from './context/PaintingContext';
 import ClientLayout from '../app/components/ClientLayout';
 
 export const metadata = {
-  title: 'Art Portfolio',
+  title: 'Oleksandr Pryvalov',
   description: 'My personal art portfolio',
+  icons: {
+    icon: '/favicon.ico', 
+  },
 };
 
 const cinzel = Cinzel({
