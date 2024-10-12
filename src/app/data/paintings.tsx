@@ -23,6 +23,13 @@ export const paintings = [
         year: 2024
     },
     {
+        src: "/images/portfolio-dark.webp",
+        title: "Hello world ",
+        description: "Blue",
+        dimensions: "60 x 80 cm, oil on canvas",
+        year: 2020
+    },
+    {
         src: "/images/campestre_2.webp",
         title: "Campestre 2",
         description: "Apples",
