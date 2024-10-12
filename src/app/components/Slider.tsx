@@ -18,22 +18,31 @@ type SliderProps = {
 
 export default function Slider({ paintings }: SliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const { setCurrentPainting, setGoToPrevious, setGoToNext } = usePainting();
 
   const goToPrevious = useCallback(() => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? paintings.length - 1 : prevIndex - 1
-    );
-  }, [paintings.length]);
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setCurrentIndex((prevIndex) => 
+        prevIndex === 0 ? paintings.length - 1 : prevIndex - 1
+      );
+    }
+  }, [paintings.length, isTransitioning]);
 
   const goToNext = useCallback(() => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === paintings.length - 1 ? 0 : prevIndex + 1
-    );
-  }, [paintings.length]);
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setCurrentIndex((prevIndex) => 
+        prevIndex === paintings.length - 1 ? 0 : prevIndex + 1
+      );
+    }
+  }, [paintings.length, isTransitioning]);
 
   useEffect(() => {
     setCurrentPainting(paintings[currentIndex]);
+    const timer = setTimeout(() => setIsTransitioning(false), 300); // Match this with the CSS transition duration
+    return () => clearTimeout(timer);
   }, [currentIndex, paintings, setCurrentPainting]);
 
   useEffect(() => {
@@ -44,14 +53,20 @@ export default function Slider({ paintings }: SliderProps) {
   const currentPainting = paintings[currentIndex];
 
   return (
-    <div className="relative h-[calc(100vh-5rem)] w-full">
-      <Image
-        src={currentPainting.src}
-        alt={currentPainting.title}
-        fill
-        style={{ objectFit: 'contain' }}
-        priority
-      />
+    <div className="relative h-[calc(100vh-5rem)] w-full overflow-hidden">
+      <div 
+        className={`absolute inset-0 transition-opacity duration-300 ease-in-out ${
+          isTransitioning ? 'opacity-90' : 'opacity-100'
+        }`}
+      >
+        <Image
+          src={currentPainting.src}
+          alt={currentPainting.title}
+          fill
+          style={{ objectFit: 'contain' }}
+          priority
+        />
+      </div>
 
       <button
         onClick={goToPrevious}
