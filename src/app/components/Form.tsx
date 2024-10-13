@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 
 export const Form = () => {
@@ -31,10 +31,10 @@ export const Form = () => {
         e.preventDefault();
 
         emailjs.sendForm('service_6krahor', 'template_0luic7k', e.target as HTMLFormElement, '5Ys9iuvvGJuA0qfxT')
-            .then((result: any) => {
+            .then((result: { text: string }) => {
                 console.log(result.text);
                 alert('Message Sent Successfully!');
-            }, (error: any) => {
+            }, (error: { text: string }) => {
                 console.log(error.text);
                 alert('Failed to Send Message');
             });
