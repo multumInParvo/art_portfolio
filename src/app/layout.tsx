@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cinzel.className}>
         <PaintingProvider>
-          <ClientLayout>{children}</ClientLayout>
+          <ClientLayout isLoading={false}>{children}</ClientLayout>
         </PaintingProvider>
       </body>
     </html>
