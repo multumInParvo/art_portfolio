@@ -53,6 +53,25 @@ export default function Slider({ paintings }: SliderProps) {
     setGoToNext(() => goToNext);
   }, [goToPrevious, goToNext, setGoToPrevious, setGoToNext]);
 
+  // Handle keyboard events
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowLeft') {
+        goToPrevious();
+      } else if (event.key === 'ArrowRight') {
+        goToNext();
+      }
+    };
+
+    // Add event listener for keydown events
+    window.addEventListener('keydown', handleKeyDown);
+
+    // Clean up the event listener on unmount
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [goToPrevious, goToNext]);
+
   // Current painting
   const currentPainting = paintings[currentIndex];
 
