@@ -7,8 +7,10 @@ import { FaInstagram } from 'react-icons/fa';
 
 export default function ClientLayout({
   children,
+  isLoading, // Accept isLoading prop
 }: {
   children: React.ReactNode;
+  isLoading: boolean; // Add the isLoading type definition
 }) {
   const pathname = usePathname();
 
@@ -61,7 +63,7 @@ export default function ClientLayout({
             </Link>
           </div>
         </nav>
-        {pathname === '/' && <PaintingDetails />}
+        {pathname === '/' && !isLoading && <PaintingDetails />} {/* Don't render until loading is complete */}
       </aside>
 
       <main id="main-content" className="flex-1 py-10 pr-10 overflow-x-auto">

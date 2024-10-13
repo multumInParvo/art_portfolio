@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-import Image from 'next/image';
+import React, { useState, useEffect, useCallback } from 'react';
 import { usePainting } from '../context/PaintingContext';
+import Image from 'next/image';
 
 type Painting = {
   src: string;
@@ -18,9 +18,10 @@ type SliderProps = {
 
 export default function Slider({ paintings }: SliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const { setCurrentPainting, setGoToPrevious, setGoToNext } = usePainting();
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // Navigation handlers
   const goToPrevious = useCallback(() => {
     if (!isTransitioning) {
       setIsTransitioning(true);
@@ -39,30 +40,20 @@ export default function Slider({ paintings }: SliderProps) {
     }
   }, [paintings.length, isTransitioning]);
 
+  // Synchronize current painting with the painting details and slider
   useEffect(() => {
     setCurrentPainting(paintings[currentIndex]);
-    const timer = setTimeout(() => setIsTransitioning(false), 300);
+    const timer = setTimeout(() => setIsTransitioning(false), 300); // Delay for smooth transitions
     return () => clearTimeout(timer);
   }, [currentIndex, paintings, setCurrentPainting]);
 
+  // Set navigation handlers in context
   useEffect(() => {
     setGoToPrevious(() => goToPrevious);
     setGoToNext(() => goToNext);
   }, [goToPrevious, goToNext, setGoToPrevious, setGoToNext]);
 
-  const handleKeyDown = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key === 'ArrowLeft') goToPrevious();
-      if (event.key === 'ArrowRight') goToNext();
-    },
-    [goToPrevious, goToNext]
-  );
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleKeyDown]);
-
+  // Current painting
   const currentPainting = paintings[currentIndex];
 
   return (
@@ -87,6 +78,7 @@ export default function Slider({ paintings }: SliderProps) {
         />
       </div>
 
+      {/* Previous Button */}
       <button
         onClick={goToPrevious}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white bg-opacity-50 rounded-full shadow-lg hover:bg-opacity-75 transition-all ease-in-out"
@@ -109,6 +101,7 @@ export default function Slider({ paintings }: SliderProps) {
         </svg>
       </button>
 
+      {/* Next Button */}
       <button
         onClick={goToNext}
         className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white bg-opacity-50 rounded-full shadow-lg hover:bg-opacity-75 transition-all ease-in-out"
