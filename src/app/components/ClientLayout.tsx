@@ -63,9 +63,13 @@ export default function ClientLayout({
             </Link>
           </div>
         </nav>
-        {pathname === '/' && !isLoading && <PaintingDetails />} {/* Don't render until loading is complete */}
+        <div>
+          {pathname === '/' && !isLoading && <PaintingDetails />}
+          <footer className='mt-5 text-xs font-proxima'>
+            © 2024 by Oleksandr Pryvalov
+          </footer>
+        </div>
       </aside>
-
       <main id="main-content" className="flex-1 py-10 pr-10 overflow-x-auto">
         <div className="min-w-max">{children}</div>
       </main>
