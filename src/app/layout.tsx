@@ -1,4 +1,4 @@
-import { Cinzel } from 'next/font/google';
+import { Playfair_Display, Nunito } from 'next/font/google';
 import './globals.css';
 import { PaintingProvider } from './context/PaintingContext';
 import ClientLayout from '../app/components/ClientLayout';
@@ -11,9 +11,13 @@ export const metadata = {
   },
 };
 
-const cinzel = Cinzel({
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  variable: '--font-playfair',
+});
+const nunito = Nunito({
+  subsets: ['latin'],
+  variable: '--font-nunito'
 });
 
 export default function RootLayout({
@@ -22,8 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={cinzel.className}>
+    <html lang="en" className={`${playfair.variable} ${nunito.variable}`}>
+      <body>
         <PaintingProvider>
           <ClientLayout isLoading={false}>{children}</ClientLayout>
         </PaintingProvider>
