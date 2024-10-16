@@ -103,6 +103,8 @@ export default function Slider({ paintings }: SliderProps) {
         className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white bg-opacity-50 rounded-full shadow-lg hover:bg-opacity-75 transition-all ease-in-out"
         aria-label="Previous Slide"
         aria-controls="carousel"
+        tabIndex={isTransitioning ? -1 : 0} // Disable focus during transition
+        disabled={isTransitioning}          // Optional: Disable button click during transition
       >
         <svg
           className="w-6 h-6 text-gray-700"
@@ -126,6 +128,8 @@ export default function Slider({ paintings }: SliderProps) {
         className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white bg-opacity-50 rounded-full shadow-lg hover:bg-opacity-75 transition-all ease-in-out"
         aria-label="Next Slide"
         aria-controls="carousel"
+        tabIndex={isTransitioning ? -1 : 0} // Disable focus during transition
+        disabled={isTransitioning}          // Optional: Disable button click during transition
       >
         <svg
           className="w-6 h-6 text-gray-700"
