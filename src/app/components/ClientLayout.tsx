@@ -7,10 +7,10 @@ import { FaInstagram } from 'react-icons/fa';
 
 export default function ClientLayout({
   children,
-  isLoading, // Accept isLoading prop
+  isLoading,
 }: {
   children: React.ReactNode;
-  isLoading: boolean; // Add the isLoading type definition
+  isLoading: boolean;
 }) {
   const pathname = usePathname();
 
@@ -29,23 +29,23 @@ export default function ClientLayout({
           <div className="space-y-1">
             <Link
               href="/"
-              className="uppercase font-cinzel text-3xl text-gray-700 hover:text-gray-900 transition-colors"
+              className="uppercase text-3xl hover:text-gray-500 transition-colors font-playfair"
               aria-label="Homepage - Oleksandr Pryvalov Paintings"
             >
-              Oleksandr <br /> Pryvalov
+              <h1>Oleksandr <br /> Pryvalov</h1>
             </Link>
-            <p className="text-gray-600 italic font-cinzel tracking-widest">paintings</p>
+            <p className="text-darkGold text-lg italic font-medium tracking-widest font-playfair">paintings</p>
           </div>
-          <div className="text-lg flex flex-col space-y-2 font-semibold text-gray-700">
+          <div className="text-base space-y-1 flex flex-col font-bold text-gray-700">
             <Link
               href="/about"
-              className="hover:text-gray-900 hover:underline transition-all"
+              className="hover:text-gray-900 hover:underline transition-all font-nunito uppercase"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="hover:text-gray-900 hover:underline transition-all"
+              className="hover:text-gray-900 hover:underline transition-all font-nunito uppercase"
             >
               Contact
             </Link>
@@ -65,7 +65,7 @@ export default function ClientLayout({
         </nav>
         <div>
           {pathname === '/' && !isLoading && <PaintingDetails />}
-          <footer className='mt-5 text-xs font-proxima'>
+          <footer className='mt-8 text-xs font-nunito text-slate-500'>
             © 2024 by Oleksandr Pryvalov
           </footer>
         </div>
