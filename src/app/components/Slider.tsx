@@ -43,7 +43,7 @@ export default function Slider({ paintings }: SliderProps) {
   // Synchronize current painting with the painting details and slider
   useEffect(() => {
     setCurrentPainting(paintings[currentIndex]);
-    const timer = setTimeout(() => setIsTransitioning(false), 300); // Delay for smooth transitions
+    const timer = setTimeout(() => setIsTransitioning(false), 100); // Delay for smooth transitions
     return () => clearTimeout(timer);
   }, [currentIndex, paintings, setCurrentPainting]);
 
