@@ -9,12 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        darkGold: '#a16010',
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        cinzel: ['Cinzel', 'serif'],  // Add Cinzel font
-        proxima: ['"Proxima Nova"', 'sans-serif'],
+        playfair: ['var(--playfair, serif)'],
+        nunito: ['var(--font-nunito)'],
       },
     },
   },
