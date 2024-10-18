@@ -1,18 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import PaintingDetails from './PaintingDetails';
 import { usePathname } from 'next/navigation';
 import { FaInstagram } from 'react-icons/fa';
+import { usePainting } from '../context/PaintingContext';
 
 export default function ClientLayout({
   children,
-  isLoading,
 }: {
   children: React.ReactNode;
-  isLoading: boolean;
 }) {
   const pathname = usePathname();
+  const { currentPainting, goToPrevious, goToNext } = usePainting();
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
@@ -63,15 +62,36 @@ export default function ClientLayout({
             </Link>
           </div>
         </nav>
-        <div>
-          {pathname === '/' && !isLoading && <PaintingDetails />}
-          <footer className='mt-8 text-xs font-nunito text-slate-500'>
-            © 2024 by Oleksandr Pryvalov
-          </footer>
-        </div>
+        {pathname === '/' && currentPainting && (
+          <div className="mt-auto mb-8">
+            <h2 className="text-xl font-bold mb-1 font-nunito">
+              {currentPainting.title}
+            </h2>
+            <p className="text-sm font-nunito">{currentPainting.dimensions}</p>
+            <p className="text-sm font-nunito">{currentPainting.year}</p>
+            <div className="mt-2 text-sm">
+              <button
+                onClick={goToPrevious}
+                className="hover:underline font-nunito font-bold"
+              >
+                PREV
+              </button>
+              <span className="mx-1 font-nunito font-bold">/</span>
+              <button
+                onClick={goToNext}
+                className="hover:underline font-nunito font-bold"
+              >
+                NEXT
+              </button>
+            </div>
+          </div>
+        )}
+        <footer className='text-xs font-nunito text-slate-500'>
+          © 2024 by Oleksandr Pryvalov
+        </footer>
       </aside>
-      <main id="main-content" className="flex-1 py-10 pr-10 overflow-x-auto">
-        <div className="min-w-max">{children}</div>
+      <main id="main-content" className="flex-1 py-10 px-10 overflow-x-auto">
+        {children}
       </main>
     </div>
   );

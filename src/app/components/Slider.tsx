@@ -21,7 +21,6 @@ export default function Slider({ paintings }: SliderProps) {
   const { setCurrentPainting, setGoToPrevious, setGoToNext } = usePainting();
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Navigation handlers
   const goToPrevious = useCallback(() => {
     if (!isTransitioning) {
       setIsTransitioning(true);
@@ -40,20 +39,14 @@ export default function Slider({ paintings }: SliderProps) {
     }
   }, [paintings.length, isTransitioning]);
 
-  // Synchronize current painting with the painting details and slider
   useEffect(() => {
     setCurrentPainting(paintings[currentIndex]);
-    const timer = setTimeout(() => setIsTransitioning(false), 100); // Delay for smooth transitions
-    return () => clearTimeout(timer);
-  }, [currentIndex, paintings, setCurrentPainting]);
-
-  // Set navigation handlers in context
-  useEffect(() => {
     setGoToPrevious(() => goToPrevious);
     setGoToNext(() => goToNext);
-  }, [goToPrevious, goToNext, setGoToPrevious, setGoToNext]);
+    const timer = setTimeout(() => setIsTransitioning(false), 100);
+    return () => clearTimeout(timer);
+  }, [currentIndex, paintings, setCurrentPainting, setGoToPrevious, setGoToNext, goToPrevious, goToNext]);
 
-  // Handle keyboard events
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
@@ -62,27 +55,16 @@ export default function Slider({ paintings }: SliderProps) {
         goToNext();
       }
     };
-
-    // Add event listener for keydown events
     window.addEventListener('keydown', handleKeyDown);
-
-    // Clean up the event listener on unmount
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [goToPrevious, goToNext]);
 
-  // Current painting
   const currentPainting = paintings[currentIndex];
 
   return (
-    <div
-      className="relative h-[calc(100vh-5rem)] w-full overflow-hidden"
-      role="region"
-      aria-roledescription="carousel"
-      aria-live="polite"
-      aria-label="Painting Slider"
-    >
+    <div className="relative h-[calc(100vh-5rem)] w-full">
       <div
         className={`absolute inset-0 transition-opacity duration-300 ease-in-out ${
           isTransitioning ? 'opacity-90' : 'opacity-100'
@@ -96,15 +78,10 @@ export default function Slider({ paintings }: SliderProps) {
           priority
         />
       </div>
-
-      {/* Previous Button */}
       <button
         onClick={goToPrevious}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white bg-opacity-50 rounded-full shadow-lg hover:bg-opacity-75 transition-all ease-in-out"
         aria-label="Previous Slide"
-        aria-controls="carousel"
-        tabIndex={isTransitioning ? -1 : 0} // Disable focus during transition
-        disabled={isTransitioning}          // Optional: Disable button click during transition
       >
         <svg
           className="w-6 h-6 text-gray-700"
@@ -121,15 +98,10 @@ export default function Slider({ paintings }: SliderProps) {
           />
         </svg>
       </button>
-
-      {/* Next Button */}
       <button
         onClick={goToNext}
         className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white bg-opacity-50 rounded-full shadow-lg hover:bg-opacity-75 transition-all ease-in-out"
         aria-label="Next Slide"
-        aria-controls="carousel"
-        tabIndex={isTransitioning ? -1 : 0} // Disable focus during transition
-        disabled={isTransitioning}          // Optional: Disable button click during transition
       >
         <svg
           className="w-6 h-6 text-gray-700"
