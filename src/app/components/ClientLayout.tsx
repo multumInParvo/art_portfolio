@@ -5,11 +5,7 @@ import { usePathname } from 'next/navigation';
 import { FaInstagram } from 'react-icons/fa';
 import { usePainting } from '../context/PaintingContext';
 
-export default function ClientLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { currentPainting, goToPrevious, goToNext } = usePainting();
 
@@ -36,16 +32,10 @@ export default function ClientLayout({
             <p className="text-darkGold text-lg italic font-medium tracking-widest font-playfair">paintings</p>
           </div>
           <div className="text-base space-y-1 flex flex-col font-bold text-gray-700">
-            <Link
-              href="/about"
-              className="hover:text-gray-900 hover:underline transition-all font-nunito uppercase"
-            >
+            <Link href="/about" className="hover:text-gray-900 hover:underline transition-all font-nunito uppercase">
               About
             </Link>
-            <Link
-              href="/contact"
-              className="hover:text-gray-900 hover:underline transition-all font-nunito uppercase"
-            >
+            <Link href="/contact" className="hover:text-gray-900 hover:underline transition-all font-nunito uppercase">
               Contact
             </Link>
             <Link
@@ -55,10 +45,7 @@ export default function ClientLayout({
               aria-label="Instagram Profile - Oleksandr Pryvalov"
               className="w-fit"
             >
-              <FaInstagram
-                className="text-s text-gray-700 hover:text-gray-900 transition-colors"
-                aria-hidden="true"
-              />
+              <FaInstagram className="text-s text-gray-700 hover:text-gray-900 transition-colors" aria-hidden="true" />
             </Link>
           </div>
         </nav>
@@ -70,23 +57,17 @@ export default function ClientLayout({
             <p className="text-sm font-nunito">{currentPainting.dimensions}</p>
             <p className="text-sm font-nunito">{currentPainting.year}</p>
             <div className="mt-2 text-sm">
-              <button
-                onClick={goToPrevious}
-                className="hover:underline font-nunito font-bold"
-              >
+              <button onClick={goToPrevious} className="hover:underline font-nunito font-bold">
                 PREV
               </button>
               <span className="mx-1 font-nunito font-bold">/</span>
-              <button
-                onClick={goToNext}
-                className="hover:underline font-nunito font-bold"
-              >
+              <button onClick={goToNext} className="hover:underline font-nunito font-bold">
                 NEXT
               </button>
             </div>
           </div>
         )}
-        <footer className='text-xs font-nunito text-slate-500'>
+        <footer className="text-xs font-nunito text-slate-500">
           © 2024 by Oleksandr rubenko
         </footer>
       </aside>
@@ -96,3 +77,5 @@ export default function ClientLayout({
     </div>
   );
 }
+
+// The `use client` directive is not needed for this component to function
