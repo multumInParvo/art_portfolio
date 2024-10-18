@@ -87,7 +87,7 @@ export default function ClientLayout({
           </div>
         )}
         <footer className='text-xs font-nunito text-slate-500'>
-          © 2024 by Oleksandr Pryvalov
+          © 2024 by Oleksandr rubenko
         </footer>
       </aside>
       <main id="main-content" className="flex-1 py-10 px-10 overflow-x-auto">
