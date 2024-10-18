@@ -1,4 +1,4 @@
-'use client';
+'use client';  // Mark this component as a Client Component
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { usePainting } from '../context/PaintingContext';
@@ -19,41 +19,42 @@ type SliderProps = {
 export default function Slider({ paintings }: SliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { setCurrentPainting, setGoToPrevious, setGoToNext } = usePainting();
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Navigation handlers
   const goToPrevious = useCallback(() => {
-    if (!isTransitioning) {
-      setIsTransitioning(true);
-      setCurrentIndex((prevIndex) =>
-        prevIndex === 0 ? paintings.length - 1 : prevIndex - 1
-      );
-    }
-  }, [paintings.length, isTransitioning]);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? paintings.length - 1 : prevIndex - 1
+    );
+  }, [paintings.length]);
 
   const goToNext = useCallback(() => {
-    if (!isTransitioning) {
-      setIsTransitioning(true);
-      setCurrentIndex((prevIndex) =>
-        prevIndex === paintings.length - 1 ? 0 : prevIndex + 1
-      );
-    }
-  }, [paintings.length, isTransitioning]);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === paintings.length - 1 ? 0 : prevIndex + 1
+    );
+  }, [paintings.length]);
 
-  // Synchronize current painting with the painting details and slider
   useEffect(() => {
     setCurrentPainting(paintings[currentIndex]);
-    const timer = setTimeout(() => setIsTransitioning(false), 300); // Delay for smooth transitions
-    return () => clearTimeout(timer);
   }, [currentIndex, paintings, setCurrentPainting]);
 
-  // Set navigation handlers in context
+  // Preload previous and next images
+  useEffect(() => {
+    const preloadImage = (src: string) => {
+      const img = new window.Image();
+      img.src = src;
+    };
+
+    const nextIndex = (currentIndex + 1) % paintings.length;
+    const prevIndex = (currentIndex - 1 + paintings.length) % paintings.length;
+
+    preloadImage(paintings[nextIndex].src);
+    preloadImage(paintings[prevIndex].src);
+  }, [currentIndex, paintings]);
+
   useEffect(() => {
     setGoToPrevious(() => goToPrevious);
     setGoToNext(() => goToNext);
   }, [goToPrevious, goToNext, setGoToPrevious, setGoToNext]);
 
-  // Handle keyboard events
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
@@ -63,16 +64,13 @@ export default function Slider({ paintings }: SliderProps) {
       }
     };
 
-    // Add event listener for keydown events
     window.addEventListener('keydown', handleKeyDown);
 
-    // Clean up the event listener on unmount
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [goToPrevious, goToNext]);
 
-  // Current painting
   const currentPainting = paintings[currentIndex];
 
   return (
@@ -83,28 +81,20 @@ export default function Slider({ paintings }: SliderProps) {
       aria-live="polite"
       aria-label="Painting Slider"
     >
-      <div
-        className={`absolute inset-0 transition-opacity duration-300 ease-in-out ${
-          isTransitioning ? 'opacity-90' : 'opacity-100'
-        }`}
-      >
+      <div className="absolute inset-0">
         <Image
-          src={currentPainting.src}
+          src={currentPainting.src} // Ensure this is a string
           alt={currentPainting.description || currentPainting.title}
-          fill
-          style={{ objectFit: 'contain' }}
-          priority
+          layout="fill" // Makes the image fill the container
+          objectFit="contain" // Keeps the aspect ratio of the image
+          priority // Optional: Loads the image with higher priority
         />
       </div>
 
-      {/* Previous Button */}
       <button
         onClick={goToPrevious}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white bg-opacity-50 rounded-full shadow-lg hover:bg-opacity-75 transition-all ease-in-out"
         aria-label="Previous Slide"
-        aria-controls="carousel"
-        tabIndex={isTransitioning ? -1 : 0} // Disable focus during transition
-        disabled={isTransitioning}          // Optional: Disable button click during transition
       >
         <svg
           className="w-6 h-6 text-gray-700"
@@ -122,14 +112,10 @@ export default function Slider({ paintings }: SliderProps) {
         </svg>
       </button>
 
-      {/* Next Button */}
       <button
         onClick={goToNext}
         className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white bg-opacity-50 rounded-full shadow-lg hover:bg-opacity-75 transition-all ease-in-out"
         aria-label="Next Slide"
-        aria-controls="carousel"
-        tabIndex={isTransitioning ? -1 : 0} // Disable focus during transition
-        disabled={isTransitioning}          // Optional: Disable button click during transition
       >
         <svg
           className="w-6 h-6 text-gray-700"

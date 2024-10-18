@@ -1,8 +1,9 @@
 'use client';
 
+import React from 'react';
 import { usePainting } from '../context/PaintingContext';
 
-export default function PaintingDetails() {
+const PaintingDetails = React.memo(function PaintingDetails() {
   const { currentPainting, goToPrevious, goToNext } = usePainting();
 
   if (!currentPainting) return null;
@@ -31,4 +32,6 @@ export default function PaintingDetails() {
       </div>
     </div>
   );
-}
+});
+
+export default PaintingDetails;
