@@ -1,8 +1,9 @@
-'use client';  // Mark this component as a Client Component
+'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { usePainting } from '../context/PaintingContext';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 
 type Painting = {
   src: string;
@@ -17,8 +18,19 @@ type SliderProps = {
 };
 
 export default function Slider({ paintings }: SliderProps) {
+  const searchParams = useSearchParams();
   const [currentIndex, setCurrentIndex] = useState(0);
   const { setCurrentPainting, setGoToPrevious, setGoToNext } = usePainting();
+
+  useEffect(() => {
+    const index = searchParams.get('index');
+    if (index !== null) {
+      const parsedIndex = parseInt(index, 10);
+      if (!isNaN(parsedIndex) && parsedIndex >= 0 && parsedIndex < paintings.length) {
+        setCurrentIndex(parsedIndex);
+      }
+    }
+  }, [searchParams, paintings.length]);
 
   const goToPrevious = useCallback(() => {
     setCurrentIndex((prevIndex) =>
