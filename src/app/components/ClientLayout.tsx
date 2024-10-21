@@ -34,7 +34,12 @@ export default function ClientLayout({
             >
               <h1>Oleksandr <br /> Pryvalov</h1>
             </Link>
-            <p className="text-darkGold text-lg italic font-medium tracking-widest font-playfair">paintings</p>
+            <Link
+              href="/thumbnails"
+              className="text-darkGold text-lg italic font-medium tracking-widest font-playfair hover:underline"
+            >
+              paintings
+            </Link>
           </div>
           <div className="text-base space-y-1 flex flex-col font-bold text-gray-700">
             <Link
