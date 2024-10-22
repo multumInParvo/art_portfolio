@@ -29,10 +29,12 @@ export default function ClientLayout({
           <div className="space-y-1">
             <Link
               href="/"
-              className="uppercase text-3xl hover:text-gray-500 transition-colors font-playfair"
+              className="block uppercase text-3xl hover:text-gray-500 transition-colors font-playfair"
               aria-label="Homepage - Oleksandr Pryvalov Paintings"
             >
-              <h1>Oleksandr <br /> Pryvalov</h1>
+              <h1 className="whitespace-nowrap md:whitespace-normal">
+                Oleksandr Pryvalov
+              </h1>
             </Link>
             <Link
               href="/thumbnails"
@@ -41,6 +43,7 @@ export default function ClientLayout({
               paintings
             </Link>
           </div>
+          {/* Rest of the navigation */}
           <div className="text-base space-y-1 flex flex-col font-bold text-gray-700">
             <Link
               href="/about"
@@ -70,14 +73,21 @@ export default function ClientLayout({
         </nav>
         <div>
           {pathname === '/' && !isLoading && <PaintingDetails />}
+          <div className="mt-8 hidden md:block">
           <footer className='mt-8 text-xs font-nunito text-slate-500'>
             © 2024 by Oleksandr Pryvalov
           </footer>
+          </div>
         </div>
       </aside>
-      <main id="main-content" className="flex-1 py-10 pr-10 overflow-x-auto">
+      <main id="main-content" className="flex-1 py-10 pr-10 md: p-10">
         <div className="min-w-max">{children}</div>
       </main>
+      <div className="p-10 md:hidden">
+      <footer className='mt-8 text-xs font-nunito text-slate-500'>
+            © 2024 by Oleksandr Pryvalov
+          </footer>
+        </div>
     </div>
   );
 }
