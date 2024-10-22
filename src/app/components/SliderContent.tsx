@@ -26,16 +26,22 @@ export function SliderContent({ paintings }: SliderProps) {
     }
   }, [searchParams, paintings.length]);
 
-  const changeImage = useCallback((direction: 'prev' | 'next') => {
-    setIsImageLoaded(false); // Reset image loading state
-    setCurrentIndex((prevIndex) => {
-      if (direction === 'prev') {
-        return prevIndex === 0 ? paintings.length - 1 : prevIndex - 1;
-      } else {
-        return prevIndex === paintings.length - 1 ? 0 : prevIndex + 1;
-      }
-    });
-  }, [paintings.length]);
+  // Unified image change function for both button and keyboard navigation
+  const changeImage = useCallback(
+    (direction: 'prev' | 'next') => {
+      setIsImageLoaded(false); // Reset image loading state
+      setCurrentIndex((prevIndex) => {
+        let newIndex = prevIndex;
+        if (direction === 'prev') {
+          newIndex = prevIndex === 0 ? paintings.length - 1 : prevIndex - 1;
+        } else if (direction === 'next') {
+          newIndex = prevIndex === paintings.length - 1 ? 0 : prevIndex + 1;
+        }
+        return newIndex;
+      });
+    },
+    [paintings.length]
+  );
 
   // Ensure painting details update only after the image is fully loaded
   useEffect(() => {
@@ -62,6 +68,7 @@ export function SliderContent({ paintings }: SliderProps) {
     setGoToNext(() => () => changeImage('next'));
   }, [changeImage, setGoToPrevious, setGoToNext]);
 
+  // Unified navigation handler
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
@@ -153,3 +160,4 @@ export function SliderContent({ paintings }: SliderProps) {
     </div>
   );
 }
+
