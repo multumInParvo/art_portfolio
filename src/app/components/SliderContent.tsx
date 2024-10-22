@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { usePainting } from '../context/PaintingContext';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import type { Painting } from '../data/paintings'; // You might need to create this type file
+import type { Painting } from '../data/paintings';
 
 type SliderProps = {
   paintings: Painting[];
@@ -13,6 +13,7 @@ type SliderProps = {
 export function SliderContent({ paintings }: SliderProps) {
   const searchParams = useSearchParams();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isImageLoaded, setIsImageLoaded] = useState(false); // Track image load status
   const { setCurrentPainting, setGoToPrevious, setGoToNext } = usePainting();
 
   useEffect(() => {
@@ -25,21 +26,23 @@ export function SliderContent({ paintings }: SliderProps) {
     }
   }, [searchParams, paintings.length]);
 
-  const goToPrevious = useCallback(() => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? paintings.length - 1 : prevIndex - 1
-    );
+  const changeImage = useCallback((direction: 'prev' | 'next') => {
+    setIsImageLoaded(false); // Reset image loading state
+    setCurrentIndex((prevIndex) => {
+      if (direction === 'prev') {
+        return prevIndex === 0 ? paintings.length - 1 : prevIndex - 1;
+      } else {
+        return prevIndex === paintings.length - 1 ? 0 : prevIndex + 1;
+      }
+    });
   }, [paintings.length]);
 
-  const goToNext = useCallback(() => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === paintings.length - 1 ? 0 : prevIndex + 1
-    );
-  }, [paintings.length]);
-
+  // Ensure painting details update only after the image is fully loaded
   useEffect(() => {
-    setCurrentPainting(paintings[currentIndex]);
-  }, [currentIndex, paintings, setCurrentPainting]);
+    if (isImageLoaded) {
+      setCurrentPainting(paintings[currentIndex]);
+    }
+  }, [isImageLoaded, currentIndex, paintings, setCurrentPainting]);
 
   useEffect(() => {
     const preloadImage = (src: string) => {
@@ -55,16 +58,16 @@ export function SliderContent({ paintings }: SliderProps) {
   }, [currentIndex, paintings]);
 
   useEffect(() => {
-    setGoToPrevious(() => goToPrevious);
-    setGoToNext(() => goToNext);
-  }, [goToPrevious, goToNext, setGoToPrevious, setGoToNext]);
+    setGoToPrevious(() => () => changeImage('prev'));
+    setGoToNext(() => () => changeImage('next'));
+  }, [changeImage, setGoToPrevious, setGoToNext]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
-        goToPrevious();
+        changeImage('prev');
       } else if (event.key === 'ArrowRight') {
-        goToNext();
+        changeImage('next');
       }
     };
 
@@ -73,7 +76,11 @@ export function SliderContent({ paintings }: SliderProps) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [goToPrevious, goToNext]);
+  }, [changeImage]);
+
+  const handleImageLoad = () => {
+    setIsImageLoaded(true); // Mark image as loaded
+  };
 
   const currentPainting = paintings[currentIndex];
 
@@ -92,11 +99,18 @@ export function SliderContent({ paintings }: SliderProps) {
           layout="fill"
           objectFit="contain"
           priority
+          onLoadingComplete={handleImageLoad} // Trigger when image is loaded
         />
       </div>
 
+      {/* Display the painting title and description */}
+      <div className="absolute bottom-0 left-0 w-full p-4 text-white">
+        <h2>{currentPainting.title}</h2>
+        <p>{currentPainting.description}</p>
+      </div>
+
       <button
-        onClick={goToPrevious}
+        onClick={() => changeImage('prev')}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white bg-opacity-50 rounded-full shadow-lg hover:bg-opacity-75 transition-all ease-in-out"
         aria-label="Previous Slide"
       >
@@ -117,7 +131,7 @@ export function SliderContent({ paintings }: SliderProps) {
       </button>
 
       <button
-        onClick={goToNext}
+        onClick={() => changeImage('next')}
         className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white bg-opacity-50 rounded-full shadow-lg hover:bg-opacity-75 transition-all ease-in-out"
         aria-label="Next Slide"
       >
