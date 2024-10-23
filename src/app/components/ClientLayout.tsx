@@ -15,7 +15,7 @@ export default function ClientLayout({
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
+    <div className="p-5 flex flex-col md:flex-row min-h-screen md:p-0">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:p-2 focus:bg-blue-500 focus:text-white"
@@ -24,12 +24,12 @@ export default function ClientLayout({
         Skip to main content
       </a>
 
-      <aside className="w-64 p-10 flex flex-col justify-between" aria-label="Sidebar Navigation">
+      <aside className="w-full md:w-64 md:p-10 flex flex-col justify-between" aria-label="Sidebar Navigation">
         <nav className="space-y-8">
           <div className="space-y-1">
             <Link
               href="/"
-              className="block uppercase text-3xl hover:text-gray-500 transition-colors font-playfair"
+              className="block uppercase text-2xl md:text-3xl hover:text-gray-500 transition-colors font-playfair"
               aria-label="Homepage - Oleksandr Pryvalov Paintings"
             >
               <h1 className="whitespace-nowrap md:whitespace-normal">
@@ -90,7 +90,7 @@ export default function ClientLayout({
       <main id="main-content" className="flex-1 p-0 md:py-10 md:pr-10">
         <div className="min-w-max">{children}</div>
       </main>
-      <div className="p-5 md:hidden">
+      <div className="p-0 md:hidden">
         <footer className='mt-8 text-xs font-nunito text-slate-500'>
           © 2024 by Oleksandr Pryvalov
         </footer>

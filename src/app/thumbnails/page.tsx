@@ -6,18 +6,20 @@ import { paintings } from '../data/paintings';
 
 const ThumbnailsPage = () => {
   return (
-    <div className="px-4 sm:px-6 md:px-8"> {/* Container with responsive padding */}
+    <div> {/* Container with responsive padding */}
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
         {paintings.map((painting, index) => (
           <div key={painting.title} className="w-full space-y-2">
             <Link href={`/?index=${index}`}>
-              <div className="relative w-full aspect-[4/3] cursor-pointer">
+              <div className="relative w-full h-auto cursor-pointer">
                 <Image
                   src={painting.src}
                   alt={painting.title}
-                  layout="fill"
+                  layout='responsive'
+                  width={500} // Use actual or approximate dimensions of the images
+                  height={500} // Use dynamic height based on the image
                   objectFit="cover" // Changed to cover for full width coverage
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   className="md:rounded-lg"
                   priority={index < 4}
                 />
