@@ -36,14 +36,21 @@ export default function ClientLayout({
                 Oleksandr Pryvalov
               </h1>
             </Link>
-            <Link
-              href="/thumbnails"
-              className="text-darkGold text-lg italic font-medium tracking-widest font-playfair hover:underline"
-            >
-              paintings
-            </Link>
+            <div className="md:hidden">
+              <span className="text-darkGold text-lg italic font-medium tracking-widest font-playfair">
+                paintings
+              </span>
+            </div>
+            <div className="hidden md:block">
+              <Link
+                href="/thumbnails"
+                className="text-darkGold text-lg italic font-medium tracking-widest font-playfair hover:underline"
+              >
+                paintings
+              </Link>
+            </div>
           </div>
-          {/* Rest of the navigation */}
+          {/* Rest of your code remains the same */}
           <div className="text-base space-y-1 flex flex-col font-bold text-gray-700">
             <Link
               href="/about"
@@ -74,20 +81,20 @@ export default function ClientLayout({
         <div>
           {pathname === '/' && !isLoading && <PaintingDetails />}
           <div className="mt-8 hidden md:block">
-          <footer className='mt-8 text-xs font-nunito text-slate-500'>
-            © 2024 by Oleksandr Pryvalov
-          </footer>
+            <footer className='mt-8 text-xs font-nunito text-slate-500'>
+              © 2024 by Oleksandr Pryvalov
+            </footer>
           </div>
         </div>
       </aside>
-      <main id="main-content" className="flex-1 py-10 pr-10 md: p-10">
+      <main id="main-content" className="flex-1 p-0 md:py-10 md:pr-10">
         <div className="min-w-max">{children}</div>
       </main>
-      <div className="p-10 md:hidden">
-      <footer className='mt-8 text-xs font-nunito text-slate-500'>
-            © 2024 by Oleksandr Pryvalov
-          </footer>
-        </div>
+      <div className="p-5 md:hidden">
+        <footer className='mt-8 text-xs font-nunito text-slate-500'>
+          © 2024 by Oleksandr Pryvalov
+        </footer>
+      </div>
     </div>
   );
 }
