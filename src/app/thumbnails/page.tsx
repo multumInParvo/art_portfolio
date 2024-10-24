@@ -30,14 +30,15 @@ const ThumbnailsPage = () => {
                 </div>
               </div>
             </Link>
-            
+
             {/* Centered painting details - only visible on mobile */}
             <div className="block md:hidden text-left">
-              <h2 className="text-lg font-semibold mb-1 font-nunito text-gray-600">
+              <h2 className="text-base font-bold font-nunito">
                 {painting.title}
               </h2>
-              <p className="text-sm font-nunito">{painting.dimensions}</p>
-              <p className="text-sm font-nunito">{painting.year}</p>
+              <div className='flex gap-1'>
+                <p className="text-xs font-nunito font-semibold">{`${painting.dimensions}, ${painting.year}`}</p>
+              </div>
             </div>
           </div>
         ))}

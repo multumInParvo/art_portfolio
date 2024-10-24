@@ -13,8 +13,8 @@ const PaintingDetails = React.memo(function PaintingDetails() {
       <h2 className="text-lg font-semibold mb-1 font-nunito text-gray-600">
         {currentPainting.title}
       </h2>
-      <p className="text-sm font-nunito">{currentPainting.dimensions}</p>
-      <p className="text-sm font-nunito">{currentPainting.year}</p>
+        <p className="text-sm font-nunito">{currentPainting.dimensions}</p>
+        <p className="text-sm font-nunito">{currentPainting.year}</p>
       <div className="mt-2 text-sm hidden md:block">
         <button
           onClick={goToPrevious}

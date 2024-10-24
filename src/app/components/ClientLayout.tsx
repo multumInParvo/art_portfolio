@@ -49,7 +49,7 @@ export default function ClientLayout({
               </Link>
             </div>
             <nav className="mt-10 space-y-1">
-              <div className="text-base flex flex-col font-bold text-gray-700">
+              <div className="text-base flex flex-col font-bold text-gray-700 space-y-4">
                 <Link
                   href="/about"
                   className="hover:text-gray-900 hover:underline transition-all font-nunito uppercase w-full"
@@ -70,7 +70,7 @@ export default function ClientLayout({
                   className="w-fit"
                 >
                   <FaInstagram
-                    className="text-s text-gray-700 hover:text-gray-900 transition-colors"
+                    className="text-lg text-gray-700 hover:text-gray-900 transition-colors"
                     aria-hidden="true"
                   />
                 </Link>
@@ -111,7 +111,7 @@ export default function ClientLayout({
             </button>
           </div>
           <div className="mt-1">
-            <span className="text-darkGold text-lg italic font-medium tracking-widest font-playfair">
+            <span className="text-base italic from-neutral-200 tracking-widest font-playfair">
               paintings
             </span>
           </div>
@@ -126,7 +126,7 @@ export default function ClientLayout({
           >
             <div className="p-5 pt-0">
               <nav className="space-y-6 mt-8">
-                <div className="text-base space-y-4 flex flex-col font-bold">
+                <div className="text-sm space-y-4 flex flex-col font-bold">
                   <div className="w-fit">
                     <Link
                       href="/about"
@@ -154,7 +154,7 @@ export default function ClientLayout({
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <FaInstagram
-                        className="text-2xl text-gray-700 hover:text-gray-900 transition-colors"
+                        className="text-lg text-gray-700 hover:text-gray-900 transition-colors"
                         aria-hidden="true"
                       />
                     </Link>
@@ -167,7 +167,8 @@ export default function ClientLayout({
 
         {/* Main Content */}
         <main id="main-content" className="flex-1 p-5 md:py-10 md:pr-10 md:pl-0">
-          <div className="min-w-max">{children}</div>
+          <div className="min-w-max">
+            {children}</div>
         </main>
 
         {/* Mobile Footer */}
