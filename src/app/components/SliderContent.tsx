@@ -106,12 +106,12 @@ export function SliderContent({ paintings }: SliderProps) {
       {/* Navigation click areas */}
       <button
         onClick={() => changeImage('prev')}
-        className="hidden md:block absolute left-0 top-0 w-1/2 h-full bg-transparent cursor-w-resize"
+        className="hidden md:block absolute left-0 top-0 w-1/2 h-full bg-transparent cursor-w-resize focus:outline-none"
         aria-label="Previous Slide"
       />
       <button
         onClick={() => changeImage('next')}
-        className="hidden md:block absolute right-0 top-0 w-1/2 h-full bg-transparent cursor-e-resize"
+        className="hidden md:block absolute right-0 top-0 w-1/2 h-full bg-transparent cursor-e-resize focus:outline-none"
         aria-label="Next Slide"
       />
     </div>
