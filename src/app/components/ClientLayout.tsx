@@ -120,7 +120,7 @@ export default function ClientLayout({
         {/* Mobile Navigation Drawer */}
         <div className="md:hidden">
           <div 
-            className={`bg-white transition-all duration-300 ease-in-out overflow-hidden ${
+            className={`transition-all duration-300 ease-in-out overflow-hidden ${
               isMenuOpen ? 'max-h-64' : 'max-h-0'
             }`}
           >
