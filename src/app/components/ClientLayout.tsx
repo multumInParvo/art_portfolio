@@ -29,10 +29,10 @@ export default function ClientLayout({
           <div className="space-y-1">
             <Link
               href="/"
-              className="block uppercase text-2xl md:text-3xl hover:text-gray-500 transition-colors font-playfair"
+              className="block uppercase text-2xl md:text-3xl hover:text-gray-500 transition-colors"
               aria-label="Homepage - Oleksandr Pryvalov Paintings"
             >
-              <h1 className="whitespace-nowrap md:whitespace-normal">
+              <h1 className="font-nunito font-semibold whitespace-nowrap md:whitespace-normal">
                 Oleksandr Pryvalov
               </h1>
             </Link>
