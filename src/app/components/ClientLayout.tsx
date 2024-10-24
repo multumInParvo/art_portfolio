@@ -91,7 +91,7 @@ export default function ClientLayout({
       {/* Mobile Layout */}
       <div className="w-full md:flex-1">
         {/* Mobile Header */}
-        <div className="md:hidden p-5">
+        <div className="md:hidden p-5 pb-0">
           <div className="flex justify-between items-center">
             <Link
               href="/"
@@ -124,7 +124,7 @@ export default function ClientLayout({
               isMenuOpen ? 'max-h-64' : 'max-h-0'
             }`}
           >
-            <div className="p-5">
+            <div className="p-5 pt-0">
               <nav className="space-y-6 mt-8">
                 <div className="text-base space-y-4 flex flex-col font-bold">
                   <div className="w-fit">
