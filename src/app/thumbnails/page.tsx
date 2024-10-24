@@ -8,6 +8,7 @@ import { paintings } from '../data/paintings';
 
 const ThumbnailsPage = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [touchedIndex, setTouchedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -24,19 +25,29 @@ const ThumbnailsPage = () => {
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
-  const handleMobileClick = (title: string) => {
+  const getUrlFriendlyTitle = (title: string) => {
+    return title.toLowerCase().replace(/\s+/g, '-');
+  };
+
+  const handleMobileClick = (title: string, index: number) => {
     if (isMobile) {
-      // Replace spaces with hyphens and make lowercase for URL
-      const urlFriendlyTitle = title.toLowerCase().replace(/\s+/g, '-');
-      // Update URL without navigation
+      const urlFriendlyTitle = getUrlFriendlyTitle(title);
       window.history.replaceState({}, '', `#${urlFriendlyTitle}`);
+      
+      // Set the touched index to show the overlay
+      setTouchedIndex(index);
+      
+      // Reset the touched state after a short delay
+      setTimeout(() => {
+        setTouchedIndex(null);
+      }, 300); // Duration matches the CSS transition
     }
   };
 
   const ImageContent = ({ painting, index }: { painting: typeof paintings[0], index: number }) => (
     <div 
       className="relative w-full h-auto cursor-pointer"
-      onClick={() => handleMobileClick(painting.title)}
+      onClick={() => handleMobileClick(painting.title, index)}
     >
       <Image
         src={painting.src}
@@ -49,7 +60,15 @@ const ThumbnailsPage = () => {
         className="md:rounded-lg"
         priority={index < 4}
       />
-      <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-opacity duration-300 flex items-center justify-center">
+      <div 
+        className={`absolute inset-0 bg-black transition-opacity duration-300 flex items-center justify-center
+          ${isMobile 
+            ? touchedIndex === index 
+              ? 'bg-opacity-50' 
+              : 'bg-opacity-0'
+            : 'bg-opacity-0 hover:bg-opacity-50'
+          }`}
+      >
       </div>
     </div>
   );
@@ -64,7 +83,7 @@ const ThumbnailsPage = () => {
                 <ImageContent painting={painting} index={index} />
               </div>
             ) : (
-              <Link href={`/?index=${index}`}>
+              <Link href={`/?painting=${getUrlFriendlyTitle(painting.title)}`}>
                 <ImageContent painting={painting} index={index} />
               </Link>
             )}
