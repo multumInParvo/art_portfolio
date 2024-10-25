@@ -36,14 +36,14 @@ export default function ClientLayout({
               className="block uppercase text-2xl md:text-3xl hover:text-gray-500 transition-colors"
               aria-label="Homepage - Oleksandr Pryvalov Paintings"
             >
-              <h1 className="font-nunito font-semibold whitespace-nowrap md:whitespace-normal">
+              <h1 className="font-playfair whitespace-nowrap md:whitespace-normal">
                 Oleksandr Pryvalov
               </h1>
             </Link>
-            <div className="mt-1">
+            <div>
               <Link
                 href="/thumbnails"
-                className="text-darkGold text-lg italic font-medium tracking-widest font-playfair hover:underline"
+                className="text-darkGold text-base italic font-medium tracking-widest font-playfair hover:underline"
               >
                 paintings
               </Link>
@@ -95,10 +95,10 @@ export default function ClientLayout({
           <div className="flex justify-between items-center max-[350px]:items-start">
             <Link
               href="/"
-              className="block uppercase text-2xl hover:text-gray-500 transition-colors"
+              className="block uppercase text-2xl"
               aria-label="Homepage - Oleksandr Pryvalov Paintings"
             >
-              <h1 className="font-nunito font-semibold">
+              <h1 className="font-playfair">
                 Oleksandr<br className="hidden max-[350px]:block" /> Pryvalov
               </h1>
             </Link>
@@ -110,8 +110,8 @@ export default function ClientLayout({
               <Menu className="h-6 w-6" />
             </button>
           </div>
-          <div className="mt-1">
-            <span className="text-base italic from-neutral-200 tracking-widest font-playfair">
+          <div>
+            <span className="text-base text-slate-700 italic tracking-widest font-playfair">
               paintings
             </span>
           </div>

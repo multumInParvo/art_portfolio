@@ -48,19 +48,26 @@ export default function ContactPage() {
     return (
         <div className="w-ful flex flex-col items-center">
             <div className='w-full'>
-                <h1 className='text-2xl mb-5'>Contact</h1>
+                <h1 className='text-2xl my-6 font-playfair md:text-3xl md:mt-0'>Contact</h1>
             </div>
-            <div className="w-full flex flex-col justify-between border-b pb-5 mb-5">
+            <div className="w-full flex flex-col justify-between border-b mb-10 gap-2">
                 <p className="font-semibold text-gray-700 leading-relaxed font-nunito">
-                    Ask me anything here or send an email<br className="min-[400px]:hidden" /> directly to
+                    Ask me anything here or send an email<br className="min-[400px]:hidden" /> directly to:
                 </p>
-                <span className="text-slate-800 font-bold font-nunito">oleksandrpryv@gmail.com</span>
+                <span>
+                    <a
+                        href="mailto:oleksandrpryv@gmail.com"
+                        className="text-slate-700 font-bold font-nunito pb-0 hover:text-blue-500"
+                    >
+                        oleksandrpryv@gmail.com
+                    </a>
+                </span>
             </div>
             <form className="w-full flex flex-col" onSubmit={handleSubmit}>
                 <div className="mb-4">
-                    <label className="font-bold font-nunito uppercase text-gray-700 text-base">Name</label>
+                    <label className="font-bold font-playfair text-gray-600 text-base">Name</label>
                     <input
-                        className="w-full px-3 py-2  focus:outline-none focus:ring focus:border-sky-200 bg-sky-100"
+                        className="w-full px-3 py-2  focus:outline-none focus:ring focus:border-sky-200 bg-slate-100 placeholder:text-gray-600"
                         type="text"
                         name="name"
                         value={formData.name}
@@ -72,9 +79,9 @@ export default function ContactPage() {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="font-bold font-nunito uppercase text-gray-700 text-base">Email</label>
+                    <label className="font-bold font-playfair text-gray-600 text-base">Email</label>
                     <input
-                        className="w-full px-3 py-2 focus:outline-none focus:ring focus:border-sky-200 bg-sky-100"
+                        className="w-full px-3 py-2 focus:outline-none focus:ring focus:border-sky-200 bg-slate-100 placeholder:text-gray-600"
                         type="email"
                         name="email"
                         value={formData.email}
@@ -86,9 +93,9 @@ export default function ContactPage() {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="font-bold font-nunito uppercase text-gray-700 text-base">Message</label>
+                    <label className="font-bold font-playfair text-gray-600 text-base">Message</label>
                     <textarea
-                        className="w-full px-3 py-2 focus:outline-none focus:ring focus:border-sky-200 bg-sky-100"
+                        className="w-full px-3 py-2 focus:outline-none focus:ring focus:border-sky-200 bg-slate-100 h-32 placeholder:text-gray-600"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
