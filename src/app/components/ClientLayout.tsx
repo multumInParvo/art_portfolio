@@ -92,14 +92,14 @@ export default function ClientLayout({
       <div className="w-full md:flex-1">
         {/* Mobile Header */}
         <div className="md:hidden p-5 pb-0">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center max-[350px]:items-start">
             <Link
               href="/"
               className="block uppercase text-2xl hover:text-gray-500 transition-colors"
               aria-label="Homepage - Oleksandr Pryvalov Paintings"
             >
-              <h1 className="font-nunito font-semibold whitespace-nowrap">
-                Oleksandr Pryvalov
+              <h1 className="font-nunito font-semibold">
+                Oleksandr<br className="hidden max-[350px]:block" /> Pryvalov
               </h1>
             </Link>
             <button
@@ -119,10 +119,9 @@ export default function ClientLayout({
 
         {/* Mobile Navigation Drawer */}
         <div className="md:hidden">
-          <div 
-            className={`transition-all duration-300 ease-in-out overflow-hidden ${
-              isMenuOpen ? 'max-h-64' : 'max-h-0'
-            }`}
+          <div
+            className={`transition-all duration-300 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-64' : 'max-h-0'
+              }`}
           >
             <div className="p-5 pt-0">
               <nav className="space-y-6 mt-8">
