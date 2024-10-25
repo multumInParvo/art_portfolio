@@ -47,17 +47,20 @@ export default function ContactPage() {
 
     return (
         <div className="w-ful flex flex-col items-center">
+            <div className='w-full'>
+                <h1 className='text-2xl mb-5'>Contact</h1>
+            </div>
             <div className="w-full flex flex-col justify-between border-b pb-5 mb-5">
-                <p className="font-semibold text-gray-700 leading-relaxed">
+                <p className="font-semibold text-gray-700 leading-relaxed font-nunito">
                     Ask me anything here or send an email<br className="min-[400px]:hidden" /> directly to
                 </p>
-                <span className="text-blue-600">oleksandrpryv@gmail.com</span>
+                <span className="text-slate-800 font-bold font-nunito">oleksandrpryv@gmail.com</span>
             </div>
             <form className="w-full flex flex-col" onSubmit={handleSubmit}>
                 <div className="mb-4">
-                    <label className="block font-semibold mb-2">Name</label>
+                    <label className="font-bold font-nunito uppercase text-gray-700 text-base">Name</label>
                     <input
-                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
+                        className="w-full px-3 py-2  focus:outline-none focus:ring focus:border-sky-200 bg-sky-100"
                         type="text"
                         name="name"
                         value={formData.name}
@@ -69,9 +72,9 @@ export default function ContactPage() {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block font-semibold mb-2">Email</label>
+                    <label className="font-bold font-nunito uppercase text-gray-700 text-base">Email</label>
                     <input
-                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
+                        className="w-full px-3 py-2 focus:outline-none focus:ring focus:border-sky-200 bg-sky-100"
                         type="email"
                         name="email"
                         value={formData.email}
@@ -83,9 +86,9 @@ export default function ContactPage() {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block font-semibold mb-2">Message</label>
+                    <label className="font-bold font-nunito uppercase text-gray-700 text-base">Message</label>
                     <textarea
-                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
+                        className="w-full px-3 py-2 focus:outline-none focus:ring focus:border-sky-200 bg-sky-100"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
@@ -98,9 +101,9 @@ export default function ContactPage() {
                 <div className="mt-6 flex justify-end">
                     <button
                         type="submit"
-                        className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition"
+                        className="px-6 py-3 bg-slate-900 text-white font-semibold hover:bg-slate-700 transition uppercase font-nunito text-xs"
                     >
-                        Send Message
+                        Send
                     </button>
                 </div>
             </form>
