@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function AboutPage() {
   return (
-    <div className="w-full flex flex-col items-center md:ml-16 md:max-w-3xl">
+    <div className="w-full flex flex-col items-center md:ml-16 md:pr-16 md:max-w-3xl">
       <div className="w-full">
         <h1 className='text-2xl mb-2 mt-0 font-playfair md:text-3xl md:mb-10 border-b'>
           About
@@ -11,7 +11,7 @@ export default function AboutPage() {
 
       <div className="flex flex-col gap-8 md:gap-14 mt-6">
         <div className="w-full">
-          <p className="text-sm md:text-base font-semibold text-gray-700 leading-relaxed font-nunito max-w-full break-words">
+          <p className="text-sm md:text-base font-semibold text-gray-700 font-nunito">
             Oleksandr Pryvalov (born 1987) spent his childhood in Mykolaiv, Ukraine, but his artistic passion grew in Argentina after immigrating there with his parents.
             While exploring various interests in his youth, art, particularly drawing and painting, remained a constant.
             As a self-taught artist, Pryvalov&apos;s fascination with capturing the world visually became a defining force in his life.

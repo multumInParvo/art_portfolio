@@ -46,10 +46,11 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="w-full flex flex-col items-center md:ml-16 md:max-w-3xl">
+        <div className="w-full flex flex-col items-center md:ml-16 md:pr-16 md:max-w-3xl">
             <div className='w-full'>
                 <h1 className='text-2xl mb-2 mt-0 font-playfair md:text-3xl md:mb-10 border-b'>Contact</h1>
             </div>
+            
             <div className="w-full flex flex-col justify-between mb-10 gap-2">
                 <p className="font-semibold text-gray-700 leading-relaxed font-nunito">
                     Ask me anything here or send an email<br className="min-[400px]:hidden" /> directly to:
