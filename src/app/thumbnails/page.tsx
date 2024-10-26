@@ -1,4 +1,3 @@
-// pages/thumbnails.tsx
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -33,10 +32,10 @@ const ThumbnailsPage = () => {
     if (isMobile) {
       const urlFriendlyTitle = getUrlFriendlyTitle(title);
       window.history.replaceState({}, '', `#${urlFriendlyTitle}`);
-      
+
       // Set the touched index to show the overlay
       setTouchedIndex(index);
-      
+
       // Reset the touched state after a short delay
       setTimeout(() => {
         setTouchedIndex(null);
@@ -45,7 +44,7 @@ const ThumbnailsPage = () => {
   };
 
   const ImageContent = ({ painting, index }: { painting: typeof paintings[0], index: number }) => (
-    <div 
+    <div
       className="relative w-full h-auto cursor-pointer"
       onClick={() => handleMobileClick(painting.title, index)}
     >
@@ -56,15 +55,14 @@ const ThumbnailsPage = () => {
         width={500}
         height={500}
         objectFit="cover"
-        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-        className="md:rounded-lg"
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         priority={index < 4}
       />
-      <div 
+      <div
         className={`absolute inset-0 bg-black transition-opacity duration-300 flex items-center justify-center
-          ${isMobile 
-            ? touchedIndex === index 
-              ? 'bg-opacity-50' 
+          ${isMobile
+            ? touchedIndex === index
+              ? 'bg-opacity-50'
               : 'bg-opacity-0'
             : 'bg-opacity-0 hover:bg-opacity-50'
           }`}
@@ -74,8 +72,13 @@ const ThumbnailsPage = () => {
   );
 
   return (
-    <div>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+    <div className="w-full flex flex-col items-center md:ml-16 md:pr-16 md:max-w-4xl">
+
+      <div className='w-full'>
+        <h1 className='hidden md:block text-2xl mb-2 mt-0 font-playfair md:text-3xl md:mb-10 border-b'>Paintings</h1>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 w-full">
         {paintings.map((painting, index) => (
           <div key={painting.title} className="w-full space-y-2">
             {isMobile ? (
