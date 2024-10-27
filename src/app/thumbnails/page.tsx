@@ -11,16 +11,11 @@ const ThumbnailsPage = () => {
 
   useEffect(() => {
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768); // 768px is the md breakpoint
+      setIsMobile(window.innerWidth < 768);
     };
 
-    // Check initially
     checkIfMobile();
-
-    // Add event listener for window resize
     window.addEventListener('resize', checkIfMobile);
-
-    // Cleanup
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
@@ -32,14 +27,10 @@ const ThumbnailsPage = () => {
     if (isMobile) {
       const urlFriendlyTitle = getUrlFriendlyTitle(title);
       window.history.replaceState({}, '', `#${urlFriendlyTitle}`);
-
-      // Set the touched index to show the overlay
       setTouchedIndex(index);
-
-      // Reset the touched state after a short delay
       setTimeout(() => {
         setTouchedIndex(null);
-      }, 300); // Duration matches the CSS transition
+      }, 300);
     }
   };
 
@@ -72,10 +63,11 @@ const ThumbnailsPage = () => {
   );
 
   return (
-    <div className="w-full flex flex-col items-center md:ml-16 md:pr-16 md:max-w-4xl">
-
+    <div className="w-full flex flex-col items-center md:ml-16 md:pr-16 md:max-w-6xl">
       <div className='w-full'>
-        <h1 className='hidden md:block text-2xl mb-2 mt-0 font-playfair md:text-3xl md:mb-10 border-b'>Paintings</h1>
+        <h1 className='hidden md:block text-2xl mb-2 mt-0 font-playfair md:text-3xl md:mb-10 border-b dark:text-gray-100 dark:border-gray-700'>
+          Paintings
+        </h1>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 w-full">
@@ -93,11 +85,13 @@ const ThumbnailsPage = () => {
 
             {/* Centered painting details - only visible on mobile */}
             <div className="block md:hidden text-left">
-              <h2 className="text-base font-bold font-nunito">
+              <h2 className="text-base font-bold font-nunito text-gray-800 dark:text-gray-100">
                 {painting.title}
               </h2>
               <div className='flex gap-1'>
-                <p className="text-xs font-nunito font-semibold">{`${painting.dimensions}, ${painting.year}`}</p>
+                <p className="text-xs font-nunito font-semibold text-gray-600 dark:text-gray-300">
+                  {`${painting.dimensions}, ${painting.year}`}
+                </p>
               </div>
             </div>
           </div>
