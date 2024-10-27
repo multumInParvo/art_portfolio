@@ -2,25 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    
+    /* Light theme variables */
+    --color-bg: #f8f9fa; /* Example color */
+    --color-text: #212529; /* Example color */
+    --color-surface: #ffffff; /* Example color */
+    --color-border: #dee2e6; /* Example color */
+  }
+
+  :root[class~="dark"] {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 100%;
+    
+    /* Dark theme variables */
+    --color-bg: #212529; /* Example color */
+    --color-text: #f8f9fa; /* Example color */
+    --color-surface: #343a40; /* Example color */
+    --color-border: #495057; /* Example color */
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Add smooth transitions for theme changes */
+::selection {
+  background-color: #b58900; /* Example color */
+  color: white;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  @apply transition-colors duration-300;
 }
