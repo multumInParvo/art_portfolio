@@ -45,7 +45,7 @@ const ThumbnailsPage = () => {
 
   const ImageContent = ({ painting, index }: { painting: typeof paintings[0], index: number }) => (
     <div
-      className="relative w-full h-auto cursor-pointer"
+      className="relative w-full cursor-pointer"
       onClick={() => handleMobileClick(painting.title, index)}
     >
       <Image

@@ -80,7 +80,7 @@ export default function ClientLayout({
           <div className="mt-auto">
             {pathname === '/' && !isLoading && <PaintingDetails />}
             <div className="mt-8">
-              <footer className='text-xs font-nunito text-slate-500'>
+              <footer className='text-xs font-nunito text-gray-600'>
                 © 2024 by Oleksandr Pryvalov
               </footer>
             </div>
@@ -173,7 +173,7 @@ export default function ClientLayout({
 
         {/* Mobile Footer */}
         <div className="p-5 md:hidden">
-          <footer className='text-xs font-nunito text-slate-500'>
+          <footer className='text-xs font-nunito text-gray-600'>
             © 2024 by Oleksandr Pryvalov
           </footer>
         </div>
