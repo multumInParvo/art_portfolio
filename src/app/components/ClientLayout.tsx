@@ -7,6 +7,7 @@ import { Menu, Moon, Sun } from 'lucide-react';
 import { FaInstagram } from 'react-icons/fa';
 import PaintingDetails from './PaintingDetails';
 import { useTheme } from '../context/ThemeContext';
+import ScrollArrows from '../components/ScrollArrows';
 
 export default function ClientLayout({
   children,
@@ -212,6 +213,7 @@ export default function ClientLayout({
                         <Sun className="w-5 h-5" />
                       )}
                     </button>
+                    <ScrollArrows />
                   </div>
                 </div>
               </nav>
