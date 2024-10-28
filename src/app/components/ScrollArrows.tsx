@@ -21,7 +21,7 @@ export default function ScrollArrows() {
     const scrollToBottom = () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 
     return showArrows ? (
-        <div className="fixed right-5 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4 z-50">
+        <div className="fixed right-5 top-1/2 transform -translate-y-12 flex flex-col space-y-4 z-50">
             <button
                 onClick={scrollToTop}
                 aria-label="Scroll to Top"
