@@ -20,27 +20,27 @@ const PaintingDetails = React.memo(function PaintingDetails() {
         {currentPainting.year}
       </p>
       <div className="mt-2 text-sm hidden md:block">
-      <button
-  onClick={goToPrevious}
-  className="relative inline-block font-nunito font-bold text-gray-600 dark:text-gray-300 transition-all
+        <button
+          onClick={goToPrevious}
+          className="relative inline-block font-nunito font-bold text-gray-600 dark:text-gray-300 transition-all
     after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0
-    dark:after:bg-darkGold after:bg-transparent after:transition-transform after:duration-300
+    after:bg-gray-600 dark:after:bg-darkGold after:transition-transform after:duration-300
     hover:after:scale-x-100"
->
-  PREV
-</button>
-<span className="mx-1 font-nunito font-bold text-gray-600 dark:text-gray-300">
-  /
-</span>
-<button
-  onClick={goToNext}
-  className="relative inline-block font-nunito font-bold text-gray-600 dark:text-gray-300 transition-all
+        >
+          PREV
+        </button>
+        <span className="mx-1 font-nunito font-bold text-gray-600 dark:text-gray-300">
+          /
+        </span>
+        <button
+          onClick={goToNext}
+          className="relative inline-block font-nunito font-bold text-gray-600 dark:text-gray-300 transition-all
     after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0
-    dark:after:bg-darkGold after:bg-transparent after:transition-transform after:duration-300
+    after:bg-gray-600 dark:after:bg-darkGold after:transition-transform after:duration-300
     hover:after:scale-x-100"
->
-  NEXT
-</button>
+        >
+          NEXT
+        </button>
 
       </div>
     </div>

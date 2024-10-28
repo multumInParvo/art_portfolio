@@ -1,4 +1,3 @@
-// src/app/components/ClientLayout.tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -35,18 +34,15 @@ export default function ClientLayout({
         bg-white dark:bg-gray-900 dark:border-gray-800">
         <div className="p-10 flex flex-col h-full md:pr-0">
           <div>
-            <Link
-              href="/"
-              className="block uppercase text-2xl md:text-3xl 
-                text-gray-900 dark:text-gray-100
-                hover:text-gray-500 dark:hover:text-gray-300 
-                transition-colors"
-              aria-label="Homepage - Oleksandr Pryvalov Paintings"
-            >
-              <h1 className="font-playfair whitespace-nowrap md:whitespace-normal">
+            <h1 className="block uppercase text-2xl md:text-3xl font-playfair whitespace-nowrap md:whitespace-normal">
+              <Link
+                href="/"
+                className="text-gray-900 dark:text-gray-100 hover:text-gray-500 dark:hover:text-gray-300 transition-colors"
+                aria-label="Homepage - Oleksandr Pryvalov Paintings"
+              >
                 Oleksandr Pryvalov
-              </h1>
-            </Link>
+              </Link>
+            </h1>
 
             <div>
               <Link href="/thumbnails"
@@ -60,23 +56,30 @@ export default function ClientLayout({
 
             <nav className="mt-10 space-y-1">
               <div className="text-base flex flex-col font-bold text-gray-700 space-y-4">
-                <Link
-                  href="/about"
-                  className="text-gray-700 dark:text-gray-100 transition-all font-nunito uppercase relative"
-                >
-                  <span className="relative inline-block after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0 after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 hover:after:scale-x-100">
+                <div className="relative">
+                  <Link
+                    href="/about"
+                    className="text-gray-700 dark:text-gray-100 transition-all font-nunito uppercase inline-block relative
+                    after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0 
+                    after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 
+                    hover:after:scale-x-100"
+                  >
                     About
-                  </span>
-                </Link>
+                  </Link>
+                </div>
 
-                <Link
-                  href="/contact"
-                  className="text-gray-700 dark:text-gray-100 transition-all font-nunito uppercase relative"
-                >
-                  <span className="relative inline-block after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0 after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 hover:after:scale-x-100">
+                <div className="relative">
+                  <Link
+                    href="/contact"
+                    className="text-gray-700 dark:text-gray-100 transition-all font-nunito uppercase inline-block relative
+                    after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0 
+                    after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 
+                    hover:after:scale-x-100"
+                  >
                     Contact
-                  </span>
-                </Link>
+                  </Link>
+                </div>
+
                 <div className='flex gap-8'>
                   <Link
                     href="https://www.instagram.com/oleksandrpryv/"
@@ -127,17 +130,15 @@ export default function ClientLayout({
         {/* Mobile Header */}
         <div className="md:hidden p-5 pb-0">
           <div className="flex justify-between items-center max-[350px]:items-start">
-            <Link
-              href="/"
-              className="block uppercase text-2xl text-gray-900 dark:text-gray-100
-              hover:text-gray-500 dark:hover:text-gray-300 
-              transition-colors"
-              aria-label="Homepage - Oleksandr Pryvalov Paintings"
-            >
-              <h1 className="font-playfair">
+            <h1 className="block uppercase text-2xl font-playfair">
+              <Link
+                href="/"
+                className="text-gray-900 dark:text-gray-100 hover:text-gray-500 dark:hover:text-gray-300 transition-colors"
+                aria-label="Homepage - Oleksandr Pryvalov Paintings"
+              >
                 Oleksandr<br className="hidden max-[350px]:block" /> Pryvalov
-              </h1>
-            </Link>
+              </Link>
+            </h1>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden dark:text-gray-200"
@@ -162,19 +163,19 @@ export default function ClientLayout({
             <div className="p-5 pt-0">
               <nav className="space-y-6 mt-8">
                 <div className="text-sm space-y-4 flex flex-col font-bold">
-                  <div className="w-fit">
+                  <div className="relative">
                     <Link
                       href="/about"
-                      className="text-gray-700 dark:text-gray-100 font-nunito uppercase"
+                      className="text-gray-700 dark:text-gray-100 font-nunito uppercase inline-block"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       About
                     </Link>
                   </div>
-                  <div className="w-fit">
+                  <div className="relative">
                     <Link
                       href="/contact"
-                      className="text-gray-700 dark:text-gray-100 font-nunito uppercase"
+                      className="text-gray-700 dark:text-gray-100 font-nunito uppercase inline-block"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Contact
