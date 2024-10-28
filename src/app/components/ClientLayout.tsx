@@ -47,26 +47,24 @@ export default function ClientLayout({
                 Oleksandr Pryvalov
               </h1>
             </Link>
+
             <div>
-              <Link
-                href="/thumbnails"
+              <Link href="/thumbnails"
                 className="text-darkGold dark:text-amber-400 text-base italic font-medium tracking-widest font-playfair relative inline-block
-    after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0
-    dark:after:bg-darkGold after:bg-transparent after:transition-transform after:duration-300
-    hover:after:scale-x-100"
-              >
+                after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0
+                dark:after:bg-darkGold after:bg-transparent after:transition-transform after:duration-300
+                hover:after:scale-x-100">
                 paintings
               </Link>
-
             </div>
+
             <nav className="mt-10 space-y-1">
               <div className="text-base flex flex-col font-bold text-gray-700 space-y-4">
                 <Link
                   href="/about"
                   className="text-gray-700 dark:text-gray-100 transition-all font-nunito uppercase relative"
                 >
-                  <span className="relative inline-block after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0
-    dark:after:bg-darkGold after:bg-transparent after:transition-transform after:duration-300 hover:after:scale-x-100">
+                  <span className="relative inline-block after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0 after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 hover:after:scale-x-100">
                     About
                   </span>
                 </Link>
@@ -75,8 +73,7 @@ export default function ClientLayout({
                   href="/contact"
                   className="text-gray-700 dark:text-gray-100 transition-all font-nunito uppercase relative"
                 >
-                  <span className="relative inline-block after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0
-    dark:after:bg-darkGold after:bg-transparent after:transition-transform after:duration-300 hover:after:scale-x-100">
+                  <span className="relative inline-block after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0 after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 hover:after:scale-x-100">
                     Contact
                   </span>
                 </Link>
@@ -168,7 +165,7 @@ export default function ClientLayout({
                   <div className="w-fit">
                     <Link
                       href="/about"
-                      className="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-200 hover:underline transition-all font-nunito uppercase"
+                      className="text-gray-700 dark:text-gray-100 font-nunito uppercase"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       About
@@ -177,7 +174,7 @@ export default function ClientLayout({
                   <div className="w-fit">
                     <Link
                       href="/contact"
-                      className="text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-200 hover:underline transition-all font-nunito uppercase"
+                      className="text-gray-700 dark:text-gray-100 font-nunito uppercase"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Contact
