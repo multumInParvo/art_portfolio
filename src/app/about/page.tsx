@@ -9,7 +9,7 @@ export default function AboutPage() {
         </h1>
       </div>
 
-      <div className="flex flex-col gap-8 md:gap-14 mt-6">
+      <div className="flex flex-col gap-8 md:gap-14 mt-6 md:flex-row">
         <div className="w-full">
           <p className="text-sm md:text-base font-semibold text-gray-700 dark:text-gray-300 font-nunito">
             Oleksandr Pryvalov (born 1987) spent his childhood in Mykolaiv, Ukraine, but his artistic passion grew in Argentina after immigrating there with his parents.
