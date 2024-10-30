@@ -3,7 +3,7 @@ import { Playfair_Display, Nunito } from 'next/font/google';
 import './globals.css';
 import { PaintingProvider } from './context/PaintingContext';
 import { ThemeProvider } from '../app/context/ThemeContext';
-import ClientLayout from '../app/components/ClientLayout';
+import LayoutWrapper from './components/LayoutWrapper';
 
 export const metadata = {
   title: 'Oleksandr Pryvalov',
@@ -33,7 +33,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <PaintingProvider>
-            <ClientLayout isLoading={false}>{children}</ClientLayout>
+            <LayoutWrapper isLoading={false}>{children}</LayoutWrapper>
           </PaintingProvider>
         </ThemeProvider>
       </body>

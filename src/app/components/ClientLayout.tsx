@@ -8,6 +8,7 @@ import { FaInstagram } from 'react-icons/fa';
 import PaintingDetails from './PaintingDetails';
 import { useTheme } from '../context/ThemeContext';
 import ScrollArrows from '../components/ScrollArrows';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function ClientLayout({
   children,
@@ -19,6 +20,7 @@ export default function ClientLayout({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
+  const { language, toggleLanguage } = useLanguage();
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-white dark:bg-gray-900">
@@ -81,28 +83,50 @@ export default function ClientLayout({
                   </Link>
                 </div>
 
-                <div className='flex gap-8'>
+                <div className='flex gap-6'>
                   <Link
                     href="https://www.instagram.com/oleksandrpryv/"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Instagram Profile - Oleksandr Pryvalov"
-                    className="flex items-end"
-                  >
-                    <FaInstagram
-                      className="text-lg text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
-                      aria-hidden="true"
-                    />
-                  </Link>
-                  <button
-                    onClick={toggleTheme}
-                    className="rounded-full 
+                    className="flex items-center justify-center rounded-full w-8 h-8
                     bg-gray-100 dark:bg-gray-800 
                     text-gray-700 dark:text-gray-200
                     hover:bg-gray-200 dark:hover:bg-gray-700
                     transition-colors duration-200 
                     focus:outline-none focus:ring-2 
                     focus:ring-darkGold"
+                  >
+                    <FaInstagram
+                      className="text-lg text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
+                      aria-hidden="true"
+                    />
+                  </Link>
+
+                  <button
+                    onClick={toggleLanguage}
+                    className="rounded-full w-8 h-8
+                  bg-gray-100 dark:bg-gray-800 
+                  text-gray-700 dark:text-gray-200
+                  hover:bg-gray-200 dark:hover:bg-gray-700
+                  transition-colors duration-200 
+                  focus:outline-none focus:ring-2 
+                  focus:ring-darkGold
+                  text-sm font-medium"
+                    aria-label={`Switch to ${language === 'EN' ? 'French' : 'English'} language`}
+                  >
+                    {language}
+                  </button>
+
+                  <button
+                    onClick={toggleTheme}
+                    className="flex justify-center items-center rounded-full w-8 h-8
+                  bg-gray-100 dark:bg-gray-800 
+                  text-gray-700 dark:text-gray-200
+                  hover:bg-gray-200 dark:hover:bg-gray-700
+                  transition-colors duration-200 
+                  focus:outline-none focus:ring-2 
+                  focus:ring-darkGold"
                     aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                   >
                     {theme === 'light' ? (
