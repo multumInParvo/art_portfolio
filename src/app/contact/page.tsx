@@ -46,7 +46,7 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="w-full flex flex-col items-center md:ml-16 md:pr-16 md:max-w-3xl">
+        <div className="w-full flex flex-col items-center md:pr-16 md:max-w-3xl">
             <div className='w-full'>
                 <h1 className='text-2xl mb-2 mt-0 font-playfair md:text-3xl md:mb-10 border-b text-gray-800 dark:text-gray-100 dark:border-gray-700'>
                     Contact

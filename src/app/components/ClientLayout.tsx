@@ -206,29 +206,50 @@ export default function ClientLayout({
                       Contact
                     </Link>
                   </div>
-                  <div className="flex gap-6">
+                  <div className='flex gap-3'>
                     <Link
                       href="https://www.instagram.com/oleksandrpryv/"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Instagram Profile - Oleksandr Pryvalov"
-                      className="flex items-end"
-                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center justify-center rounded-full w-6 h-6
+                    bg-gray-100 dark:bg-gray-800 
+                    text-gray-700 dark:text-gray-200
+                    hover:bg-gray-200 dark:hover:bg-gray-700
+                    transition-colors duration-200 
+                    focus:outline-none focus:ring-2 
+                    focus:ring-darkGold"
                     >
                       <FaInstagram
                         className="text-lg text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
                         aria-hidden="true"
                       />
                     </Link>
+
+                    <button
+                      onClick={toggleLanguage}
+                      className="rounded-full w-6 h-6
+                  bg-gray-100 dark:bg-gray-800 
+                  text-gray-700 dark:text-gray-200
+                  hover:bg-gray-200 dark:hover:bg-gray-700
+                  transition-colors duration-200 
+                  focus:outline-none focus:ring-2 
+                  focus:ring-darkGold
+                  text-sm font-medium"
+                      aria-label={`Switch to ${language === 'EN' ? 'French' : 'English'} language`}
+                    >
+                      {language}
+                    </button>
+
                     <button
                       onClick={toggleTheme}
-                      className="rounded-full 
-                      bg-gray-100 dark:bg-gray-800 
-                      text-gray-700 dark:text-gray-200
-                      hover:bg-gray-200 dark:hover:bg-gray-700
-                      transition-colors duration-200 
-                      focus:outline-none focus:ring-2 
-                      focus:ring-darkGold"
+                      className="flex justify-center items-center rounded-full w-6 h-6
+                  bg-gray-100 dark:bg-gray-800 
+                  text-gray-700 dark:text-gray-200
+                  hover:bg-gray-200 dark:hover:bg-gray-700
+                  transition-colors duration-200 
+                  focus:outline-none focus:ring-2 
+                  focus:ring-darkGold"
                       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                     >
                       {theme === 'light' ? (
