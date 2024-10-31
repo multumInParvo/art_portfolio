@@ -228,14 +228,14 @@ export default function ClientLayout({
 
                     <button
                       onClick={toggleLanguage}
-                      className="rounded-full w-6 h-6
+                      className="rounded-full w-6 h-6 flex items-center justify-center
                   bg-gray-100 dark:bg-gray-800 
                   text-gray-700 dark:text-gray-200
                   hover:bg-gray-200 dark:hover:bg-gray-700
                   transition-colors duration-200 
                   focus:outline-none focus:ring-2 
                   focus:ring-darkGold
-                  text-sm font-medium"
+                  text-xs font-medium"
                       aria-label={`Switch to ${language === 'EN' ? 'French' : 'English'} language`}
                     >
                       {language}
