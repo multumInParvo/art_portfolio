@@ -2,8 +2,13 @@
 
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { useLanguage } from '../context/LanguageContext';
+import en from '../translations/en.json'
+import fr from '../translations/fr.json'
 
 export default function ContactPage() {
+    const { language } = useLanguage();
+    const translations = language === 'EN' ? en : fr;
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -52,10 +57,10 @@ export default function ContactPage() {
                     Contact
                 </h1>
             </div>
-            
+
             <div className="w-full flex flex-col justify-between mb-10 gap-2">
                 <p className="font-semibold text-gray-700 dark:text-gray-300 leading-relaxed font-nunito">
-                    Ask me anything here or send an email<br className="min-[400px]:hidden" /> directly to:
+                    {translations.text}
                 </p>
                 <span>
                     <a
@@ -69,7 +74,7 @@ export default function ContactPage() {
             <form className="w-full flex flex-col" onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label className="font-bold font-playfair text-gray-600 dark:text-gray-300 text-base">
-                        Name
+                        {translations.name}
                     </label>
                     <input
                         className="w-full px-3 py-2 focus:outline-none focus:ring focus:border-sky-200 
@@ -82,7 +87,7 @@ export default function ContactPage() {
                         onChange={handleChange}
                         onFocus={handleFocus}
                         onBlur={handleBlur}
-                        placeholder={focusedInput === 'name' ? '' : 'Enter your name'}
+                        placeholder={focusedInput === 'name' ? '' : translations.name_p_h}
                         required
                     />
                 </div>
@@ -101,7 +106,7 @@ export default function ContactPage() {
                         onChange={handleChange}
                         onFocus={handleFocus}
                         onBlur={handleBlur}
-                        placeholder={focusedInput === 'email' ? '' : 'Enter your email'}
+                        placeholder={focusedInput === 'email' ? '' : translations.email_p_h}
                         required
                     />
                 </div>
@@ -120,7 +125,7 @@ export default function ContactPage() {
                         onChange={handleChange}
                         onFocus={handleFocus}
                         onBlur={handleBlur}
-                        placeholder={focusedInput === 'message' ? '' : 'Enter your message'}
+                        placeholder={focusedInput === 'message' ? '' : translations.message_p_h}
                         required
                     ></textarea>
                 </div>
@@ -131,7 +136,7 @@ export default function ContactPage() {
                         font-semibold hover:bg-slate-700 dark:hover:bg-slate-600 
                         transition uppercase font-nunito text-xs"
                     >
-                        Send
+                        {translations.send}
                     </button>
                 </div>
             </form>

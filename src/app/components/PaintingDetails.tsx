@@ -2,9 +2,14 @@
 
 import React from 'react';
 import { usePainting } from '../context/PaintingContext';
+import { useLanguage } from '../context/LanguageContext';
+import en from '../translations/en.json'
+import fr from '../translations/fr.json'
 
 const PaintingDetails = React.memo(function PaintingDetails() {
   const { currentPainting, goToPrevious, goToNext } = usePainting();
+  const { language } = useLanguage();
+  const translations = language === 'EN' ? en : fr;
 
   if (!currentPainting) return null;
 
@@ -27,7 +32,7 @@ const PaintingDetails = React.memo(function PaintingDetails() {
           after:bg-gray-600 dark:after:bg-darkGold after:transition-transform after:duration-300
           hover:after:scale-x-100"
         >
-          PREV
+          {translations.previous_btn}
         </button>
         <span className="mx-1 font-nunito font-bold text-gray-600 dark:text-gray-300">
           /
@@ -39,7 +44,7 @@ const PaintingDetails = React.memo(function PaintingDetails() {
           after:bg-gray-600 dark:after:bg-darkGold after:transition-transform after:duration-300
           hover:after:scale-x-100"
         >
-          NEXT
+          {translations.next_btn}
         </button>
 
       </div>

@@ -9,6 +9,8 @@ import PaintingDetails from './PaintingDetails';
 import { useTheme } from '../context/ThemeContext';
 import ScrollArrows from '../components/ScrollArrows';
 import { useLanguage } from '../context/LanguageContext';
+import en from '../translations/en.json'
+import fr from '../translations/fr.json'
 
 export default function ClientLayout({
   children,
@@ -21,6 +23,7 @@ export default function ClientLayout({
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage } = useLanguage();
+  const translations = language === 'EN' ? en : fr;
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-white dark:bg-gray-900">
@@ -53,7 +56,7 @@ export default function ClientLayout({
                 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0
                 dark:after:bg-darkGold after:bg-transparent after:transition-transform after:duration-300
                 hover:after:scale-x-100">
-                paintings
+                {translations.paintings}
               </Link>
             </div>
 
@@ -67,7 +70,7 @@ export default function ClientLayout({
                     after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 
                     hover:after:scale-x-100"
                   >
-                    About
+                    {translations.about}
                   </Link>
                 </div>
 
@@ -174,7 +177,7 @@ export default function ClientLayout({
           </div>
           <div>
             <span className="text-base text-slate-700 italic tracking-widest font-playfair dark:text-amber-400">
-              paintings
+              {translations.paintings}
             </span>
           </div>
         </div>
@@ -194,7 +197,7 @@ export default function ClientLayout({
                       className="text-gray-700 dark:text-gray-100 font-nunito uppercase inline-block"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      About
+                      {translations.about}
                     </Link>
                   </div>
                   <div className="relative">
