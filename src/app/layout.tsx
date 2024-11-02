@@ -3,6 +3,7 @@ import { Playfair_Display, Nunito } from 'next/font/google';
 import './globals.css';
 import { PaintingProvider } from './context/PaintingContext';
 import { ThemeProvider } from '../app/context/ThemeContext';
+import { LanguageProvider } from './context/LanguageContext';
 import LayoutWrapper from './components/LayoutWrapper';
 
 export const metadata = {
@@ -33,7 +34,9 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <PaintingProvider>
+          <LanguageProvider>
             <LayoutWrapper isLoading={false}>{children}</LayoutWrapper>
+            </LanguageProvider>
           </PaintingProvider>
         </ThemeProvider>
       </body>
