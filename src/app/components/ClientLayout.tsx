@@ -116,7 +116,7 @@ export default function ClientLayout({
                   focus:outline-none focus:ring-2 
                   focus:ring-darkGold
                   text-sm font-medium"
-                    aria-label={`Switch to ${language === 'EN' ? 'French' : 'English'} language`}
+                    aria-label={translations.switch_language}
                   >
                     {language}
                   </button>
@@ -239,7 +239,7 @@ export default function ClientLayout({
                   focus:outline-none focus:ring-2 
                   focus:ring-darkGold
                   text-xs font-medium"
-                      aria-label={`Switch to ${language === 'EN' ? 'French' : 'English'} language`}
+                      aria-label={translations.switch_language}
                     >
                       {language}
                     </button>
