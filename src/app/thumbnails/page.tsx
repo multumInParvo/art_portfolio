@@ -75,7 +75,7 @@ const ThumbnailsPage = () => {
         </h1>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 w-full md:gap-8">
         {paintings.map((painting, index) => (
           <div key={painting.title} className="w-full space-y-2">
             {isMobile ? (
@@ -95,7 +95,7 @@ const ThumbnailsPage = () => {
               </h2>
               <div className='flex gap-1'>
                 <p className="text-xs font-nunito font-semibold text-gray-600 dark:text-gray-300">
-                  {`${painting.dimensions}, ${painting.year}`}
+                  {`${painting.dimensions}, ${translations.material}, ${painting.year}`}
                 </p>
               </div>
             </div>
