@@ -21,7 +21,7 @@ const PaintingDetails = React.memo(function PaintingDetails() {
         {title}
       </h2>
       <p className="text-sm font-nunito text-gray-600 dark:text-gray-300">
-        {dimensions} {translations.material}
+        {dimensions} {material}
       </p>
       <p className="text-sm font-nunito text-gray-600 dark:text-gray-300">
         {year}
