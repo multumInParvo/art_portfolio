@@ -4,6 +4,7 @@ export type Painting = {
     title: string;
     description: string;
     dimensions: string;
+    material: string;
     year: number;
   };
   
@@ -13,35 +14,40 @@ export type Painting = {
       src: "/images/azaylerideau.webp",
       title: "Azay-le-Rideau",
       description: "The house with red doors",
-      dimensions: "60 x 80 cm, oil on canvas",
+      dimensions: "60 x 80 cm, ",
+      material: "oil on canvas",
       year: 2024
     },
     {
       src: "/images/campestre.webp",
       title: "Campestre",
       description: "Cheese and Milk",
-      dimensions: "30 x 40 cm, oil on canvas",
+      dimensions: "30 x 40 cm, ",
+      material: "oil on canvas",
       year: 2022
     },
     {
       src: "/images/sixpm.webp",
       title: "At 6PM",
       description: "Red Chicken",
-      dimensions: "60 x 80 cm, oil on canvas",
+      dimensions: "60 x 80 cm, ",
+      material: "oil on canvas",
       year: 2024
     },
     {
       src: "/images/hope.webp",
       title: "Hope",
-      description: "Candle,owl,plant",
-      dimensions: "60 x 80 cm, oil on canvas",
+      description: "Candle, owl, plant",
+      dimensions: "60 x 80 cm, ",
+      material: "oil on canvas",
       year: 2024
     },
     {
       src: "/images/campestre_2.webp",
       title: "Campestre 2",
       description: "Apples",
-      dimensions: "30 x 40 cm, oil on canvas",
+      dimensions: "30 x 40 cm, ",
+      material: "oil on canvas",
       year: 2022
     }
   ];
