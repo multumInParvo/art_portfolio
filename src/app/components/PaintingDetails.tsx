@@ -13,7 +13,7 @@ const PaintingDetails = React.memo(function PaintingDetails() {
 
   if (!currentPainting) return null;
 
-  const { title, dimensions, material, year } = currentPainting;
+  const { title, dimensions, year } = currentPainting;
 
   return (
     <div className="hidden md:block">
