@@ -2,7 +2,7 @@
 
 import React, { Suspense } from 'react';
 import { SliderContent } from './SliderContent';
-import type { Painting } from '../data/paintings'; // You might need to create this type file
+import type { Painting } from '../data/paintings'; 
 
 type SliderProps = {
   paintings: Painting[];

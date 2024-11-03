@@ -4,8 +4,13 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { paintings } from '../data/paintings';
+import { useLanguage } from '../context/LanguageContext';
+import en from '../translations/en.json'
+import fr from '../translations/fr.json'
 
 const ThumbnailsPage = () => {
+  const { language } = useLanguage();
+  const translations = language === 'EN' ? en : fr;
   const [isMobile, setIsMobile] = useState(false);
   const [touchedIndex, setTouchedIndex] = useState<number | null>(null);
 
@@ -63,10 +68,10 @@ const ThumbnailsPage = () => {
   );
 
   return (
-    <div className="w-full flex flex-col items-center md:ml-16 md:pr-16 md:max-w-6xl">
+    <div className="w-full flex flex-col items-center md:max-w-6xl">
       <div className='w-full'>
         <h1 className='hidden md:block text-2xl mb-2 mt-0 font-playfair md:text-3xl md:mb-10 border-b dark:text-gray-100 dark:border-gray-700'>
-          Paintings
+          {translations.paintings_page}
         </h1>
       </div>
 

@@ -270,8 +270,8 @@ export default function ClientLayout({
         </div>
 
         {/* Main Content */}
-        <main id="main-content" className="flex-1 p-5 md:py-10 md:pr-10 md:pl-0">
-          <div className="w-full">
+        <main id="main-content" className="flex-1 p-5 md:py-10 md:pr-10 md:pl-20">
+          <div>
             {children}
           </div>
         </main>

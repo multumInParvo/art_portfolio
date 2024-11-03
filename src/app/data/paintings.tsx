@@ -31,6 +31,13 @@ export type Painting = {
       year: 2024
     },
     {
+      src: "/images/hope.webp",
+      title: "Hope",
+      description: "Candle,owl,plant",
+      dimensions: "60 x 80 cm, oil on canvas",
+      year: 2024
+    },
+    {
       src: "/images/campestre_2.webp",
       title: "Campestre 2",
       description: "Apples",
