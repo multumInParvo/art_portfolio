@@ -13,16 +13,18 @@ const PaintingDetails = React.memo(function PaintingDetails() {
 
   if (!currentPainting) return null;
 
+  const { title, dimensions, material, year } = currentPainting;
+
   return (
     <div className="hidden md:block">
       <h2 className="text-lg font-bold mb-1 font-nunito text-gray-600 dark:text-gray-100">
-        {currentPainting.title}
+        {title}
       </h2>
       <p className="text-sm font-nunito text-gray-600 dark:text-gray-300">
-        {currentPainting.dimensions}
+        {dimensions} {translations.material}
       </p>
       <p className="text-sm font-nunito text-gray-600 dark:text-gray-300">
-        {currentPainting.year}
+        {year}
       </p>
       <div className="mt-2 text-sm hidden md:block">
         <button
