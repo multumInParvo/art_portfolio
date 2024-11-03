@@ -7,6 +7,7 @@ type Painting = {
   title: string;
   description: string;
   dimensions: string;
+  material: string;
   year: number;
 };
 
