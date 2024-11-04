@@ -27,8 +27,8 @@ export type Painting = {
       year: 2022
     },
     {
-      src: "/images/sixpm.webp",
-      title: "At 6PM",
+      src: "/images/leaving_the_nest.webp",
+      title: "Leaving the nest",
       description: "Red Chicken",
       dimensions: "60 x 80 cm",
       material: "oil on canvas",
