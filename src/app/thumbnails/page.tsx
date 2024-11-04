@@ -83,7 +83,7 @@ const ThumbnailsPage = () => {
                 <ImageContent painting={painting} index={index} />
               </div>
             ) : (
-              <Link href={`/?painting=${getUrlFriendlyTitle(painting.title)}`}>
+              <Link href={`/?index=${index}`}>
                 <ImageContent painting={painting} index={index} />
               </Link>
             )}
