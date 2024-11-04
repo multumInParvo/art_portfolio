@@ -17,7 +17,7 @@ const PaintingDetails = React.memo(function PaintingDetails() {
 
   return (
     <div className="hidden md:block">
-      <h2 className="text-lg font-bold mb-1 font-nunito text-gray-600 dark:text-gray-100">
+      <h2 className="text-base font-bold mb-1 font-nunito text-gray-600 dark:text-gray-100">
         {title}
       </h2>
       <p className="text-sm font-nunito text-gray-600 dark:text-gray-300">

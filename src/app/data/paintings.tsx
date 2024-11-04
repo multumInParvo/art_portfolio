@@ -35,8 +35,8 @@ export type Painting = {
       year: 2024
     },
     {
-      src: "/images/hope.webp",
-      title: "Hope",
+      src: "/images/smoldering_promise_of_life.webp",
+      title: "Smoldering promise of life",
       description: "Candle, owl, plant",
       dimensions: "60 x 80 cm",
       material: "oil on canvas",
