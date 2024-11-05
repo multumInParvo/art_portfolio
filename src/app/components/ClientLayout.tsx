@@ -169,7 +169,7 @@ export default function ClientLayout({
             </button>
           </div>
           <div>
-            <span className="text-base text-slate-700 tracking-widest font-playfair dark:text-amber-400">
+            <span className="text-sm  text-slate-700 tracking-widest font-playfair dark:text-amber-400">
               {translations.paintings}
             </span>
           </div>
