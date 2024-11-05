@@ -53,19 +53,19 @@ export default function ContactPage() {
     return (
         <div className="w-full flex flex-col items-center md:pr-16 md:max-w-3xl">
             <div className='w-full'>
-                <h1 className='text-2xl mb-2 mt-0 font-playfair md:text-3xl md:mb-10 border-b text-gray-800 dark:text-gray-100 dark:border-gray-700'>
-                    Contact
+                <h1 className='text-2xl mb-2 mt-0 font-nunito md:text-3xl md:mb-10 border-b text-gray-800 dark:text-gray-100 dark:border-gray-700'>
+                    contact
                 </h1>
             </div>
 
             <div className="w-full flex flex-col justify-between mb-10 gap-2">
-                <p className="font-semibold text-gray-700 dark:text-gray-300 leading-relaxed font-nunito">
+                <p className="font-semibold text-gray-700 dark:text-gray-300 leading-relaxed font-nunito text-sm">
                     {translations.text}
                 </p>
                 <span>
                     <a
                         href="mailto:oleksandrpryv@gmail.com"
-                        className="text-slate-700 dark:text-gray-200 font-bold font-nunito hover:text-blue-500 dark:hover:text-blue-400"
+                        className="text-slate-700 dark:text-gray-200 font-bold font-nunito hover:text-blue-500 dark:hover:text-blue-400 text-sm"
                     >
                         oleksandrpryv@gmail.com
                     </a>
