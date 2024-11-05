@@ -40,13 +40,13 @@ export default function ClientLayout({
         bg-white dark:bg-gray-900 dark:border-gray-800">
         <div className="p-10 flex flex-col h-full md:pr-0">
           <div>
-            <h1 className="block uppercase text-2xl md:text-3xl font-playfair whitespace-nowrap md:whitespace-normal">
+            <h1 className="block text-2xl md:text-3xl font-nunito whitespace-nowrap md:whitespace-normal">
               <Link
                 href="/"
                 className="text-gray-900 dark:text-gray-100 hover:text-gray-500 dark:hover:text-gray-300 transition-colors"
                 aria-label="Homepage - Oleksandr Pryvalov Paintings"
               >
-                Oleksandr Pryvalov
+                oleksandr pryvalov
               </Link>
             </h1>
 
@@ -65,7 +65,7 @@ export default function ClientLayout({
                 <div className="relative">
                   <Link
                     href="/about"
-                    className="text-gray-700 dark:text-gray-100 transition-all font-nunito uppercase inline-block relative
+                    className="text-gray-700 dark:text-gray-100 transition-all font-nunito inline-block relative
                     after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0 
                     after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 
                     hover:after:scale-x-100"
@@ -77,12 +77,12 @@ export default function ClientLayout({
                 <div className="relative">
                   <Link
                     href="/contact"
-                    className="text-gray-700 dark:text-gray-100 transition-all font-nunito uppercase inline-block relative
+                    className="text-gray-700 dark:text-gray-100 transition-all font-nunito inline-block relative
                     after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0 
                     after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 
                     hover:after:scale-x-100"
                   >
-                    Contact
+                    contact
                   </Link>
                 </div>
 
@@ -158,13 +158,13 @@ export default function ClientLayout({
         {/* Mobile Header */}
         <div className="md:hidden p-5 pb-0">
           <div className="flex justify-between items-center max-[350px]:items-start">
-            <h1 className="block uppercase text-2xl font-playfair">
+            <h1 className="block text-2xl font-nunito">
               <Link
                 href="/"
                 className="text-gray-900 dark:text-gray-100 hover:text-gray-500 dark:hover:text-gray-300 transition-colors"
                 aria-label="Homepage - Oleksandr Pryvalov Paintings"
               >
-                Oleksandr<br className="hidden max-[350px]:block" /> Pryvalov
+                oleksandr<br className="hidden max-[350px]:block" /> pryvalov
               </Link>
             </h1>
             <button
@@ -194,7 +194,7 @@ export default function ClientLayout({
                   <div className="relative">
                     <Link
                       href="/about"
-                      className="text-gray-700 dark:text-gray-100 font-nunito uppercase inline-block"
+                      className="text-gray-700 dark:text-gray-100 font-nunito inline-block"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {translations.about}
@@ -203,10 +203,10 @@ export default function ClientLayout({
                   <div className="relative">
                     <Link
                       href="/contact"
-                      className="text-gray-700 dark:text-gray-100 font-nunito uppercase inline-block"
+                      className="text-gray-700 dark:text-gray-100 font-nunito inline-block"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      Contact
+                      contact
                     </Link>
                   </div>
                   <div className='flex gap-3'>
