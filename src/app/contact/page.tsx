@@ -73,7 +73,7 @@ export default function ContactPage() {
             </div>
             <form className="w-full flex flex-col" onSubmit={handleSubmit}>
                 <div className="mb-4">
-                    <label className="font-bold font-playfair text-gray-600 dark:text-gray-300 text-base">
+                    <label className="font-bold font-nunito text-gray-600 dark:text-gray-300 text-base">
                         {translations.name}
                     </label>
                     <input
@@ -92,7 +92,7 @@ export default function ContactPage() {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="font-bold font-playfair text-gray-600 dark:text-gray-300 text-base">
+                    <label className="font-bold font-nunito text-gray-600 dark:text-gray-300 text-base">
                         Email
                     </label>
                     <input
@@ -111,7 +111,7 @@ export default function ContactPage() {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="font-bold font-playfair text-gray-600 dark:text-gray-300 text-base">
+                    <label className="font-bold font-nunito text-gray-600 dark:text-gray-300 text-base">
                         Message
                     </label>
                     <textarea

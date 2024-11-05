@@ -70,7 +70,7 @@ const ThumbnailsPage = () => {
   return (
     <div className="w-full flex flex-col items-center md:max-w-6xl">
       <div className='w-full'>
-        <h1 className='hidden md:block text-2xl mb-2 mt-0 font-playfair md:text-3xl md:mb-10 border-b dark:text-gray-100 dark:border-gray-700'>
+        <h1 className='hidden md:block text-2xl mb-2 mt-0 font-nunito md:text-3xl md:mb-10 border-b dark:text-gray-100 dark:border-gray-700'>
           {translations.paintings_page}
         </h1>
       </div>
