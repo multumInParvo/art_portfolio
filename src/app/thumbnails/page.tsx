@@ -55,13 +55,8 @@ const ThumbnailsPage = () => {
         priority={index < 4}
       />
       <div
-        className={`absolute inset-0 bg-black transition-opacity duration-300 flex items-center justify-center
-          ${isMobile
-            ? touchedIndex === index
-              ? 'bg-opacity-50'
-              : 'bg-opacity-0'
-            : 'bg-opacity-0 hover:bg-opacity-50'
-          }`}
+        className={`absolute inset-0 transition-opacity duration-300 flex items-center justify-center
+          ${isMobile && touchedIndex === index ? 'bg-black bg-opacity-50' : 'bg-opacity-0'}`}
       >
       </div>
     </div>
@@ -75,7 +70,7 @@ const ThumbnailsPage = () => {
         </h1>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 w-full md:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 w-full md:gap-8">
         {paintings.map((painting, index) => (
           <div key={painting.title} className="w-full space-y-2">
             {isMobile ? (

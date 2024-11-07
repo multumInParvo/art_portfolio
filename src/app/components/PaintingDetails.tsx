@@ -30,7 +30,7 @@ const PaintingDetails = React.memo(function PaintingDetails() {
         <button
           onClick={goToPrevious}
           className="relative inline-block font-nunito font-bold text-gray-600 dark:text-gray-300 transition-all
-          after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0
+          after:content-[''] after:absolute after:-bottom-0 after:left-0 after:w-full after:h-[2px] after:scale-x-0
           after:bg-gray-600 dark:after:bg-darkGold after:transition-transform after:duration-300
           hover:after:scale-x-100"
         >
@@ -42,7 +42,7 @@ const PaintingDetails = React.memo(function PaintingDetails() {
         <button
           onClick={goToNext}
           className="relative inline-block font-nunito font-bold text-gray-600 dark:text-gray-300 transition-all
-          after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0
+          after:content-[''] after:absolute after:-bottom-0 after:left-0 after:w-full after:h-[2px] after:scale-x-0
           after:bg-gray-600 dark:after:bg-darkGold after:transition-transform after:duration-300
           hover:after:scale-x-100"
         >

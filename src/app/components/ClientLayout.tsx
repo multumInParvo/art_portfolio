@@ -52,10 +52,7 @@ export default function ClientLayout({
 
             <div>
               <Link href="/thumbnails"
-                className="text-darkGold dark:text-amber-400 text-base font-medium tracking-widest font-playfair relative inline-block
-                after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0
-                dark:after:bg-darkGold after:bg-transparent after:transition-transform after:duration-300
-                hover:after:scale-x-100">
+                className="text-darkGold dark:text-amber-400 text-base font-medium tracking-widest font-playfair relative inline-block">
                 {translations.paintings}
               </Link>
             </div>
@@ -66,7 +63,7 @@ export default function ClientLayout({
                   <Link
                     href="/about"
                     className="text-gray-700 dark:text-gray-100 transition-all font-nunito inline-block relative
-                    after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0 
+                    after:content-[''] after:absolute after:-bottom-0 after:left-0 after:w-full after:h-[2px] after:scale-x-0 
                     after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 
                     hover:after:scale-x-100"
                   >
@@ -78,7 +75,7 @@ export default function ClientLayout({
                   <Link
                     href="/contact"
                     className="text-gray-700 dark:text-gray-100 transition-all font-nunito inline-block relative
-                    after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[2px] after:scale-x-0 
+                    after:content-[''] after:absolute after:-bottom-0 after:left-0 after:w-full after:h-[2px] after:scale-x-0 
                     after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 
                     hover:after:scale-x-100"
                   >
