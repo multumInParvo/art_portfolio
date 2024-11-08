@@ -27,14 +27,6 @@ export type Painting = {
       year: 2022
     },
     {
-      src: "/images/leaving_the_nest.webp",
-      title: "Leaving the nest",
-      description: "Red Chicken",
-      dimensions: "60 x 80 cm",
-      material: "oil on canvas",
-      year: 2024
-    },
-    {
       src: "/images/smoldering_promise_of_life.webp",
       title: "Smoldering promise of life",
       description: "Candle, owl, plant",
@@ -49,5 +41,13 @@ export type Painting = {
       dimensions: "30 x 40 cm",
       material: "oil on canvas",
       year: 2022
+    },
+    {
+      src: "/images/leaving_the_nest.webp",
+      title: "Leaving the nest",
+      description: "Red Chicken",
+      dimensions: "60 x 80 cm",
+      material: "oil on canvas",
+      year: 2024
     }
   ];
