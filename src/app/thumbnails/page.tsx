@@ -78,8 +78,8 @@ const ThumbnailsPage = () => {
                 <ImageContent painting={painting} index={index} />
               </div>
             ) : (
-              <Link href={`/?index=${index}`}>
-                <ImageContent painting={painting} index={index} />
+              <Link href={`/image-viewer?index=${index}`} className="relative w-full cursor-pointer">
+                <Image src={painting.src} alt={painting.title} layout="responsive" width={500} height={500} />
               </Link>
             )}
 
