@@ -1,6 +1,7 @@
 // Define the Painting type
 export type Painting = {
     src: string;
+    additionalImages: string[];
     title: string;
     description: string;
     dimensions: string;
@@ -12,6 +13,7 @@ export type Painting = {
   export const paintings: Painting[] = [
     {
       src: "/images/azaylerideau.webp",
+      additionalImages: ['/images/portfolio-dark.webp', '/images/portfolio-light.webp'],
       title: "Azay-le-Rideau",
       description: "The house with red doors",
       dimensions: "60 x 80 cm",
@@ -20,6 +22,7 @@ export type Painting = {
     },
     {
       src: "/images/campestre.webp",
+      additionalImages: ['/images/portfolio-dark.webp', '/images/portfolio-light.webp'],
       title: "Campestre",
       description: "Cheese and Milk",
       dimensions: "30 x 40 cm",
@@ -28,6 +31,7 @@ export type Painting = {
     },
     {
       src: "/images/smoldering_promise_of_life.webp",
+      additionalImages: ['/images/portfolio-dark.webp', '/images/portfolio-light.webp'],
       title: "Smoldering promise of life",
       description: "Candle, owl, plant",
       dimensions: "60 x 80 cm",
@@ -36,6 +40,7 @@ export type Painting = {
     },
     {
       src: "/images/campestre_2.webp",
+      additionalImages: ['/images/portfolio-dark.webp', '/images/portfolio-light.webp'],
       title: "Campestre 2",
       description: "Apples",
       dimensions: "30 x 40 cm",
@@ -44,6 +49,7 @@ export type Painting = {
     },
     {
       src: "/images/leaving_the_nest.webp",
+      additionalImages: ['/images/portfolio-dark.webp', '/images/portfolio-light.webp'],
       title: "Leaving the nest",
       description: "Red Chicken",
       dimensions: "60 x 80 cm",
