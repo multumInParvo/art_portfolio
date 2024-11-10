@@ -213,6 +213,11 @@ export default function ClientLayout({
           <div>{children}</div>
         </main>
 
+        {/* Add ScrollArrows for Mobile */}
+        <div className="md:hidden">
+          <ScrollArrows />
+        </div>
+
         {/* Mobile Footer */}
         <div className="p-5 md:hidden">
           <footer className='text-xs font-nunito text-gray-600 dark:text-gray-100'>
