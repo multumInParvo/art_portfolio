@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { paintings } from '../data/paintings';
@@ -8,14 +8,53 @@ import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 export default function ImageViewer() {
   const router = useRouter();
-  const queryIndex = parseInt(new URLSearchParams(window.location.search).get('index') || '0');
-  const [currentIndex, setCurrentIndex] = useState(queryIndex);
+  
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentImage, setCurrentImage] = useState({
+    src: paintings[0].src,
+    isMainImage: true
+  });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const index = parseInt(params.get('index') || '0');
+    setCurrentIndex(index);
+    setCurrentImage({
+      src: paintings[index].src,
+      isMainImage: true
+    });
+  }, []);
 
   const painting = paintings[currentIndex];
   const relatedImages = painting?.additionalImages || [];
+  
+  // Include main image in the thumbnails array
+  const allImages = [painting.src, ...relatedImages];
+  const currentImageIndex = allImages.indexOf(currentImage.src);
 
-  const handleNext = () => setCurrentIndex((currentIndex + 1) % paintings.length);
-  const handlePrev = () => setCurrentIndex((currentIndex - 1 + paintings.length) % paintings.length);
+  const handleNext = () => {
+    const nextIndex = (currentImageIndex + 1) % allImages.length;
+    setCurrentImage({
+      src: allImages[nextIndex],
+      isMainImage: nextIndex === 0
+    });
+  };
+
+  const handlePrev = () => {
+    const prevIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
+    setCurrentImage({
+      src: allImages[prevIndex],
+      isMainImage: prevIndex === 0
+    });
+  };
+
+  const handleThumbnailClick = (imageSrc: string) => {
+    setCurrentImage({
+      src: imageSrc,
+      isMainImage: imageSrc === painting.src
+    });
+  };
+
   const closeViewer = () => router.push('/thumbnails');
 
   return (
@@ -29,19 +68,37 @@ export default function ImageViewer() {
         <button onClick={handlePrev} className="absolute left-5">
           <ChevronLeft size={32} />
         </button>
-        <Image src={painting.src} alt={painting.title} width={500} height={500} className="object-cover" />
+        <Image 
+          src={currentImage.src} 
+          alt={painting.title} 
+          width={500} 
+          height={500} 
+          className="object-cover" 
+        />
         <button onClick={handleNext} className="absolute right-5">
           <ChevronRight size={32} />
         </button>
       </div>
 
-      {/* Related Thumbnails */}
-      <div className="mt-4 flex space-x-4 overflow-x-scroll">
-        {relatedImages.map((img, index) => (
-          <div key={index} className="w-24 h-24 relative">
-            <Image src={img} alt={`Thumbnail ${index + 1}`} layout="fill" objectFit="cover" />
-          </div>
-        ))}
+      {/* Thumbnails including main image */}
+      <div className="mt-4 w-full max-w-xl px-4 mx-auto">
+        <div className="flex gap-2 justify-center">
+          {allImages.map((img, index) => (
+            <div 
+              key={index} 
+              className="w-16 h-16 relative cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => handleThumbnailClick(img)}
+            >
+              <Image 
+                src={img} 
+                alt={`Thumbnail ${index + 1}`} 
+                layout="fill" 
+                objectFit="cover" 
+                className={`rounded-sm ${currentImage.src === img ? 'ring-2 ring-blue-500' : ''}`}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
