@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { paintings } from '../data/paintings';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 export default function ImageViewer() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentImage, setCurrentImage] = useState({
@@ -16,19 +17,18 @@ export default function ImageViewer() {
   });
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const index = parseInt(params.get('index') || '0');
+    // Move URL parameter handling inside useEffect
+    const index = parseInt(searchParams.get('index') || '0');
     setCurrentIndex(index);
     setCurrentImage({
       src: paintings[index].src,
       isMainImage: true
     });
-  }, []);
+  }, [searchParams]); // Add searchParams as dependency
 
   const painting = paintings[currentIndex];
   const relatedImages = painting?.additionalImages || [];
   
-  // Include main image in the thumbnails array
   const allImages = [painting.src, ...relatedImages];
   const currentImageIndex = allImages.indexOf(currentImage.src);
 
