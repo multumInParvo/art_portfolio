@@ -56,26 +56,26 @@ export default function ImageViewerClient() {
   const closeViewer = () => router.push('/thumbnails');
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense>
       <div className="flex flex-col items-center">
-        <button onClick={closeViewer} className="absolute top-5 right-5">
-          <X size={24} />
+        <button onClick={closeViewer} className="absolute top-5 right-5 z-10">
+          <X size={48} />
         </button>
 
         {/* Main Image Viewer */}
-        <div className="relative flex items-center justify-center w-full h-[70vh]">
-          <button onClick={handlePrev} className="absolute left-5">
-            <ChevronLeft size={32} />
+        <div className="relative flex items-center justify-center w-full h-[calc(100vh-10rem)]">
+          <button onClick={handlePrev} className="absolute left-0 z-10">
+            <ChevronLeft size={60} />
           </button>
-          <Image 
-            src={currentImage.src} 
-            alt={painting.title} 
-            width={500} 
-            height={500} 
-            className="object-cover" 
+          <Image
+            src={currentImage.src}
+            alt={painting.title}
+            layout='fill'
+            objectFit='contain'
+            className="object-cover md:max-w-[100vw] md:max-h-[75vh]"
           />
-          <button onClick={handleNext} className="absolute right-5">
-            <ChevronRight size={32} />
+          <button onClick={handleNext} className="absolute right-0">
+            <ChevronRight size={60} />
           </button>
         </div>
 
@@ -83,17 +83,17 @@ export default function ImageViewerClient() {
         <div className="mt-4 w-full max-w-xl px-4 mx-auto">
           <div className="flex gap-2 justify-center">
             {allImages.map((img, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="w-16 h-16 relative cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => handleThumbnailClick(img)}
               >
-                <Image 
-                  src={img} 
-                  alt={`Thumbnail ${index + 1}`} 
-                  layout="fill" 
-                  objectFit="cover" 
-                  className={`rounded-sm ${currentImage.src === img ? 'ring-2 ring-blue-500' : ''}`}
+                <Image
+                  src={img}
+                  alt={`Thumbnail ${index + 1}`}
+                  layout="fill"
+                  objectFit="cover"
+                  className={`${currentImage.src === img ? 'ring-4 ring-black' : ''}`}
                 />
               </div>
             ))}

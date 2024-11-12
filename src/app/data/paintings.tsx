@@ -30,9 +30,9 @@ export type Painting = {
       year: 2022
     },
     {
-      src: "/images/smoldering_promise_of_life.webp",
-      additionalImages: ['/images/portfolio-dark.webp', '/images/portfolio-light.webp'],
-      title: "Smoldering promise of life",
+      src: "/images/smoldering_promise.webp",
+      additionalImages: ['/images/print_it.webp', '/images/kasa.webp'],
+      title: "Smoldering promise",
       description: "Candle, owl, plant",
       dimensions: "60 x 80 cm",
       material: "oil on canvas",

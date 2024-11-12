@@ -7,7 +7,7 @@ import ImageViewerClient from '../components/ImageViewerClient';
 export default function ImageViewerPage() {
   return (
     <Suspense>
-      <ImageViewerClient />
+        <ImageViewerClient />
     </Suspense>
   );
 }
