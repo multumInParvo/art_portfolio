@@ -5,8 +5,10 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { paintings } from '../data/paintings';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import ThumbnailList from './ThumbnailsList';
+import ChevronButtons from './ChevronButtons';
+
 
 export default function ImageViewerClient() {
   const router = useRouter();
@@ -66,9 +68,6 @@ export default function ImageViewerClient() {
 
         {/* Main Image Viewer */}
         <div className="relative flex items-center justify-center w-full h-[calc(100vh-10rem)]">
-          <button onClick={handlePrev} className="absolute left-0 z-10">
-            <ChevronLeft size={60} strokeWidth={1} />
-          </button>
           <Image
             src={currentImage.src}
             alt={painting.title}
@@ -76,13 +75,11 @@ export default function ImageViewerClient() {
             objectFit="contain"
             className="object-cover md:max-w-[100vw] md:max-h-[75vh]"
           />
-          <button onClick={handleNext} className="absolute right-0">
-            <ChevronRight size={60} strokeWidth={1} />
-          </button>
         </div>
 
         {/* Thumbnails including main image */}
-        <div className="mt-4 w-full max-w-xl px-4 mx-auto">
+        <div className="flex items-center justify-center max-w-xl px-4">
+          <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
           <ThumbnailList
             images={allImages}
             currentImageSrc={currentImage.src}
