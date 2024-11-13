@@ -1,3 +1,4 @@
+// components/ImageViewerClient.tsx
 'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
@@ -5,15 +6,16 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { paintings } from '../data/paintings';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import ThumbnailList from './ThumbnailsList';
 
 export default function ImageViewerClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentImage, setCurrentImage] = useState({
     src: paintings[0].src,
-    isMainImage: true
+    isMainImage: true,
   });
 
   useEffect(() => {
@@ -21,7 +23,7 @@ export default function ImageViewerClient() {
     setCurrentIndex(index);
     setCurrentImage({
       src: paintings[index].src,
-      isMainImage: true
+      isMainImage: true,
     });
   }, [searchParams]);
 
@@ -34,7 +36,7 @@ export default function ImageViewerClient() {
     const nextIndex = (currentImageIndex + 1) % allImages.length;
     setCurrentImage({
       src: allImages[nextIndex],
-      isMainImage: nextIndex === 0
+      isMainImage: nextIndex === 0,
     });
   };
 
@@ -42,14 +44,14 @@ export default function ImageViewerClient() {
     const prevIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
     setCurrentImage({
       src: allImages[prevIndex],
-      isMainImage: prevIndex === 0
+      isMainImage: prevIndex === 0,
     });
   };
 
   const handleThumbnailClick = (imageSrc: string) => {
     setCurrentImage({
       src: imageSrc,
-      isMainImage: imageSrc === painting.src
+      isMainImage: imageSrc === painting.src,
     });
   };
 
@@ -70,8 +72,8 @@ export default function ImageViewerClient() {
           <Image
             src={currentImage.src}
             alt={painting.title}
-            layout='fill'
-            objectFit='contain'
+            layout="fill"
+            objectFit="contain"
             className="object-cover md:max-w-[100vw] md:max-h-[75vh]"
           />
           <button onClick={handleNext} className="absolute right-0">
@@ -81,23 +83,11 @@ export default function ImageViewerClient() {
 
         {/* Thumbnails including main image */}
         <div className="mt-4 w-full max-w-xl px-4 mx-auto">
-          <div className="flex gap-2 justify-center">
-            {allImages.map((img, index) => (
-              <div
-                key={index}
-                className="w-16 h-16 relative cursor-pointer hover:opacity-80 transition-opacity"
-                onClick={() => handleThumbnailClick(img)}
-              >
-                <Image
-                  src={img}
-                  alt={`Thumbnail ${index + 1}`}
-                  layout="fill"
-                  objectFit="cover"
-                  className={`${currentImage.src === img ? 'ring-4 ring-black' : ''}`}
-                />
-              </div>
-            ))}
-          </div>
+          <ThumbnailList
+            images={allImages}
+            currentImageSrc={currentImage.src}
+            onThumbnailClick={handleThumbnailClick}
+          />
         </div>
       </div>
     </Suspense>
