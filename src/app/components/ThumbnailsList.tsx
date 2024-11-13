@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { Circle } from 'lucide-react';
 
 interface ThumbnailListProps {
   images: string[];
@@ -11,9 +12,9 @@ interface ThumbnailListProps {
 
 export default function ThumbnailList({ images, currentImageSrc, onThumbnailClick }: ThumbnailListProps) {
   return (
-    <div className="w-full max-w-xl mx-auto px-4">
+    <div>
       {/* Thumbnails View - Visible on medium and larger screens */}
-      <div className="hidden md:flex gap-2 justify-center">
+      <div className="hidden md:flex gap-2">
         {images.map((img, index) => (
           <div
             key={index}
@@ -28,17 +29,17 @@ export default function ThumbnailList({ images, currentImageSrc, onThumbnailClic
       </div>
 
       {/* Bullet Points View - Visible on small screens */}
-      <div className="flex md:hidden justify-center gap-4">
+      <div className="md:hidden">
         <div className="flex space-x-4 text-gray-700">
           {images.map((_, index) => (
             <div
               key={index}
-              className={`cursor-pointer text-6xl ${
+              className={`cursor-pointer ${
                 currentImageSrc === images[index] ? 'font-bold' : 'text-gray-500'
               }`}
               onClick={() => onThumbnailClick(images[index])}
             >
-              ·
+              <Circle fill='gray' size={14}/>
             </div>
           ))}
         </div>
