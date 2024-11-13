@@ -68,6 +68,9 @@ export default function ImageViewerClient() {
 
         {/* Main Image Viewer */}
         <div className="relative flex items-center justify-center w-full h-[calc(100vh-10rem)]">
+        <div className='hidden md:block'>
+          <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
+          </div>
           <Image
             src={currentImage.src}
             alt={painting.title}
@@ -79,7 +82,9 @@ export default function ImageViewerClient() {
 
         {/* Thumbnails including main image */}
         <div className="flex items-center justify-center max-w-xl px-4">
-          <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
+          <div className='md:hidden'>
+            <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
+          </div>
           <ThumbnailList
             images={allImages}
             currentImageSrc={currentImage.src}
