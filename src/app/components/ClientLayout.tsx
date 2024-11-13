@@ -209,9 +209,12 @@ export default function ClientLayout({
         </div>
 
         {/* Main Content */}
-        <main id="main-content" className="flex-1 p-5 md:py-10 md:pr-10 md:pl-10">
-          <div>{children}</div>
-        </main>
+        <main
+  id="main-content"
+  className={`flex-1 ${pathname === '/image-viewer' ? '' : 'p-5 md:py-10 md:pr-10 md:pl-10'}`}
+>
+  <div>{children}</div>
+</main>
 
         {/* Add ScrollArrows for Mobile */}
         <div className="md:hidden">

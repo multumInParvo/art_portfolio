@@ -58,14 +58,14 @@ export default function ImageViewerClient() {
   return (
     <Suspense>
       <div className="flex flex-col items-center">
-        <button onClick={closeViewer} className="absolute top-5 right-5 z-10">
-          <X size={48} />
+        <button onClick={closeViewer} className="absolute top-4 right-4 z-10">
+          <X size={48} strokeWidth={1} />
         </button>
 
         {/* Main Image Viewer */}
         <div className="relative flex items-center justify-center w-full h-[calc(100vh-10rem)]">
           <button onClick={handlePrev} className="absolute left-0 z-10">
-            <ChevronLeft size={60} />
+            <ChevronLeft size={60} strokeWidth={1} />
           </button>
           <Image
             src={currentImage.src}
@@ -75,7 +75,7 @@ export default function ImageViewerClient() {
             className="object-cover md:max-w-[100vw] md:max-h-[75vh]"
           />
           <button onClick={handleNext} className="absolute right-0">
-            <ChevronRight size={60} />
+            <ChevronRight size={60} strokeWidth={1} />
           </button>
         </div>
 
