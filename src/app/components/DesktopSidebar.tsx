@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Footer from '../components/Footer';
 import Link from 'next/link';
 import { FaInstagram } from 'react-icons/fa';
 import { Moon, Sun } from 'lucide-react';
@@ -99,6 +100,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
                 </div>
                 <div className="mt-auto">
                     {showPaintingDetails && <PaintingDetails />}
+                    <Footer />
                 </div>
             </div>
         </aside>
