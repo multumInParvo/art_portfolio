@@ -11,7 +11,12 @@ import { useLanguage } from '../context/LanguageContext';
 import en from '../translations/en.json';
 import fr from '../translations/fr.json';
 
-export default function ClientLayout({ children }: { children: React.ReactNode }) {
+interface ClientLayoutProps {
+  children: React.ReactNode;
+  isLoading: boolean;
+}
+
+export default function ClientLayout({ children, isLoading }: ClientLayoutProps) {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage } = useLanguage();
@@ -53,7 +58,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
       {/* Main Content */}
       <main id="main-content" className={`flex-1 ${pathname === '/image-viewer' ? '' : 'p-5 md:py-10 md:pr-10 md:pl-10'}`}>
-        <div>{children}</div>
+        {isLoading ? (
+          <div className="flex items-center justify-center h-full">Loading...</div>
+        ) : (
+          <div>{children}</div>
+        )}
       </main>
 
       {/* ScrollArrows for Mobile */}
