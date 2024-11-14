@@ -1,12 +1,11 @@
-// ClientLayout.tsx
 'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import DesktopSidebar from '../components/DesktopSidebar';
 import { Menu, Moon, Sun } from 'lucide-react';
 import { FaInstagram } from 'react-icons/fa';
-import PaintingDetails from './PaintingDetails';
 import { useTheme } from '../context/ThemeContext';
 import ScrollArrows from '../components/ScrollArrows';
 import { useLanguage } from '../context/LanguageContext';
@@ -15,7 +14,6 @@ import fr from '../translations/fr.json';
 
 export default function ClientLayout({
   children,
-  isLoading,
 }: {
   children: React.ReactNode;
   isLoading: boolean;
@@ -39,87 +37,17 @@ export default function ClientLayout({
         Skip to main content
       </a>
 
-      {/* Aside Navigation for Desktop */}
+      {/* Desktop Sidebar */}
       {showSidebar && (
-        <aside className="hidden md:flex md:w-64 md:flex-shrink-0 md:flex-col bg-white dark:bg-gray-900 dark:border-gray-800">
-          <div className="p-10 flex flex-col h-full md:pr-0">
-            <div>
-              <h1 className="block text-2xl md:text-3xl font-nunito whitespace-nowrap md:whitespace-normal">
-                <Link
-                  href="/"
-                  className="text-gray-900 dark:text-gray-100 hover:text-gray-500 dark:hover:text-gray-300 transition-colors"
-                  aria-label="Homepage - Oleksandr Pryvalov Paintings"
-                >
-                  oleksandr pryvalov
-                </Link>
-              </h1>
-
-              <div>
-                <Link href="/thumbnails" className="text-darkGold dark:text-amber-400 text-base font-medium tracking-widest font-playfair relative inline-block">
-                  {translations.paintings}
-                </Link>
-              </div>
-
-              <nav className="mt-5 space-y-1">
-                <div className="text-base space-y-2 flex flex-col font-bold text-gray-700">
-                  <div className="relative">
-                    <Link
-                      href="/about"
-                      className="text-gray-700 dark:text-gray-100 transition-all font-nunito inline-block relative after:content-[''] after:absolute after:-bottom-0 after:left-0 after:w-full after:h-[2px] after:scale-x-0 after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 hover:after:scale-x-100"
-                    >
-                      {translations.about}
-                    </Link>
-                  </div>
-
-                  <div className="relative">
-                    <Link
-                      href="/contact"
-                      className="text-gray-700 dark:text-gray-100 transition-all font-nunito inline-block relative after:content-[''] after:absolute after:-bottom-0 after:left-0 after:w-full after:h-[2px] after:scale-x-0 after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 hover:after:scale-x-100"
-                    >
-                      contact
-                    </Link>
-                  </div>
-
-                  <div className='flex gap-3 mt-5'>
-                    <Link
-                      href="https://www.instagram.com/oleksandrpryv/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Instagram Profile - Oleksandr Pryvalov"
-                      className="flex items-center justify-center w-5 h-5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2"
-                    >
-                      <FaInstagram className="text-base text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-200 transition-colors" aria-hidden="true" />
-                    </Link>
-
-                    <button
-                      onClick={toggleLanguage}
-                      className="bg-gray-100 dark:bg-gray-800 rounded-full w-5 h-5 focus:ring-darkGold text-gray-700 dark:text-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 text-xs font-medium"
-                      aria-label={translations.switch_language}
-                    >
-                      {language}
-                    </button>
-
-                    <button
-                      onClick={toggleTheme}
-                      className="flex justify-center items-center rounded-full w-5 h-5 focus:ring-darkGold bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2"
-                      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-                    >
-                      {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-                    </button>
-                  </div>
-                </div>
-              </nav>
-            </div>
-            <div className="mt-auto">
-              {pathname === '/' && !isLoading && <PaintingDetails />}
-              <div className="mt-8">
-                <footer className='text-xs font-nunito text-gray-600 dark:text-gray-100'>
-                  © 2024 by Oleksandr Pryvalov
-                </footer>
-              </div>
-            </div>
-          </div>
-        </aside>
+        <DesktopSidebar
+          showPaintingDetails={pathname === '/'}
+          pathname={pathname}
+          translations={translations}
+          theme={theme}
+          toggleTheme={toggleTheme}
+          language={language}
+          toggleLanguage={toggleLanguage}
+        />
       )}
 
       {/* Mobile Layout */}
@@ -210,11 +138,11 @@ export default function ClientLayout({
 
         {/* Main Content */}
         <main
-  id="main-content"
-  className={`flex-1 ${pathname === '/image-viewer' ? '' : 'p-5 md:py-10 md:pr-10 md:pl-10'}`}
->
-  <div>{children}</div>
-</main>
+          id="main-content"
+          className={`flex-1 ${pathname === '/image-viewer' ? '' : 'p-5 md:py-10 md:pr-10 md:pl-10'}`}
+        >
+          <div>{children}</div>
+        </main>
 
         {/* Add ScrollArrows for Mobile */}
         <div className="md:hidden">
