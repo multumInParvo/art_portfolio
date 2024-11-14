@@ -9,7 +9,7 @@ import PaintingDetails from './PaintingDetails';
 import en from '../translations/en.json';
 import fr from '../translations/fr.json';
 
-type TranslationProps = typeof en; fr;
+type TranslationProps = typeof en | typeof fr; // Use union type if en and fr are slightly different 
 
 interface DesktopSidebarProps {
     showPaintingDetails: boolean;
