@@ -50,7 +50,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
             {showMenu && (
-              <Menu className="h-6 w-6 hidden" />
+              <Menu className="h-6 w-6" />
             )}
           </button>
         </div>

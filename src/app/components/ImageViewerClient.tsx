@@ -61,9 +61,9 @@ export default function ImageViewerClient() {
 
   return (
     <Suspense>
-      <div className="flex flex-col items-center">
-        <button onClick={closeViewer} className="absolute top-4 right-4 z-10">
-          <X size={48} strokeWidth={1} />
+      <div className="flex flex-col items-center justify-center">
+        <button onClick={closeViewer} className="absolute top-6 right-4 z-10">
+          <X className='h-6 w-6 md:h-12 md:w-12 md:stroke-1' />
         </button>
 
         {/* Main Image Viewer */}
