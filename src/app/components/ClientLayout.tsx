@@ -23,6 +23,7 @@ export default function ClientLayout({ children, isLoading }: ClientLayoutProps)
   const translations = language === 'EN' ? en : fr;
 
   const showSidebar = pathname !== '/image-viewer';
+  const showFooter = pathname !== '/image-viewer';
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-white dark:bg-gray-900">
@@ -69,9 +70,11 @@ export default function ClientLayout({ children, isLoading }: ClientLayoutProps)
       <div className="md:hidden">
         <ScrollArrows />
       </div>
+      {showFooter && (
       <div className="md:hidden">
         <Footer />
       </div>
+      )}
     </div>
   );
 }
