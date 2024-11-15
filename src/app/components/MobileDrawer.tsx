@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Menu, Moon, Sun } from 'lucide-react';
 import { FaInstagram } from 'react-icons/fa';
@@ -25,6 +26,9 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
   toggleLanguage,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const showMenu = pathname !== '/image-viewer';
 
   return (
     <div className="md:hidden">
@@ -45,7 +49,9 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
             className="md:hidden dark:text-gray-200"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
-            <Menu className="h-6 w-6" />
+            {showMenu && (
+              <Menu className="h-6 w-6 hidden" />
+            )}
           </button>
         </div>
         <div>
