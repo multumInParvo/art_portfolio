@@ -31,17 +31,25 @@ export default function ThumbnailList({ images, currentImageSrc, onThumbnailClic
       {/* Bullet Points View - Visible on small screens */}
       <div className="md:hidden">
         <div className="flex space-x-4 text-gray-700">
-          {images.map((_, index) => (
-            <div
-              key={index}
-              className={`cursor-pointer ${
-                currentImageSrc === images[index] ? 'font-bold' : 'text-gray-500'
-              }`}
-              onClick={() => onThumbnailClick(images[index])}
-            >
-              <Circle fill='gray' size={14}/>
-            </div>
-          ))}
+          {images.map((img, index) => {
+            const fillColor = currentImageSrc === img ? 'rgb(50, 50, 50)' : 'rgb(200, 200, 200)';
+            return (
+              <div
+                key={index}
+                className="cursor-pointer"
+                onClick={() => onThumbnailClick(img)}
+              >
+                <Circle
+                  size={14}
+                  fill={fillColor}
+                  stroke={fillColor} // Stroke matches the fill color
+                  className={`transition-colors ${
+                    currentImageSrc === img ? 'hover:fill-black hover:stroke-black' : 'hover:fill-gray-500 hover:stroke-gray-500'
+                  }`}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
