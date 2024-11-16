@@ -29,6 +29,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
   const pathname = usePathname();
 
   const showMenu = pathname !== '/image-viewer';
+  const showSpan = pathname !== '/image-viewer';
 
   return (
     <div className="md:hidden">
@@ -50,14 +51,16 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
             {showMenu && (
-              <Menu className="h-6 w-6" />
+              <Menu className="h-8 w-8 stroke-1" />
             )}
           </button>
         </div>
         <div>
-          <span className="text-sm text-slate-700 tracking-widest font-playfair dark:text-amber-400">
-            {translations.paintings}
-          </span>
+          {showSpan && (
+            <span className="text-sm text-slate-700 tracking-widest font-playfair dark:text-amber-400">
+              {translations.paintings}
+            </span>
+          )}
         </div>
       </div>
 
