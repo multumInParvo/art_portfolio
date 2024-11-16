@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { paintings } from '../data/paintings';
 import { useLanguage } from '../context/LanguageContext';
