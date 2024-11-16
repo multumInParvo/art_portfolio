@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useSwipeable } from 'react-swipeable';
 import Image from 'next/image';
 import { paintings } from '../data/paintings';
 import { X } from 'lucide-react';
@@ -59,6 +60,14 @@ export default function ImageViewerClient() {
 
   const closeViewer = () => router.push('/thumbnails');
 
+  // Add swipe handlers
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: handleNext,
+    onSwipedRight: handlePrev,
+    preventScrollOnSwipe: true,
+    trackTouch: true,
+  });
+
   return (
     <Suspense>
       <div className="flex flex-col items-center justify-center">
@@ -67,9 +76,12 @@ export default function ImageViewerClient() {
         </button>
 
         {/* Main Image Viewer */}
-        <div className="relative flex items-center justify-center w-full h-[calc(100vh-10rem)]">
-        <div className='hidden md:block'>
-          <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
+        <div
+          className="relative flex items-center justify-center w-full h-[calc(100vh-10rem)]"
+          {...swipeHandlers} // Attach swipe handlers here
+        >
+          <div className="hidden md:block">
+            <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
           </div>
           <Image
             src={currentImage.src}
@@ -82,7 +94,7 @@ export default function ImageViewerClient() {
 
         {/* Thumbnails including main image */}
         <div className="flex items-center justify-center max-w-xl px-4">
-          <div className='md:hidden'>
+          <div className="md:hidden">
             <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
           </div>
           <ThumbnailList
