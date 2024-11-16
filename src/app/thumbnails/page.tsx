@@ -3,46 +3,33 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { paintings } from '../data/paintings';
 import { useLanguage } from '../context/LanguageContext';
-import en from '../translations/en.json'
-import fr from '../translations/fr.json'
+import en from '../translations/en.json';
+import fr from '../translations/fr.json';
 
 const ThumbnailsPage = () => {
   const { language } = useLanguage();
+  const router = useRouter();
   const translations = language === 'EN' ? en : fr;
-  const [isMobile, setIsMobile] = useState(false);
   const [touchedIndex, setTouchedIndex] = useState<number | null>(null);
 
-  useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkIfMobile();
-    window.addEventListener('resize', checkIfMobile);
-    return () => window.removeEventListener('resize', checkIfMobile);
-  }, []);
-
-  const getUrlFriendlyTitle = (title: string) => {
-    return title.toLowerCase().replace(/\s+/g, '-');
-  };
-
-  const handleMobileClick = (title: string, index: number) => {
-    if (isMobile) {
-      const urlFriendlyTitle = getUrlFriendlyTitle(title);
-      window.history.replaceState({}, '', `#${urlFriendlyTitle}`);
-      setTouchedIndex(index);
-      setTimeout(() => {
-        setTouchedIndex(null);
-      }, 300);
-    }
+  const handleImageClick = (index: number) => {
+    setTouchedIndex(index);
+    // Add a small delay for the touch feedback animation
+    setTimeout(() => {
+      setTouchedIndex(null);
+      router.push(`/image-viewer?index=${index}`);
+    }, 150);
   };
 
   const ImageContent = ({ painting, index }: { painting: typeof paintings[0], index: number }) => (
     <div
       className="relative w-full cursor-pointer"
-      onClick={() => handleMobileClick(painting.title, index)}
+      onClick={() => handleImageClick(index)}
+      role="button"
+      aria-label={`View ${painting.title}`}
     >
       <Image
         src={painting.src}
@@ -56,7 +43,7 @@ const ThumbnailsPage = () => {
       />
       <div
         className={`absolute inset-0 transition-opacity duration-300 flex items-center justify-center
-          ${isMobile && touchedIndex === index ? 'bg-black bg-opacity-50' : 'bg-opacity-0'}`}
+          ${touchedIndex === index ? 'bg-black bg-opacity-50' : 'bg-opacity-0'}`}
       >
       </div>
     </div>
@@ -73,15 +60,7 @@ const ThumbnailsPage = () => {
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 w-full md:gap-8">
         {paintings.map((painting, index) => (
           <div key={painting.title} className="w-full space-y-2">
-            {isMobile ? (
-              <div>
-                <ImageContent painting={painting} index={index} />
-              </div>
-            ) : (
-              <Link href={`/image-viewer?index=${index}`} className="relative w-full cursor-pointer">
-                <Image src={painting.src} alt={painting.title} layout="responsive" width={500} height={500} />
-              </Link>
-            )}
+            <ImageContent painting={painting} index={index} />
 
             {/* Centered painting details - only visible on mobile */}
             <div className="block md:hidden text-left">
