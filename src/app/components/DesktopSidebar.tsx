@@ -70,7 +70,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
 
                             <div className='flex gap-3 mt-5'>
                                 <Link
-                                    href="https://www.instagram.com/oleksandrpryv/"
+                                    href="https://www.instagram.com/oleksandr.pryvalov.art/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Instagram Profile - Oleksandr Pryvalov"
