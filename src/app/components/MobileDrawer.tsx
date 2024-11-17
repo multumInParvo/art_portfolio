@@ -31,21 +31,24 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
   const showMenu = pathname !== '/image-viewer';
   const showSpan = pathname !== '/image-viewer';
   const showNav = pathname !== '/image-viewer';
+  const showH1 = pathname !== '/image-viewer';
 
   return (
     <div className="md:hidden">
       {/* Mobile Header */}
       <div className="p-5 pb-0">
         <div className="flex justify-between items-center max-[350px]:items-start">
-          <h1 className="block text-2xl font-nunito">
-            <Link
-              href="/"
-              className="text-gray-900 dark:text-gray-100 hover:text-gray-500 dark:hover:text-gray-300 transition-colors"
-              aria-label="Homepage - Oleksandr Pryvalov Paintings"
-            >
-              oleksandr<br className="hidden max-[350px]:block" /> pryvalov
-            </Link>
-          </h1>
+          {showH1 && (
+            <h1 className="block text-2xl font-nunito">
+              <Link
+                href="/"
+                className="text-gray-900 dark:text-gray-100 hover:text-gray-500 dark:hover:text-gray-300 transition-colors"
+                aria-label="Homepage - Oleksandr Pryvalov Paintings"
+              >
+                oleksandr<br className="hidden max-[350px]:block" /> pryvalov
+              </Link>
+            </h1>
+          )}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden dark:text-gray-200"
