@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { usePainting } from '../context/PaintingContext';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 import type { Painting } from '../data/paintings';
 
 type SliderProps = {
@@ -14,6 +15,7 @@ export function SliderContent({ paintings }: SliderProps) {
   const searchParams = useSearchParams();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [animationDirection, setAnimationDirection] = useState<'left' | 'right'>('right');
   const { setCurrentPainting, setGoToPrevious, setGoToNext } = usePainting();
 
   useEffect(() => {
@@ -28,6 +30,7 @@ export function SliderContent({ paintings }: SliderProps) {
 
   const changeImage = useCallback(
     (direction: 'prev' | 'next') => {
+      setAnimationDirection(direction === 'prev' ? 'right' : 'left');
       setIsImageLoaded(false);
       setCurrentIndex((prevIndex) => {
         let newIndex = prevIndex;
@@ -47,19 +50,6 @@ export function SliderContent({ paintings }: SliderProps) {
       setCurrentPainting(paintings[currentIndex]);
     }
   }, [isImageLoaded, currentIndex, paintings, setCurrentPainting]);
-
-  useEffect(() => {
-    const preloadImage = (src: string) => {
-      const img = new window.Image();
-      img.src = src;
-    };
-
-    const nextIndex = (currentIndex + 1) % paintings.length;
-    const prevIndex = (currentIndex - 1 + paintings.length) % paintings.length;
-
-    preloadImage(paintings[nextIndex].src);
-    preloadImage(paintings[prevIndex].src);
-  }, [currentIndex, paintings]);
 
   useEffect(() => {
     setGoToPrevious(() => () => changeImage('prev'));
@@ -93,16 +83,26 @@ export function SliderContent({ paintings }: SliderProps) {
       aria-live="polite"
       aria-label="Painting Slider"
     >
-      <div className="absolute inset-0">
-        <Image
-          src={currentPainting.src}
-          alt={currentPainting.description || currentPainting.title}
-          layout="fill"
-          objectFit="contain"
-          priority
-          onLoadingComplete={handleImageLoad}
-        />
-      </div>
+      <AnimatePresence initial={false} custom={animationDirection}>
+        <motion.div
+          key={currentPainting.src}
+          initial={{ x: animationDirection === 'left' ? '100%' : '-100%' }}
+          animate={{ x: 0 }}
+          exit={{ x: animationDirection === 'left' ? '-100%' : '100%' }}
+          transition={{ duration: 0.5 }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={currentPainting.src}
+            alt={currentPainting.description || currentPainting.title}
+            layout="fill"
+            objectFit="contain"
+            priority
+            onLoadingComplete={handleImageLoad}
+          />
+        </motion.div>
+      </AnimatePresence>
+
       {/* Navigation click areas */}
       <button
         onClick={() => changeImage('prev')}
