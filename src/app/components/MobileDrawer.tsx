@@ -36,7 +36,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
   return (
     <div className="md:hidden">
       {/* Mobile Header */}
-      <div className="p-5 pb-0">
+      <div className={`pb-0 ${pathname === '/image-viewer' ? 'p-0' : 'p-5'}`}>
         <div className="flex justify-between items-center max-[350px]:items-start">
           {showH1 && (
             <h1 className="block text-2xl font-nunito">
