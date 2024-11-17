@@ -1,21 +1,19 @@
-// components/ImageViewerClient.tsx
-'use client';
-
 import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSwipeable } from 'react-swipeable';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { paintings } from '../data/paintings';
 import { X } from 'lucide-react';
 import ThumbnailList from './ThumbnailsList';
 import ChevronButtons from './ChevronButtons';
 
-
 export default function ImageViewerClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [animationDirection, setAnimationDirection] = useState<'left' | 'right'>('right');
   const [currentImage, setCurrentImage] = useState({
     src: paintings[0].src,
     isMainImage: true,
@@ -36,6 +34,7 @@ export default function ImageViewerClient() {
   const currentImageIndex = allImages.indexOf(currentImage.src);
 
   const handleNext = () => {
+    setAnimationDirection('left');
     const nextIndex = (currentImageIndex + 1) % allImages.length;
     setCurrentImage({
       src: allImages[nextIndex],
@@ -44,6 +43,7 @@ export default function ImageViewerClient() {
   };
 
   const handlePrev = () => {
+    setAnimationDirection('right');
     const prevIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
     setCurrentImage({
       src: allImages[prevIndex],
@@ -52,6 +52,7 @@ export default function ImageViewerClient() {
   };
 
   const handleThumbnailClick = (imageSrc: string) => {
+    setAnimationDirection('left');
     setCurrentImage({
       src: imageSrc,
       isMainImage: imageSrc === painting.src,
@@ -60,7 +61,6 @@ export default function ImageViewerClient() {
 
   const closeViewer = () => router.push('/thumbnails');
 
-  // Add swipe handlers
   const swipeHandlers = useSwipeable({
     onSwipedLeft: handleNext,
     onSwipedRight: handlePrev,
@@ -72,24 +72,33 @@ export default function ImageViewerClient() {
     <Suspense>
       <div className="flex flex-col items-center justify-center">
         <button onClick={closeViewer} className="absolute top-5 right-3 z-10">
-          <X className='h-8 w-8 md:h-12 md:w-12 stroke-1' />
+          <X className="h-8 w-8 md:h-12 md:w-12 stroke-1" />
         </button>
 
         {/* Main Image Viewer */}
         <div
-          className="relative flex items-center justify-center w-full h-[calc(100vh-10rem)]"
-          {...swipeHandlers} // Attach swipe handlers here
+          className="relative flex items-center justify-center w-full h-[calc(100vh-10rem)] overflow-hidden"
+          {...swipeHandlers}
         >
           <div className="hidden md:block">
             <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
           </div>
-          <Image
-            src={currentImage.src}
-            alt={painting.title}
-            layout="fill"
-            objectFit="contain"
-            className="object-cover md:max-w-[100vw] md:max-h-[75vh]"
-          />
+          <motion.div
+            key={currentImage.src}
+            initial={{ x: animationDirection === 'left' ? '100%' : '-100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: animationDirection === 'left' ? '-100%' : '100%' }}
+            transition={{ duration: 0.5 }}
+            className="absolute w-full h-full"
+          >
+            <Image
+              src={currentImage.src}
+              alt={painting.title}
+              layout="fill"
+              objectFit="contain"
+              className="object-cover md:max-w-[100vw] md:max-h-[75vh]"
+            />
+          </motion.div>
         </div>
 
         {/* Thumbnails including main image */}
