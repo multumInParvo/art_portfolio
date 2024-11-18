@@ -59,11 +59,7 @@ export default function ClientLayout({ children, isLoading }: ClientLayoutProps)
 
       {/* Main Content */}
       <main id="main-content" className={`flex-1 ${pathname === '/image-viewer' ? '' : 'p-5 md:py-10 md:pr-10 md:pl-10'}`}>
-        {isLoading ? (
-          <div className="flex items-center justify-center h-full">Loading...</div>
-        ) : (
-          <div>{children}</div>
-        )}
+        {children}
       </main>
 
       {/* ScrollArrows for Mobile */}
@@ -71,9 +67,9 @@ export default function ClientLayout({ children, isLoading }: ClientLayoutProps)
         <ScrollArrows />
       </div>
       {showFooter && (
-      <div className="md:hidden">
-        <Footer />
-      </div>
+        <div className="md:hidden">
+          <Footer />
+        </div>
       )}
     </div>
   );
