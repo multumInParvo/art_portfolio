@@ -8,17 +8,17 @@
     --foreground: #374151;
 
     /* Light theme variables */
-    --ring-color: #000000;
-    /* Black for light theme */
+    --ring-color: #000000; /* Black for light theme */
+
   }
 
   :root[class~="dark"] {
-    --background: linear-gradient(270deg, #233353, #141624);
+    --background: linear-gradient(270deg, #203752, #1b1f31);
     --foreground: #f3f4f6;
 
     /* Dark theme variables */
-    --ring-color: #ffffff;
-    /* White for dark theme */
+    --ring-color: #ffffff; /* White for dark theme */
+
   }
 }
 
@@ -29,9 +29,7 @@
 }
 
 body {
-  background: var(--background);
-  /* Apply gradient background */
-  color: var(--foreground);
-  /* Set text color globally */
-  @apply transition-colors duration-300;
+  background: var(--background); /* Apply gradient background */
+  color: var(--foreground); /* Set text color globally */
+  transition: background-color 1s ease, color 1s ease; /* Shorthand for smooth transitions */
 }

@@ -18,9 +18,11 @@ export default function ThumbnailList({ images, currentImageSrc, onThumbnailClic
         {images.map((img, index) => (
           <div
             key={index}
-            className={`w-16 h-16 relative cursor-pointer transition-opacity ${
-              currentImageSrc === img ? 'ring-4 ring-white' : 'hover:opacity-80'
-            }`}
+            className={`w-16 h-16 relative cursor-pointer transition-opacity ${currentImageSrc === img ? 'ring-4' : 'hover:opacity-80'
+              }`}
+            style={{
+              '--tw-ring-color': 'var(--ring-color)', 
+            } as React.CSSProperties} 
             onClick={() => onThumbnailClick(img)}
           >
             <Image src={img} alt={`Thumbnail ${index + 1}`} layout="fill" objectFit="cover" />
@@ -43,9 +45,8 @@ export default function ThumbnailList({ images, currentImageSrc, onThumbnailClic
                   size={14}
                   fill={fillColor}
                   stroke={fillColor} // Stroke matches the fill color
-                  className={`transition-colors ${
-                    currentImageSrc === img ? 'hover:fill-black hover:stroke-black' : 'hover:fill-gray-500 hover:stroke-gray-500'
-                  }`}
+                  className={`transition-colors ${currentImageSrc === img ? 'hover:fill-black hover:stroke-black' : 'hover:fill-gray-500 hover:stroke-gray-500'
+                    }`}
                 />
               </div>
             );

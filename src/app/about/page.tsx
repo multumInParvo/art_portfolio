@@ -12,14 +12,14 @@ export default function AboutPage() {
   return (
     <div className="w-full flex flex-col items-center md:max-w-3xl">
       <div className="w-full">
-        <h1 className='text-2xl mb-2 mt-0 font-nunito md:text-3xl md:mb-10 border-b text-gray-800 dark:text-gray-100 dark:border-gray-700'>
+        <h1 className='text-2xl mb-2 mt-0 font-nunito md:text-3xl md:mb-10 border-b dark:border-gray-700'>
         {translations.about}
         </h1>
       </div>
 
       <div className="flex flex-col gap-8 md:gap-14 mt-6 md:flex-row">
         <div className="w-full">
-          <p className="text-sm md:text-base font-semibold text-gray-700 dark:text-gray-300 font-nunito">
+          <p className="text-sm md:text-base font-semibold font-nunito">
           {translations.bio}
           </p>
         </div>

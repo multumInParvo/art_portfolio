@@ -42,7 +42,6 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
             <h1 className="block text-2xl font-nunito">
               <Link
                 href="/"
-                className="text-gray-900 dark:text-gray-100 hover:text-gray-500 dark:hover:text-gray-300 transition-colors"
                 aria-label="Homepage - Oleksandr Pryvalov Paintings"
               >
                 oleksandr<br className="hidden max-[350px]:block" /> pryvalov
@@ -69,7 +68,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
       </div>
 
       {/* Mobile Navigation Drawer */}
-      <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-64' : 'max-h-0'}`}>
+      <div className={`overflow-hidden ${isMenuOpen ? 'max-h-64' : 'max-h-0'}`}>
         <div className="p-5 pt-0">
           {showNav && (
             <nav className="space-y-6 mt-8">
@@ -77,7 +76,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 <div className="relative">
                   <Link
                     href="/about"
-                    className="text-gray-700 dark:text-gray-100 font-nunito inline-block"
+                    className="font-nunito inline-block"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {translations.about}
@@ -86,7 +85,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 <div className="relative">
                   <Link
                     href="/contact"
-                    className="text-gray-700 dark:text-gray-100 font-nunito inline-block"
+                    className="font-nunito inline-block"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     contact
@@ -98,14 +97,14 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Instagram Profile - Oleksandr Pryvalov"
-                    className="flex items-center justify-center rounded-full w-5 h-5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-darkGold"
+                    className="flex items-center justify-center rounded-full w-5 h-5 focus:outline-none focus:ring-2 focus:ring-darkGold"
                   >
-                    <FaInstagram className="text-base text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-200 transition-colors" aria-hidden="true" />
+                    <FaInstagram className="text-base" aria-hidden="true" />
                   </Link>
 
                   <button
                     onClick={toggleLanguage}
-                    className="rounded-full w-5 h-5 flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-darkGold text-xs font-medium"
+                    className="rounded-full w-5 h-5 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-darkGold text-xs font-medium"
                     aria-label={translations.switch_language}
                   >
                     {language}
@@ -113,7 +112,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
 
                   <button
                     onClick={toggleTheme}
-                    className="rounded-full w-5 h-5 flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-darkGold"
+                    className="rounded-full w-5 h-5 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-darkGold"
                     aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                   >
                     {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}

@@ -51,7 +51,7 @@ const ThumbnailsPage = () => {
   return (
     <div className="w-full flex flex-col items-center md:max-w-6xl">
       <div className='w-full'>
-        <h1 className='hidden md:block text-2xl mb-2 mt-0 font-nunito md:text-3xl md:mb-10 border-b dark:text-gray-100 dark:border-gray-700'>
+        <h1 className='hidden md:block text-2xl mb-2 mt-0 font-nunito md:text-3xl md:mb-10 border-b dark:border-gray-700'>
           {translations.paintings_page}
         </h1>
       </div>
@@ -63,11 +63,11 @@ const ThumbnailsPage = () => {
 
             {/* Centered painting details - only visible on mobile */}
             <div className="block md:hidden text-left">
-              <h2 className="text-base font-bold font-nunito text-gray-800 dark:text-gray-100">
+              <h2 className="text-base font-bold font-nunito">
                 {painting.title}
               </h2>
               <div className='flex gap-1'>
-                <p className="text-xs font-nunito font-semibold text-gray-600 dark:text-gray-300">
+                <p className="text-xs font-nunito font-semibold">
                   {`${painting.dimensions}, ${translations.material}, ${painting.year}`}
                 </p>
               </div>

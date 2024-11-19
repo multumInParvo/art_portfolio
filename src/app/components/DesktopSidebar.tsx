@@ -36,7 +36,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
                     <h1 className="block text-2xl md:text-3xl font-nunito whitespace-nowrap md:whitespace-normal">
                         <Link
                             href="/"
-                            className="hover:text-gray-500 dark:hover:text-gray-300 transition-colors"
+                            className="hover:text-gray-500 dark:hover:text-gray-300"
                             aria-label="Homepage - Oleksandr Pryvalov Paintings"
                         >
                             oleksandr<br /> pryvalov
@@ -53,7 +53,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
                             <div className="relative">
                                 <Link
                                     href="/about"
-                                    className="transition-all font-nunito inline-block relative after:content-[''] after:absolute after:-bottom-0 after:left-0 after:w-full after:h-[2px] after:scale-x-0 after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 hover:after:scale-x-100"
+                                    className="font-nunito inline-block relative after:content-[''] after:absolute after:-bottom-0 after:left-0 after:w-full after:h-[2px] after:scale-x-0 after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 hover:after:scale-x-100"
                                 >
                                     {translations.about}
                                 </Link>
@@ -62,7 +62,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
                             <div className="relative">
                                 <Link
                                     href="/contact"
-                                    className="transition-all font-nunito inline-block relative after:content-[''] after:absolute after:-bottom-0 after:left-0 after:w-full after:h-[2px] after:scale-x-0 after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 hover:after:scale-x-100"
+                                    className="font-nunito inline-block relative after:content-[''] after:absolute after:-bottom-0 after:left-0 after:w-full after:h-[2px] after:scale-x-0 after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 hover:after:scale-x-100"
                                 >
                                     contact
                                 </Link>
@@ -74,14 +74,14 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Instagram Profile - Oleksandr Pryvalov"
-                                    className="flex items-center justify-center w-5 h-5 rounded-full text-gray-700 dark:text-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2"
+                                    className="flex items-center justify-center w-5 h-5 rounded-full focus:outline-none focus:ring-2"
                                 >
-                                    <FaInstagram className="text-base text-gray-700 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-200 transition-colors" aria-hidden="true" />
+                                    <FaInstagram className="text-base hover:text-gray-900 dark:hover:text-gray-200" aria-hidden="true" />
                                 </Link>
 
                                 <button
                                     onClick={toggleLanguage}
-                                    className="bg-gray-100 dark:bg-gray-800 rounded-full w-5 h-5 focus:ring-darkGold text-gray-700 dark:text-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 text-xs font-medium"
+                                    className="rounded-full w-5 h-5 focus:ring-darkGold focus:outline-none focus:ring-2 text-xs font-medium"
                                     aria-label={translations.switch_language}
                                 >
                                     {language}
@@ -89,7 +89,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
 
                                 <button
                                     onClick={toggleTheme}
-                                    className="flex justify-center items-center rounded-full w-5 h-5 focus:ring-darkGold text-gray-700 dark:text-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2"
+                                    className="flex justify-center items-center rounded-full w-5 h-5 focus:ring-darkGold focus:outline-none focus:ring-2"
                                     aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                                 >
                                     {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
