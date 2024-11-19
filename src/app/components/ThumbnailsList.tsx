@@ -19,7 +19,7 @@ export default function ThumbnailList({ images, currentImageSrc, onThumbnailClic
           <div
             key={index}
             className={`w-16 h-16 relative cursor-pointer transition-opacity ${
-              currentImageSrc === img ? 'ring-4 ring-black' : 'hover:opacity-80'
+              currentImageSrc === img ? 'ring-4 ring-white' : 'hover:opacity-80'
             }`}
             onClick={() => onThumbnailClick(img)}
           >

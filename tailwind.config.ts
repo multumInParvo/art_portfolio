@@ -17,12 +17,14 @@ const config: Config = {
         // Add theme colors
         'theme': {
           light: {
+            background: "var(--background)",
             bg: '#ffffff',
             text: '#1a1a1a',
             surface: '#f5f5f5',
             border: '#e5e5e5',
           },
           dark: {
+            background: "var(--background)",
             bg: '#1a1a1a',
             text: '#f5f5f5',
             surface: '#2a2a2a',

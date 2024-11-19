@@ -26,7 +26,7 @@ export default function ClientLayout({ children, isLoading }: ClientLayoutProps)
   const showFooter = pathname !== '/image-viewer';
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-white dark:bg-gray-900">
+    <div className="flex flex-col md:flex-row min-h-screen">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:p-2 focus:bg-blue-500 focus:text-white"

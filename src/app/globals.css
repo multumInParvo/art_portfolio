@@ -4,34 +4,34 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
-    
+    --background: #f5f3ef;
+    --foreground: #374151;
+
     /* Light theme variables */
-    --color-bg: #f8f9fa; /* Example color */
-    --color-text: #212529; /* Example color */
-    --color-surface: #ffffff; /* Example color */
-    --color-border: #dee2e6; /* Example color */
+    --ring-color: #000000;
+    /* Black for light theme */
   }
 
   :root[class~="dark"] {
-    --background: 0 0% 10%;
-    --foreground: 0 0% 100%;
-    
+    --background: linear-gradient(270deg, #233353, #141624);
+    --foreground: #f3f4f6;
+
     /* Dark theme variables */
-    --color-bg: #212529; /* Example color */
-    --color-text: #f8f9fa; /* Example color */
-    --color-surface: #343a40; /* Example color */
-    --color-border: #495057; /* Example color */
+    --ring-color: #ffffff;
+    /* White for dark theme */
   }
 }
 
 /* Add smooth transitions for theme changes */
 ::selection {
-  background-color: #b58900; /* Example color */
+  background-color: #b58900;
   color: white;
 }
 
 body {
+  background: var(--background);
+  /* Apply gradient background */
+  color: var(--foreground);
+  /* Set text color globally */
   @apply transition-colors duration-300;
 }
