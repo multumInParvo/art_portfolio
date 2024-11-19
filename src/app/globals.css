@@ -13,7 +13,7 @@
   }
 
   :root[class~="dark"] {
-    --background: linear-gradient(270deg, #203752, #1b1f31);
+    --background: linear-gradient(0deg,#1b1f31, #203752);
     --foreground: #f3f4f6;
 
     /* Dark theme variables */
