@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: linear-gradient(360deg,#dfe5e7,#ffffff);
+    --background: #f5f3ef;
     --foreground: #374151;
 
     /* Light theme variables */

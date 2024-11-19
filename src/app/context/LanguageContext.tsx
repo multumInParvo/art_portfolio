@@ -1,7 +1,6 @@
-// app/context/LanguageContext.tsx
 'use client';
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 type Language = 'EN' | 'FR';
 
@@ -14,14 +13,25 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>('EN');
+  const [isFading, setIsFading] = useState(false);
 
   const toggleLanguage = () => {
-    setLanguage((prev) => (prev === 'EN' ? 'FR' : 'EN'));
+    setIsFading(true); // Trigger fade-out
+    setTimeout(() => {
+      setLanguage((prev) => (prev === 'EN' ? 'FR' : 'EN')); // Change language after fade-out
+      setIsFading(false); // Trigger fade-in
+    }, 500); // Match fade-out duration
   };
 
   return (
     <LanguageContext.Provider value={{ language, toggleLanguage }}>
-      {children}
+      <div
+        className={`transition-opacity duration-200 ${
+          isFading ? 'opacity-20' : 'opacity-100'
+        }`}
+      >
+        {children}
+      </div>
     </LanguageContext.Provider>
   );
 }
