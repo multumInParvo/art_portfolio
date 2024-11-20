@@ -60,7 +60,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
         </div>
         <div>
           {showSpan && (
-            <span className="text-sm text-slate-700 tracking-widest font-playfair dark:text-amber-400">
+            <span className="text-sm tracking-widest font-playfair">
               {translations.paintings}
             </span>
           )}

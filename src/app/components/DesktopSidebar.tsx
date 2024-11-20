@@ -43,7 +43,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
                         </Link>
                     </h1>
                     <div>
-                        <Link href="/thumbnails" className="text-darkGold dark:text-amber-400 text-base font-medium tracking-widest font-playfair relative inline-block">
+                        <Link href="/thumbnails" className="text-base font-medium tracking-widest font-playfair relative inline-block">
                             {translations.paintings}
                         </Link>
                     </div>
