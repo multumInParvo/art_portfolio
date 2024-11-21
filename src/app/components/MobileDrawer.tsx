@@ -39,7 +39,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
       <div className={`pb-0 ${pathname === '/image-viewer' ? 'p-0' : 'p-5'}`}>
         <div className="flex justify-between items-center max-[350px]:items-start">
           {showH1 && (
-            <h1 className="block text-2xl font-nunito">
+            <h1 className="block text-xl font-nunito uppercase">
               <Link
                 href="/"
                 aria-label="Homepage - Oleksandr Pryvalov Paintings"

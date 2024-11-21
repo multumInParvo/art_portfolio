@@ -96,7 +96,7 @@ export default function ImageViewerClient() {
               alt={painting.title}
               layout="fill"
               objectFit="contain"
-              className="object-cover md:max-w-[100vw] md:max-h-[75vh]"
+              className="object-cover md:w-full md:h-full md:p-12 py-12"
             />
           </motion.div>
         </div>
