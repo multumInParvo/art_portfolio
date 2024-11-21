@@ -41,8 +41,8 @@ const ThumbnailsPage = () => {
         priority={index < 4}
       />
       <div
-        className={`absolute inset-0 transition-opacity duration-300 flex items-center justify-center
-          ${touchedIndex === index ? 'bg-black bg-opacity-50' : 'bg-opacity-0'}`}
+        className={`absolute inset-0 transition-opacity flex items-center justify-center
+          ${touchedIndex === index ? 'bg-slate-300 bg-opacity-10' : ''}`}
       >
       </div>
     </div>
