@@ -49,13 +49,11 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
             </h1>
           )}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => setIsMenuOpen((prev) => !prev)}
             className="md:hidden dark:text-gray-200"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
-            {showMenu && (
-              <Menu className="h-8 w-8 stroke-1" />
-            )}
+            {showMenu && <Menu className="h-8 w-8 stroke-1" />}
           </button>
         </div>
         <div>
@@ -68,7 +66,10 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
       </div>
 
       {/* Mobile Navigation Drawer */}
-      <div className={`overflow-hidden ${isMenuOpen ? 'max-h-64' : 'max-h-0'}`}>
+      <div
+        className={`transition-[max-height] duration-500 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-64' : 'max-h-0'
+          }`}
+      >
         <div className="p-5 pt-0">
           {showNav && (
             <nav className="space-y-6 mt-8">
@@ -91,7 +92,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
                     contact
                   </Link>
                 </div>
-                <div className='flex items-center gap-3 mt-5'>
+                <div className="flex items-center gap-3 mt-5">
                   <Link
                     href="https://www.instagram.com/oleksandr.pryvalov.art/"
                     target="_blank"
