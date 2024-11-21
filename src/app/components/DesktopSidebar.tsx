@@ -33,7 +33,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
         <aside className="hidden md:flex md:w-64 md:flex-shrink-0 md:flex-col">
             <div className="p-10 flex flex-col h-full md:pr-0">
                 <div>
-                    <h1 className="block text-2xl md:text-2xl font-playfair whitespace-nowrap md:whitespace-normal">
+                    <h1 className="block text-2xl md:text-2xl font-playfair whitespace-nowrap md:whitespace-normal tracking-widest">
                         <Link
                             href="/"
                             className="hover:text-gray-500 dark:hover:text-gray-300 uppercase"
