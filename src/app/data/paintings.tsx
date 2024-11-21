@@ -12,6 +12,15 @@ export type Painting = {
   // Paintings array with the type annotation
   export const paintings: Painting[] = [
     {
+      src: "/images/Work_in_progress_05.jpeg",
+      additionalImages: ['/images/Work_in_progress_01.jpeg', '/images/Work_in_progress_02.jpeg', '/images/Work_in_progress_03.jpeg','/images/Work_in_progress_04.jpeg'],
+      title: "An unexpected encounter",
+      description: "owl and orchidea",
+      dimensions: "60 x 80 cm",
+      material: "oil on canvas",
+      year: 2024
+    },
+    {
       src: "/images/azaylerideau.webp",
       additionalImages: ['/images/portfolio-dark.webp', '/images/portfolio-light.webp'],
       title: "Azay-le-Rideau",
