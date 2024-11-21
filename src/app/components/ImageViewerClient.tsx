@@ -109,7 +109,7 @@ export default function ImageViewerClient() {
           <ThumbnailList
             images={allImages}
             currentImageSrc={currentImage.src}
-            onThumbnailClick={handleThumbnailClick}
+            onThumbnailClickAction={handleThumbnailClick}
           />
         </div>
       </div>

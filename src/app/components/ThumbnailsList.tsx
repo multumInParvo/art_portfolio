@@ -3,20 +3,22 @@
 import React from 'react';
 import Image from 'next/image';
 import { Circle } from 'lucide-react';
+import { useTheme } from '@/app/context/ThemeContext'; // Import the ThemeContext hook
 
 interface ThumbnailListProps {
   images: string[];
   currentImageSrc: string;
-  onThumbnailClick: (imageSrc: string) => void;
-  isDarkMode: boolean; // Add a prop to indicate the current theme
+  onThumbnailClickAction: (imageSrc: string) => void; // Ensure it's renamed for Next.js requirements
 }
 
 export default function ThumbnailList({
   images,
   currentImageSrc,
-  onThumbnailClick,
-  isDarkMode,
+  onThumbnailClickAction, // Renamed prop
 }: ThumbnailListProps) {
+  const { theme } = useTheme(); // Access theme from ThemeContext
+  const isDarkMode = theme === 'dark';
+
   return (
     <div>
       {/* Thumbnails View - Visible on medium and larger screens */}
@@ -24,14 +26,15 @@ export default function ThumbnailList({
         {images.map((img, index) => (
           <div
             key={index}
-            className={`w-16 h-16 relative cursor-pointer transition-opacity ${currentImageSrc === img ? 'ring-4' : 'hover:opacity-80'
-              }`}
+            className={`w-16 h-16 relative cursor-pointer transition-opacity ${
+              currentImageSrc === img ? 'ring-4' : 'hover:opacity-80'
+            }`}
             style={
               {
                 '--tw-ring-color': 'var(--ring-color)', // Custom ring color if needed
               } as React.CSSProperties
             }
-            onClick={() => onThumbnailClick(img)}
+            onClick={() => onThumbnailClickAction(img)}
           >
             <Image src={img} alt={`Thumbnail ${index + 1}`} layout="fill" objectFit="cover" />
           </div>
@@ -63,13 +66,15 @@ export default function ThumbnailList({
               <div
                 key={index}
                 className="cursor-pointer"
-                onClick={() => onThumbnailClick(img)}
+                onClick={() => onThumbnailClickAction(img)}
               >
                 <Circle
                   size={14}
                   fill={fillColor}
                   stroke={strokeColor}
-                  className={`transition-colors ${isSelected ? 'scale-110' : ''} hover:scale-110`}
+                  className={`transition-colors ${
+                    isSelected ? 'scale-110' : ''
+                  } hover:scale-110`}
                 />
               </div>
             );
