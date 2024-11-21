@@ -7,14 +7,14 @@ import { Circle } from 'lucide-react';
 interface ThumbnailListProps {
   images: string[];
   currentImageSrc: string;
-  onThumbnailClickAction: (imageSrc: string) => void;
+  onThumbnailClick: (imageSrc: string) => void;
   isDarkMode: boolean; // Add a prop to indicate the current theme
 }
 
 export default function ThumbnailList({
   images,
   currentImageSrc,
-  onThumbnailClickAction,
+  onThumbnailClick,
   isDarkMode,
 }: ThumbnailListProps) {
   return (
@@ -31,7 +31,7 @@ export default function ThumbnailList({
                 '--tw-ring-color': 'var(--ring-color)', // Custom ring color if needed
               } as React.CSSProperties
             }
-            onClick={() => onThumbnailClickAction(img)}
+            onClick={() => onThumbnailClick(img)}
           >
             <Image src={img} alt={`Thumbnail ${index + 1}`} layout="fill" objectFit="cover" />
           </div>
@@ -63,7 +63,7 @@ export default function ThumbnailList({
               <div
                 key={index}
                 className="cursor-pointer"
-                onClick={() => onThumbnailClickAction(img)}
+                onClick={() => onThumbnailClick(img)}
               >
                 <Circle
                   size={14}
