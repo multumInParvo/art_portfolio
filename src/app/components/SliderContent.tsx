@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { usePainting } from '../context/PaintingContext';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Painting } from '../data/paintings';
 
@@ -13,6 +13,7 @@ type SliderProps = {
 
 export function SliderContent({ paintings }: SliderProps) {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [animationDirection, setAnimationDirection] = useState<'left' | 'right'>('right');
@@ -73,6 +74,10 @@ export function SliderContent({ paintings }: SliderProps) {
     setIsImageLoaded(true);
   };
 
+  const navigateToImageViewer = () => {
+    router.push(`/image-viewer?index=${currentIndex}`);
+  };
+
   const currentPainting = paintings[currentIndex];
 
   return (
@@ -103,15 +108,24 @@ export function SliderContent({ paintings }: SliderProps) {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation click areas */}
+      {/* Left Navigation */}
       <button
         onClick={() => changeImage('prev')}
-        className="hidden md:block absolute left-0 top-0 w-1/2 h-full bg-transparent cursor-w-resize focus:outline-none"
+        className="hidden md:block absolute left-0 top-0 w-2/6 h-full bg-transparent cursor-w-resize focus:outline-none"
         aria-label="Previous Slide"
       />
+
+      {/* Center Sensor */}
+      <button
+        onClick={navigateToImageViewer}
+        className="hidden md:block absolute left-1/3 top-0 w-2/6 h-full bg-transparent cursor-pointer focus:outline-none"
+        aria-label="Open Image Viewer"
+      />
+
+      {/* Right Navigation */}
       <button
         onClick={() => changeImage('next')}
-        className="hidden md:block absolute right-0 top-0 w-1/2 h-full bg-transparent cursor-e-resize focus:outline-none"
+        className="hidden md:block absolute right-0 top-0 w-2/6 h-full bg-transparent cursor-e-resize focus:outline-none"
         aria-label="Next Slide"
       />
     </div>
