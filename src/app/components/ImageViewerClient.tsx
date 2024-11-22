@@ -68,6 +68,24 @@ export default function ImageViewerClient() {
     trackTouch: true,
   });
 
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowRight') {
+        handleNext();
+      } else if (event.key === 'ArrowLeft') {
+        handlePrev();
+      } else if (event.key === 'Escape') {
+        closeViewer(); // Close viewer on pressing Escape
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [currentImageIndex, allImages]); // Dependencies to ensure updated state is used
+
   return (
     <Suspense>
       <div className="flex flex-col items-center justify-center">
