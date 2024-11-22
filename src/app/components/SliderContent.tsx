@@ -89,7 +89,7 @@ export function SliderContent({ paintings }: SliderProps) {
           initial={{ x: animationDirection === 'left' ? '100%' : '-100%' }}
           animate={{ x: 0 }}
           exit={{ x: animationDirection === 'left' ? '-100%' : '100%' }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
           className="absolute inset-0"
         >
           <Image
