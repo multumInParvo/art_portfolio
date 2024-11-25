@@ -25,15 +25,18 @@ const ThumbnailsPage = () => {
   };
 
   const ImageContent = ({ painting, index }: { painting: typeof paintings[0]; index: number }) => (
-    <div className={`group relative w-full cursor-pointer transition-all duration-500 ease-in-out
-          md:hover:shadow-[8px_8px_20px_4px_rgba(0,0,0,0.3)] 
-          dark:md:hover:shadow-[8px_8px_20px_4px_rgba(255,255,255,0.15)]`}
+    <div
+      className={`group relative w-full cursor-pointer transition-all duration-500 ease-in-out`}
       onClick={() => handleImageClick(index)}
       role="button"
-      aria-label={`View ${painting.title}`}>
-
-      {/* Image Section */}
-      <div className="relative w-full overflow-hidden transition-transform duration-500 md:group-hover:-translate-y-2">
+      aria-label={`View ${painting.title}`}
+    >
+      {/* Image Section with Shadow */}
+      <div
+        className="relative w-full overflow-hidden transition-transform-shadow duration-[900ms] md:group-hover:-translate-y-4
+          md:group-hover:shadow-[2px_20px_20px_2px_rgba(0,0,0,0.2)] 
+          dark:md:group-hover:shadow-[2px_20px_20px_2px_rgba(255,255,255,0.15)]"
+      >
         <Image
           src={painting.src}
           alt={painting.title}
@@ -47,10 +50,14 @@ const ThumbnailsPage = () => {
       </div>
 
       {/* Title Section */}
-      <div className="absolute bottom-[-2.5rem] transform md:translate-y-[-3rem]
-            md:opacity-0 md:group-hover:translate-y-4 md:group-hover:opacity-100
-            transition-all duration-500 ease-in-out w-full">
-        <h2 className="hidden md:block text-black text-sm md:text-2xl font-bold">{painting.title}</h2>
+      <div
+        className="absolute bottom-[-2rem] transform md:translate-y-[-3rem]
+          md:opacity-0 md:group-hover:translate-y-4 md:group-hover:opacity-100
+          transition-all duration-[900ms] ease-in-out w-full"
+      >
+        <h2 className="hidden md:block text-black dark:text-white text-sm md:text-2xl font-bold">
+          {painting.title}
+        </h2>
       </div>
     </div>
   );
@@ -69,11 +76,11 @@ const ThumbnailsPage = () => {
             <ImageContent painting={painting} index={index} />
 
             <div className="block md:hidden text-left">
-              <h2 className="text-base font-bold font-nunito">
+              <h2 className="text-base font-bold font-nunito dark:text-white">
                 {painting.title}
               </h2>
               <div className="flex gap-1">
-                <p className="text-xs font-nunito font-semibold">
+                <p className="text-xs font-nunito font-semibold dark:text-gray-300">
                   {`${painting.dimensions}, ${translations.material}, ${painting.year}`}
                 </p>
               </div>
