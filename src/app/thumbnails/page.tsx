@@ -24,29 +24,33 @@ const ThumbnailsPage = () => {
     }, 150);
   };
 
-  const ImageContent = ({ painting, index }: { painting: typeof paintings[0], index: number }) => (
-    <div
-      className={`relative w-full cursor-pointer transition-all duration-500 ease-in-out
-        md:hover:shadow-[8px_8px_20px_4px_rgba(0,0,0,0.3)] 
-        dark:md:hover:shadow-[8px_8px_20px_4px_rgba(255,255,255,0.15)]`}
+  const ImageContent = ({ painting, index }: { painting: typeof paintings[0]; index: number }) => (
+    <div className={`group relative w-full cursor-pointer transition-all duration-500 ease-in-out
+          md:hover:shadow-[8px_8px_20px_4px_rgba(0,0,0,0.3)] 
+          dark:md:hover:shadow-[8px_8px_20px_4px_rgba(255,255,255,0.15)]`}
       onClick={() => handleImageClick(index)}
       role="button"
-      aria-label={`View ${painting.title}`}
-    >
-      <Image
-        src={painting.src}
-        alt={painting.title}
-        layout="responsive"
-        width={500}
-        height={500}
-        objectFit="cover"
-        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        priority={index < 4}
-      />
-      <div
-        className={`absolute inset-0 transition-opacity flex items-center justify-center
-          ${touchedIndex === index ? 'bg-slate-300 bg-opacity-10' : ''}`}
-      >
+      aria-label={`View ${painting.title}`}>
+
+      {/* Image Section */}
+      <div className="relative w-full overflow-hidden transition-transform duration-500 md:group-hover:-translate-y-2">
+        <Image
+          src={painting.src}
+          alt={painting.title}
+          layout="responsive"
+          width={500}
+          height={500}
+          objectFit="cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          priority={index < 4}
+        />
+      </div>
+
+      {/* Title Section */}
+      <div className="absolute bottom-[-2.5rem] transform md:translate-y-[-3rem]
+            md:opacity-0 md:group-hover:translate-y-4 md:group-hover:opacity-100
+            transition-all duration-500 ease-in-out w-full">
+        <h2 className="hidden md:block text-black text-sm md:text-2xl font-bold">{painting.title}</h2>
       </div>
     </div>
   );
