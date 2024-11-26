@@ -12,7 +12,7 @@ export type Painting = {
   // Paintings array with the type annotation
   export const paintings: Painting[] = [
     {
-      src: "/images/unexpected_encounter_01.jpg",
+      src: "/images/unexpected_encounter_01.webp",
       additionalImages: ['/images/unexpected_encounter_06.jpg', '/images/unexpected_encounter_04.jpeg', '/images/unexpected_encounter_05.jpeg','/images/unexpected_encounter_02.jpeg','/images/unexpected_encounter_03.jpg'],
       title: "An unexpected encounter",
       description: "owl and orchidea",
