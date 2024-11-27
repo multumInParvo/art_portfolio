@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Playfair_Display, Nunito } from 'next/font/google';
+import { Playfair_Display, Nunito, Cinzel_Decorative } from 'next/font/google';
 import './globals.css';
 import { PaintingProvider } from './context/PaintingContext';
 import { ThemeProvider } from '../app/context/ThemeContext';
@@ -59,13 +59,19 @@ const nunito = Nunito({
   variable: '--font-nunito'
 });
 
+const cinzel = Cinzel_Decorative({
+  subsets: ['latin'],
+  weight: ['400', '700'], // Adjust based on the weights you'll use
+  variable: '--font-cinzel-decorative',
+});
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${nunito.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${nunito.variable} ${cinzel.variable}`}>
       <head>
         <link rel="alternate" href="https://oleksandrpryvalov.art/" hrefLang="en" />
         <link rel="alternate" href="https://oleksandrpryvalov.art/" hrefLang="fr" />

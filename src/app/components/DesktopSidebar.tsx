@@ -33,15 +33,32 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
         <aside className="hidden md:flex md:w-64 md:flex-shrink-0 md:flex-col">
             <div className="p-10 flex flex-col h-full md:pr-0">
                 <div>
-                    <h1 className="block text-2xl md:text-2xl font-playfair whitespace-nowrap md:whitespace-normal tracking-widest">
-                        <Link
-                            href="/"
-                            className="hover:text-gray-500 dark:hover:text-gray-300 uppercase"
-                            aria-label="Homepage - Oleksandr Pryvalov Paintings"
-                        >
-                            oleksandr<br /> pryvalov
+
+                    <div
+                        
+                        className="group relative flex flex-col items-start mb-3"
+                        aria-label="Homepage - Oleksandr Pryvalov Paintings"
+                    >
+                        <Link href="/" className="absolute top-[1.2rem] font-playfair text-2xl tracking-widest uppercase cursor-pointer">
+                            <span className='absolute top-[0.5rem] text-xs'>
+                                Oleksandr
+                            </span> <br />
+                            <span className='absolute top-[1.3rem] text-sm font-bold'>
+                                Pryvalov
+                            </span>
                         </Link>
-                    </h1>
+
+                        <Link href="/" className="relative">
+                            {/* 'O' */}
+                            <span className="font-cinzel text-8xl leading-none block">O</span>
+                            {/* 'P' Positioned in the lower half of 'O' */}
+                            <span className="absolute font-cinzel text-8xl leading-none bottom-[10%] left-1/2 transform -translate-x-[30%] translate-y-[33%]">
+                                P
+                            </span>
+                        </Link>
+                    </div>
+
+
                     <div>
                         <Link href="/thumbnails" className="text-base font-medium tracking-widest font-playfair relative inline-block">
                             {translations.paintings}

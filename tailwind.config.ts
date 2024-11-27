@@ -35,6 +35,7 @@ const config: Config = {
       fontFamily: {
         playfair: ['var(--playfair, serif)'],
         nunito: ['var(--font-nunito)'],
+        cinzel: 'var(--font-cinzel-decorative)',
       },
     },
   },
