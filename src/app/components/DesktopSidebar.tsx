@@ -8,6 +8,7 @@ import { Moon, Sun } from 'lucide-react';
 import PaintingDetails from './PaintingDetails';
 import en from '../translations/en.json';
 import fr from '../translations/fr.json';
+import Logo from '../components/Logo';
 
 type TranslationProps = typeof en | typeof fr;
 
@@ -33,47 +34,10 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
         <aside className="hidden md:flex md:w-64 md:flex-shrink-0 md:flex-col">
             <div className="p-10 flex flex-col h-full md:pr-0">
                 <div>
-                    <div className="group relative flex flex-col items-start mb-10" aria-label="Homepage - Oleksandr Pryvalov Paintings">
-                        {/* logo */}
-                        <Link
-                            href="/"
-                            className="absolute top-[1.9rem] left-0 font-nunito text-2xl tracking-widest uppercase cursor-pointer bg-white z-10"
-                            style={{
-                                backgroundColor: 'white',
-                                display: 'inline-block',
-                            }}
-                        >
-                            <div className='py-[0px] px-[5px]'>
-                                <span
-                                    className="block text-[10px] py-[4px]"
-                                    style={{
-                                        lineHeight: '0.8',
-                                    }}
-                                >
-                                    Oleksandr
-                                </span>
-                                <span
-                                    className="block text-[11px] font-extrabold"
-                                    style={{
-                                        lineHeight: '0.8',
-                                    }}
-                                >
-                                    Pryvalov
-                                </span>
-                            </div>
-                        </Link>
-                        <Link href="/" className="relative">
-                            <span className="font-cinzel text-8xl leading-none block">O</span>
-                            <span className="absolute font-cinzel text-8xl leading-none bottom-[10%] left-1/2 transform -translate-x-[30%] translate-y-[33%]">
-                                P
-                            </span>
-                        </Link>
-                    </div>
-                    {/* logo */}
-
+                    <Logo />
                     <nav className="mt-5 space-y-1">
                         <div className="text-base space-y-2 flex flex-col font-bold">
-                        <div className="relative">
+                            <div className="relative">
                                 <Link
                                     href="/thumbnails"
                                     className="font-nunito inline-block relative after:content-[''] after:absolute after:-bottom-0 after:left-0 after:w-full after:h-[2px] after:scale-x-0 after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 ease-in-out hover:after:scale-x-100"
