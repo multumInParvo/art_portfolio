@@ -6,30 +6,25 @@
   :root {
     --background: #ffffff;
     --foreground: #374151;
-
-    /* Light theme variables */
-    --ring-color: #000000; /* Black for light theme */
-
+    --ring-color: #000000;
+    color: var(--foreground);
   }
 
   :root[class~="dark"] {
-    --background: linear-gradient(0deg,#1b1f31, #203752);
+    --background: linear-gradient(0deg, #1b1f31, #203752);
     --foreground: #f3f4f6;
-
-    /* Dark theme variables */
-    --ring-color: #ffffff; /* White for dark theme */
-
+    --ring-color: #ffffff;
+    color: var(--foreground);
   }
 }
 
-/* Add smooth transitions for theme changes */
 ::selection {
   background-color: #b58900;
   color: white;
 }
 
 body {
-  background: var(--background); /* Apply gradient background */
-  color: var(--foreground); /* Set text color globally */
-  transition: background-color 1s ease, color 1s ease; /* Shorthand for smooth transitions */
+  background: var(--background);
+  color: var(--foreground);
+  transition: background-color 1s ease, color 1s ease;
 }
