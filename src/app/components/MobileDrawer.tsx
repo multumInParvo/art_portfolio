@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Menu, Moon, Sun } from 'lucide-react';
 import { FaInstagram } from 'react-icons/fa';
+import Image from 'next/image';
 
 type MobileDrawerProps = {
   translations: {
@@ -32,7 +33,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
   const handleClickOutside = (event: MouseEvent) => {
     if (
       menuRef.current &&
-      !menuRef.current.contains(event.target as Node) // Clicks outside the drawer
+      !menuRef.current.contains(event.target as Node)
     ) {
       setIsMenuOpen(false);
     }
@@ -41,7 +42,6 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
   const handleDrawerClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const target = event.target as HTMLElement;
     if (target.tagName !== 'A' && target.tagName !== 'BUTTON') {
-      // Close the menu if the click is on empty space, not links or buttons
       setIsMenuOpen(false);
     }
   };
@@ -59,24 +59,29 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
   }, [isMenuOpen]);
 
   const showMenu = pathname !== '/image-viewer';
-  const showSpan = pathname !== '/image-viewer';
   const showNav = pathname !== '/image-viewer';
-  const showH1 = pathname !== '/image-viewer';
+  const showLogo = pathname !== '/image-viewer';
 
   return (
     <div className="md:hidden" ref={menuRef}>
       {/* Mobile Header */}
       <div className={`pb-0 ${pathname === '/image-viewer' ? 'p-0' : 'p-5'}`}>
         <div className="flex justify-between items-center max-[350px]:items-start">
-          {showH1 && (
-            <h1 className="block text-xl font-playfair uppercase tracking-widest">
-              <Link
-                href="/"
-                aria-label="Homepage - Oleksandr Pryvalov Paintings"
-              >
-                oleksandr<br className="hidden max-[350px]:block" /> pryvalov
-              </Link>
-            </h1>
+          {showLogo && (
+            <Link
+              href="/"
+              aria-label="Homepage - Oleksandr Pryvalov Paintings"
+              className="flex items-center"
+            >
+              <Image
+                src="/vector.svg"
+                alt="Oleksandr Pryvalov Logo"
+                width={150} // Adjust width as needed
+                height={50} // Adjust height as needed
+                priority
+                className="h-auto w-auto"
+              />
+            </Link>
           )}
           <button
             onClick={() => setIsMenuOpen((prev) => !prev)}
@@ -86,13 +91,6 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
             {showMenu && <Menu className="h-8 w-8 stroke-1" />}
           </button>
         </div>
-        <div>
-          {showSpan && (
-            <span className="text-sm tracking-widest font-playfair">
-              {translations.paintings}
-            </span>
-          )}
-        </div>
       </div>
 
       {/* Mobile Navigation Drawer */}
@@ -100,7 +98,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
         className={`transition-[max-height] duration-500 ease-in-out overflow-hidden ${
           isMenuOpen ? 'max-h-64' : 'max-h-0'
         }`}
-        onClick={handleDrawerClick} // Handle clicks on the drawer
+        onClick={handleDrawerClick}
       >
         <div className="p-5 pt-0">
           {showNav && (
