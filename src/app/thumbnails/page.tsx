@@ -17,7 +17,7 @@ const ThumbnailsPage = () => {
   const [touchedIndex, setTouchedIndex] = useState<number | null>(null);
 
   const handleImageClick = (index: number) => {
-    setTouchedIndex(index);
+    router.push(`/image-viewer?index=${index}`);
     setTimeout(() => {
       setTouchedIndex(null);
       router.push(`/image-viewer?index=${index}`);
@@ -26,16 +26,19 @@ const ThumbnailsPage = () => {
 
   const ImageContent = ({ painting, index }: { painting: typeof paintings[0]; index: number }) => (
     <div
-      className={`group relative w-full cursor-pointer transition-all duration-500 ease-in-out`}
+      className={`
+        group relative w-full cursor-pointer 
+        transition-all duration-500 ease-in-out 
+        active:scale-[0.98] // Subtle scale down on click for feedback
+      `}
       onClick={() => handleImageClick(index)}
       role="button"
       aria-label={`View ${painting.title}`}
     >
-      {/* Image Section with Shadow */}
       <div
-        className="relative w-full overflow-hidden transition-transform-shadow duration-[900ms] md:group-hover:-translate-y-4
-          md:group-hover:shadow-[2px_20px_20px_2px_rgba(0,0,0,0.2)] 
-          dark:md:group-hover:shadow-[2px_2px_20px_2px_rgba(255,255,255,0.15)]"
+        className="relative w-full overflow-hidden transition-transform-shadow duration-[900ms] md:group-hover:-translate-y-2
+          md:group-hover:shadow-[2px_5px_20px_2px_rgba(0,0,0,0.2)] 
+          dark:md:group-hover:shadow-[2px_10px_20px_2px_rgba(255,255,255,0.15)] z-10"
       >
         <Image
           src={painting.src}
@@ -51,9 +54,9 @@ const ThumbnailsPage = () => {
 
       {/* Title Section */}
       <div
-        className="absolute bottom-[-2rem] transform md:translate-y-[-3rem]
-          md:opacity-0 md:group-hover:translate-y-4 md:group-hover:opacity-100
-          transition-all duration-[900ms] ease-in-out w-full"
+        className="absolute bottom-[-2rem] transform md:translate-y-[-2rem]
+          md:group-hover:translate-y-4 md:group-hover:opacity-100
+          transition-all duration-[700ms] ease-in-out w-full"
       >
         <h2 className="hidden md:block text-black dark:text-white text-sm md:text-2xl font-bold">
           {painting.title}
