@@ -17,11 +17,8 @@ const ThumbnailsPage = () => {
   const [touchedIndex, setTouchedIndex] = useState<number | null>(null);
 
   const handleImageClick = (index: number) => {
-    router.push(`/image-viewer?index=${index}`);
-    setTimeout(() => {
-      setTouchedIndex(null);
-      router.push(`/image-viewer?index=${index}`);
-    }, 150);
+    router.prefetch(`/image-viewer?index=${index}`);
+    router.push(`/image-viewer?index=${index}`, { scroll: false });
   };
 
   const ImageContent = ({ painting, index }: { painting: typeof paintings[0]; index: number }) => (
