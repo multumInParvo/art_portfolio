@@ -21,7 +21,7 @@ export type Painting = {
       year: 2024
     },
     {
-      src: "/images/azaylerideau_01.jpg",
+      src: "/images/azaylerideau_01.webp",
       additionalImages: ['/images/azaylerideau_02.jpg', '/images/azaylerideau_03.jpg', '/images/azaylerideau_04.jpg'],
       title: "Azay-le-Rideau",
       description: "The house with red doors",
