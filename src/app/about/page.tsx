@@ -13,14 +13,23 @@ export default function AboutPage() {
     <div className="w-full flex flex-col items-center md:max-w-3xl">
       <div className="w-full">
         <h1 className='text-2xl mb-2 mt-0 font-nunito md:text-3xl md:mb-10 border-b dark:border-gray-700'>
-        {translations.about}
+          {translations.about}
         </h1>
       </div>
 
       <div className="flex flex-col gap-8 md:gap-14 mt-6 md:flex-row">
-        <div className="w-full">
+        <div className="w-full space-y-4">
+        <p className="text-sm md:text-base font-semibold font-nunito">
+            {translations['bio']}
+          </p>
           <p className="text-sm md:text-base font-semibold font-nunito">
-          {translations.bio}
+            {translations['artistStatement-01']}
+          </p>
+          <p className="text-sm md:text-base font-semibold font-nunito">
+            {translations['artistStatement-02']}
+          </p>
+          <p className="text-sm md:text-base font-semibold font-nunito">
+            {translations['artistStatement-03']}
           </p>
         </div>
 
