@@ -1,20 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { paintings } from '../data/paintings';
 import { useLanguage } from '../context/LanguageContext';
-import { useTheme } from '../context/ThemeContext';
 import en from '../translations/en.json';
 import fr from '../translations/fr.json';
 
 const ThumbnailsPage = () => {
   const { language } = useLanguage();
-  const { theme } = useTheme();
   const router = useRouter();
   const translations = language === 'EN' ? en : fr;
-  const [touchedIndex, setTouchedIndex] = useState<number | null>(null);
 
   const handleImageClick = (index: number) => {
     router.prefetch(`/image-viewer?index=${index}`);
