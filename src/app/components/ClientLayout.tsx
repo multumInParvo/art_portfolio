@@ -1,8 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import { AnimatePresence, motion } from 'framer-motion';
 import DesktopSidebar from '../components/DesktopSidebar';
 import Footer from '../components/Footer';
 import MobileDrawer from '../components/MobileDrawer';
@@ -11,6 +10,7 @@ import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
 import en from '../translations/en.json';
 import fr from '../translations/fr.json';
+import gsap from 'gsap';
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -24,6 +24,15 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
 
   const showSidebar = pathname !== '/image-viewer';
   const showFooter = pathname !== '/image-viewer';
+
+  const mainRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (mainRef.current) {
+      // GSAP animation for fading in
+      gsap.fromTo(mainRef.current, { opacity: 0.5 }, { opacity: 1, duration: 0.8, ease: 'easeInOut' });
+    }
+  }, [pathname]);
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
@@ -58,18 +67,13 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
       />
 
       {/* Main Content with Fade-in Animation */}
-      <AnimatePresence mode="wait">
-        <motion.main
-          key={pathname} // Unique key for each route
-          id="main-content"
-          className={`flex-1 ${pathname === '/image-viewer' ? '' : 'p-5 md:py-10 md:pr-10 md:pl-10'}`}
-          initial={{ opacity: 0.5 }} // Start hidden
-          animate={{ opacity: 1 }} // Fade in
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
-        >
-          {children}
-        </motion.main>
-      </AnimatePresence>
+      <main
+        ref={mainRef}
+        id="main-content"
+        className={`flex-1 ${pathname === '/image-viewer' ? '' : 'p-5 md:py-10 md:pr-10 md:pl-10'}`}
+      >
+        {children}
+      </main>
 
       {/* ScrollArrows for Mobile */}
       <div className="md:hidden">
