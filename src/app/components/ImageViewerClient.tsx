@@ -102,20 +102,25 @@ export default function ImageViewerClient() {
             <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
           </div>
           <motion.div
-            key={currentImage.src}
-            initial={{ x: animationDirection === 'left' ? '100%' : '-100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: animationDirection === 'left' ? '-100%' : '100%' }}
-            transition={{ duration: 0.6 }}
-            className="absolute w-full h-full"
-          >
-            <Image
-              src={currentImage.src}
-              alt={painting.title}
-              fill
-              className="object-cover md:w-full md:h-full md:p-12 py-12"
-            />
-          </motion.div>
+  key={currentImage.src}
+  initial={{ x: animationDirection === 'left' ? '100%' : '-100%' }}
+  animate={{ x: 0 }}
+  exit={{ x: animationDirection === 'left' ? '-100%' : '100%' }}
+  transition={{ duration: 0.6 }}
+  style={{
+    position: 'absolute',
+    width: '100%',
+    height: '100%'
+  }}
+>
+  <Image
+    src={currentImage.src}
+    alt={painting.title}
+    fill
+    className="object-cover md:w-full md:h-full md:p-12 py-12"
+  />
+</motion.div>
+         
         </div>
 
         {/* Thumbnails */}
