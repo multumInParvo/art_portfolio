@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, Suspense, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, Suspense, useMemo, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSwipeable } from 'react-swipeable';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { X } from 'lucide-react';
+import { gsap } from 'gsap';
 import ThumbnailList from './ThumbnailsList';
 import ChevronButtons from './ChevronButtons';
 import { paintings } from '../data/paintings';
@@ -15,11 +15,12 @@ export default function ImageViewerClient() {
   const searchParams = useSearchParams();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [animationDirection, setAnimationDirection] = useState('right');
   const [currentImage, setCurrentImage] = useState({
     src: paintings[0].src,
     isMainImage: true,
   });
+
+  const imageContainerRef = useRef<HTMLDivElement>(null); // Reference for animation
 
   useEffect(() => {
     const index = parseInt(searchParams.get('index') || '0', 10);
@@ -33,15 +34,28 @@ export default function ImageViewerClient() {
   const painting = paintings[currentIndex];
   const relatedImages = useMemo(() => painting?.additionalImages || [], [painting]);
 
-
-  // Use useMemo to optimize the creation of the allImages array
   const allImages = useMemo(() => [painting.src, ...relatedImages], [painting.src, relatedImages]);
 
   const currentImageIndex = allImages.indexOf(currentImage.src);
 
+  const animateImageTransition = (direction: 'left' | 'right') => {
+    const container = imageContainerRef.current;
+
+    if (container) {
+      const fromX = direction === 'left' ? '100%' : '-100%';
+      const toX = direction === 'left' ? '-100%' : '100%';
+
+      gsap.fromTo(
+        container,
+        { x: fromX },
+        { x: '0%', duration: 0.6, ease: 'power1.out' }
+      );
+    }
+  };
+
   const handleNext = useCallback(() => {
-    setAnimationDirection('left');
     const nextIndex = (currentImageIndex + 1) % allImages.length;
+    animateImageTransition('left');
     setCurrentImage({
       src: allImages[nextIndex],
       isMainImage: nextIndex === 0,
@@ -49,8 +63,8 @@ export default function ImageViewerClient() {
   }, [currentImageIndex, allImages]);
 
   const handlePrev = useCallback(() => {
-    setAnimationDirection('right');
     const prevIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
+    animateImageTransition('right');
     setCurrentImage({
       src: allImages[prevIndex],
       isMainImage: prevIndex === 0,
@@ -59,7 +73,6 @@ export default function ImageViewerClient() {
 
   const handleThumbnailClick = useCallback(
     (imageSrc: string) => {
-      setAnimationDirection('left');
       setCurrentImage({
         src: imageSrc,
         isMainImage: imageSrc === painting.src,
@@ -105,16 +118,12 @@ export default function ImageViewerClient() {
           <div className="hidden md:block">
             <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
           </div>
-          <motion.div
-            key={currentImage.src}
-            initial={{ x: animationDirection === 'left' ? '100%' : '-100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: animationDirection === 'left' ? '-100%' : '100%' }}
-            transition={{ duration: 0.6 }}
+          <div
+            ref={imageContainerRef}
             style={{
               position: 'absolute',
               width: '100%',
-              height: '100%'
+              height: '100%',
             }}
           >
             <Image
@@ -123,7 +132,7 @@ export default function ImageViewerClient() {
               fill
               className="object-cover md:w-full md:h-full md:p-12 py-12"
             />
-          </motion.div>
+          </div>
         </div>
 
         {/* Thumbnails */}
