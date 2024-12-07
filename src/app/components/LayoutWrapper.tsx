@@ -6,14 +6,14 @@ import ClientLayout from './ClientLayout';
 
 export default function LayoutWrapper({
   children,
-  isLoading,
+ 
 }: {
   children: React.ReactNode;
   isLoading: boolean;
 }) {
   return (
     <LanguageProvider>
-      <ClientLayout isLoading={isLoading}>{children}</ClientLayout>
+      <ClientLayout>{children}</ClientLayout>
     </LanguageProvider>
   );
 }
