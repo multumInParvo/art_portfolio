@@ -33,21 +33,18 @@ export function SliderContent({ paintings }: SliderProps) {
 
   const changeImage = useCallback(
     (direction: 'prev' | 'next') => {
-      setAnimationDirection(direction === 'prev' ? 'right' : 'left');
       setIsImageLoaded(false);
-
+  
       const container = containerRef.current;
       if (container) {
-        const fromX = direction === 'next' ? '100%' : '-100%';
-        const toX = direction === 'next' ? '-100%' : '100%';
-
+        const fromX = direction === 'next' ? '100%' : '-100%'; // Keep `fromX`
         gsap.fromTo(
           container,
           { x: fromX },
           { x: '0%', duration: 0.6, ease: 'power1.out', onComplete: () => setIsImageLoaded(true) }
         );
       }
-
+  
       setCurrentIndex((prevIndex) => {
         if (direction === 'prev') {
           return prevIndex === 0 ? paintings.length - 1 : prevIndex - 1;
@@ -57,6 +54,7 @@ export function SliderContent({ paintings }: SliderProps) {
     },
     [paintings.length]
   );
+  
 
   useEffect(() => {
     if (isImageLoaded) {

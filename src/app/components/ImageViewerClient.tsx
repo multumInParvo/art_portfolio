@@ -43,7 +43,6 @@ export default function ImageViewerClient() {
 
     if (container) {
       const fromX = direction === 'left' ? '100%' : '-100%';
-      const toX = direction === 'left' ? '-100%' : '100%';
 
       gsap.fromTo(
         container,
