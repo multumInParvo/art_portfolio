@@ -31,7 +31,8 @@ export default function ImageViewerClient() {
   }, [searchParams]);
 
   const painting = paintings[currentIndex];
-  const relatedImages = painting?.additionalImages || [];
+  const relatedImages = useMemo(() => painting?.additionalImages || [], [painting]);
+
 
   // Use useMemo to optimize the creation of the allImages array
   const allImages = useMemo(() => [painting.src, ...relatedImages], [painting.src, relatedImages]);
