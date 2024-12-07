@@ -10,7 +10,7 @@ import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
 import en from '../translations/en.json';
 import fr from '../translations/fr.json';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -22,17 +22,19 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   const { language, toggleLanguage } = useLanguage();
   const translations = language === 'EN' ? en : fr;
 
-  const showSidebar = pathname !== '/image-viewer';
-  const showFooter = pathname !== '/image-viewer';
-
-  const mainRef = useRef<HTMLDivElement>(null);
+  const mainRef = useRef(null); // Reference to the main content
 
   useEffect(() => {
-    if (mainRef.current) {
-      // GSAP animation for fading in
-      gsap.fromTo(mainRef.current, { opacity: 0.5 }, { opacity: 1, duration: 0.8, ease: 'easeInOut' });
-    }
+    // Animate the main content on route change
+    gsap.fromTo(
+      mainRef.current,
+      { opacity: 0.5 }, // Start opacity
+      { opacity: 1, duration: 0.8, ease: 'power1.out' } // End opacity
+    );
   }, [pathname]);
+
+  const showSidebar = pathname !== '/image-viewer';
+  const showFooter = pathname !== '/image-viewer';
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
@@ -66,7 +68,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
         toggleLanguage={toggleLanguage}
       />
 
-      {/* Main Content with Fade-in Animation */}
+      {/* Main Content */}
       <main
         ref={mainRef}
         id="main-content"
