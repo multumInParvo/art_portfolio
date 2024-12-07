@@ -1,21 +1,21 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, Suspense } from 'react';
+import React, { useState, useEffect, useCallback, Suspense, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSwipeable } from 'react-swipeable';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { paintings } from '../data/paintings';
 import { X } from 'lucide-react';
 import ThumbnailList from './ThumbnailsList';
 import ChevronButtons from './ChevronButtons';
+import { paintings } from '../data/paintings';
 
 export default function ImageViewerClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [animationDirection, setAnimationDirection] = useState<'left' | 'right'>('right');
+  const [animationDirection, setAnimationDirection] = useState('right');
   const [currentImage, setCurrentImage] = useState({
     src: paintings[0].src,
     isMainImage: true,
@@ -32,7 +32,10 @@ export default function ImageViewerClient() {
 
   const painting = paintings[currentIndex];
   const relatedImages = painting?.additionalImages || [];
-  const allImages = [painting.src, ...relatedImages];
+
+  // Use useMemo to optimize the creation of the allImages array
+  const allImages = useMemo(() => [painting.src, ...relatedImages], [painting.src, relatedImages]);
+
   const currentImageIndex = allImages.indexOf(currentImage.src);
 
   const handleNext = useCallback(() => {
@@ -102,25 +105,24 @@ export default function ImageViewerClient() {
             <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
           </div>
           <motion.div
-  key={currentImage.src}
-  initial={{ x: animationDirection === 'left' ? '100%' : '-100%' }}
-  animate={{ x: 0 }}
-  exit={{ x: animationDirection === 'left' ? '-100%' : '100%' }}
-  transition={{ duration: 0.6 }}
-  style={{
-    position: 'absolute',
-    width: '100%',
-    height: '100%'
-  }}
->
-  <Image
-    src={currentImage.src}
-    alt={painting.title}
-    fill
-    className="object-cover md:w-full md:h-full md:p-12 py-12"
-  />
-</motion.div>
-         
+            key={currentImage.src}
+            initial={{ x: animationDirection === 'left' ? '100%' : '-100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: animationDirection === 'left' ? '-100%' : '100%' }}
+            transition={{ duration: 0.6 }}
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height: '100%'
+            }}
+          >
+            <Image
+              src={currentImage.src}
+              alt={painting.title}
+              fill
+              className="object-cover md:w-full md:h-full md:p-12 py-12"
+            />
+          </motion.div>
         </div>
 
         {/* Thumbnails */}
