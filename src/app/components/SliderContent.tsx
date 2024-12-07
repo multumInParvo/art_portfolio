@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { usePainting } from '../context/PaintingContext';
 import Image from 'next/image';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { gsap } from 'gsap';
 import type { Painting } from '../data/paintings';
 
 type SliderProps = {
@@ -18,6 +18,8 @@ export function SliderContent({ paintings }: SliderProps) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [animationDirection, setAnimationDirection] = useState<'left' | 'right'>('right');
   const { setCurrentPainting, setGoToPrevious, setGoToNext } = usePainting();
+
+  const containerRef = useRef<HTMLDivElement>(null); // Ref for animation
 
   useEffect(() => {
     const index = searchParams.get('index');
@@ -33,14 +35,24 @@ export function SliderContent({ paintings }: SliderProps) {
     (direction: 'prev' | 'next') => {
       setAnimationDirection(direction === 'prev' ? 'right' : 'left');
       setIsImageLoaded(false);
+
+      const container = containerRef.current;
+      if (container) {
+        const fromX = direction === 'next' ? '100%' : '-100%';
+        const toX = direction === 'next' ? '-100%' : '100%';
+
+        gsap.fromTo(
+          container,
+          { x: fromX },
+          { x: '0%', duration: 0.6, ease: 'power1.out', onComplete: () => setIsImageLoaded(true) }
+        );
+      }
+
       setCurrentIndex((prevIndex) => {
-        let newIndex = prevIndex;
         if (direction === 'prev') {
-          newIndex = prevIndex === 0 ? paintings.length - 1 : prevIndex - 1;
-        } else if (direction === 'next') {
-          newIndex = prevIndex === paintings.length - 1 ? 0 : prevIndex + 1;
+          return prevIndex === 0 ? paintings.length - 1 : prevIndex - 1;
         }
-        return newIndex;
+        return prevIndex === paintings.length - 1 ? 0 : prevIndex + 1;
       });
     },
     [paintings.length]
@@ -70,10 +82,6 @@ export function SliderContent({ paintings }: SliderProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [changeImage]);
 
-  const handleImageLoad = () => {
-    setIsImageLoaded(true);
-  };
-
   const navigateToImageViewer = () => {
     router.push(`/image-viewer?index=${currentIndex}`);
   };
@@ -88,25 +96,19 @@ export function SliderContent({ paintings }: SliderProps) {
       aria-live="polite"
       aria-label="Painting Slider"
     >
-      <AnimatePresence initial={false} custom={animationDirection}>
-        <motion.div
-          key={currentPainting.src}
-          initial={{ x: animationDirection === 'left' ? '100%' : '-100%' }}
-          animate={{ x: 0 }}
-          exit={{ x: animationDirection === 'left' ? '-100%' : '100%' }}
-          transition={{ duration: 0.6 }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={currentPainting.src}
-            alt={currentPainting.description || currentPainting.title}
-            layout="fill"
-            objectFit="contain"
-            priority
-            onLoadingComplete={handleImageLoad}
-          />
-        </motion.div>
-      </AnimatePresence>
+      <div
+        ref={containerRef}
+        className="absolute inset-0"
+      >
+        <Image
+          src={currentPainting.src}
+          alt={currentPainting.description || currentPainting.title}
+          layout="fill"
+          objectFit="contain"
+          priority
+          onLoadingComplete={() => setIsImageLoaded(true)}
+        />
+      </div>
 
       {/* Left Navigation */}
       <button
