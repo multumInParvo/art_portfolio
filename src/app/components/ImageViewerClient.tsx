@@ -1,4 +1,6 @@
-import React, { useState, useEffect, Suspense } from 'react';
+'use client';
+
+import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSwipeable } from 'react-swipeable';
 import { motion } from 'framer-motion';
@@ -20,7 +22,7 @@ export default function ImageViewerClient() {
   });
 
   useEffect(() => {
-    const index = parseInt(searchParams.get('index') || '0');
+    const index = parseInt(searchParams.get('index') || '0', 10);
     setCurrentIndex(index);
     setCurrentImage({
       src: paintings[index].src,
@@ -33,33 +35,36 @@ export default function ImageViewerClient() {
   const allImages = [painting.src, ...relatedImages];
   const currentImageIndex = allImages.indexOf(currentImage.src);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setAnimationDirection('left');
     const nextIndex = (currentImageIndex + 1) % allImages.length;
     setCurrentImage({
       src: allImages[nextIndex],
       isMainImage: nextIndex === 0,
     });
-  };
+  }, [currentImageIndex, allImages]);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setAnimationDirection('right');
     const prevIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
     setCurrentImage({
       src: allImages[prevIndex],
       isMainImage: prevIndex === 0,
     });
-  };
+  }, [currentImageIndex, allImages]);
 
-  const handleThumbnailClick = (imageSrc: string) => {
-    setAnimationDirection('left');
-    setCurrentImage({
-      src: imageSrc,
-      isMainImage: imageSrc === painting.src,
-    });
-  };
+  const handleThumbnailClick = useCallback(
+    (imageSrc: string) => {
+      setAnimationDirection('left');
+      setCurrentImage({
+        src: imageSrc,
+        isMainImage: imageSrc === painting.src,
+      });
+    },
+    [painting.src]
+  );
 
-  const closeViewer = () => router.push('/thumbnails');
+  const closeViewer = useCallback(() => router.push('/thumbnails'), [router]);
 
   const swipeHandlers = useSwipeable({
     onSwipedLeft: handleNext,
@@ -68,26 +73,21 @@ export default function ImageViewerClient() {
     trackTouch: true,
   });
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'ArrowRight') {
-        handleNext();
-      } else if (event.key === 'ArrowLeft') {
-        handlePrev();
-      } else if (event.key === 'Escape') {
-        closeViewer(); // Close viewer on pressing Escape
-      }
+      if (event.key === 'ArrowRight') handleNext();
+      if (event.key === 'ArrowLeft') handlePrev();
+      if (event.key === 'Escape') closeViewer();
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [currentImageIndex, allImages]); // Dependencies to ensure updated state is used
+  }, [handleNext, handlePrev, closeViewer]);
 
   return (
-    <Suspense>
+    <Suspense fallback={<div>Loading...</div>}>
       <div className="flex flex-col items-center justify-center">
         <button onClick={closeViewer} className="absolute top-5 right-3 z-10">
           <X className="h-8 w-8 md:h-12 md:w-12 stroke-1" />
@@ -112,14 +112,13 @@ export default function ImageViewerClient() {
             <Image
               src={currentImage.src}
               alt={painting.title}
-              layout="fill"
-              objectFit="contain"
+              fill
               className="object-cover md:w-full md:h-full md:p-12 py-12"
             />
           </motion.div>
         </div>
 
-        {/* Thumbnails including main image */}
+        {/* Thumbnails */}
         <div className="flex items-center justify-center max-w-xl px-4">
           <div className="md:hidden">
             <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
