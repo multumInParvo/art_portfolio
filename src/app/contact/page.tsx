@@ -78,9 +78,9 @@ export default function ContactPage() {
                     </label>
                     <input
                         className="w-full px-3 py-2 focus:outline-none focus:ring focus:border-sky-200 
-                        bg-slate-100 dark:bg-gray-800 
+                        bg-slate-200 dark:bg-slate-600 
                         text-gray-900 dark:text-gray-100
-                        placeholder:text-gray-600 dark:placeholder:text-gray-400"
+                        placeholder:text-gray-600 dark:placeholder:text-gray-300"
                         type="text"
                         name="name"
                         value={formData.name}
@@ -97,9 +97,9 @@ export default function ContactPage() {
                     </label>
                     <input
                         className="w-full px-3 py-2 focus:outline-none focus:ring focus:border-sky-200 
-                        bg-slate-100 dark:bg-gray-800 
+                        bg-slate-200 dark:bg-slate-600 
                         text-gray-900 dark:text-gray-100
-                        placeholder:text-gray-600 dark:placeholder:text-gray-400"
+                        placeholder:text-gray-600 dark:placeholder:text-gray-300"
                         type="email"
                         name="email"
                         value={formData.email}
@@ -116,9 +116,9 @@ export default function ContactPage() {
                     </label>
                     <textarea
                         className="w-full px-3 py-2 focus:outline-none focus:ring focus:border-sky-200 
-                        bg-slate-100 dark:bg-gray-800 
+                        bg-slate-200 dark:bg-slate-600 
                         text-gray-900 dark:text-gray-100
-                        placeholder:text-gray-600 dark:placeholder:text-gray-400 
+                        placeholder:text-gray-600 dark:placeholder:text-gray-300 
                         h-32"
                         name="message"
                         value={formData.message}

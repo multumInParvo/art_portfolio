@@ -55,7 +55,7 @@ const ThumbnailsPage = () => {
           md:group-hover:translate-y-4 md:group-hover:opacity-100
           transition-all duration-[700ms] ease-in-out w-full"
       >
-        <h2 className="hidden md:block text-black dark:text-white text-sm md:text-2xl font-bold">
+        <h2 className="hidden md:block text-gray-700 dark:text-slate-300 text-sm md:text-2xl font-bold">
           {painting.title}
         </h2>
       </div>

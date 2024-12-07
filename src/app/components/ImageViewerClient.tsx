@@ -95,7 +95,7 @@ export default function ImageViewerClient() {
 
         {/* Main Image Viewer */}
         <div
-          className="relative flex items-center justify-center w-full h-[calc(100vh-10rem)] overflow-hidden"
+          className="relative flex items-center justify-center w-full h-[calc(100vh-13rem)] overflow-hidden"
           {...swipeHandlers}
         >
           <div className="hidden md:block">

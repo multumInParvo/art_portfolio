@@ -26,9 +26,8 @@ export default function ThumbnailList({
         {images.map((img, index) => (
           <div
             key={index}
-            className={`w-16 h-16 relative cursor-pointer transition-opacity ${
-              currentImageSrc === img ? 'ring-4' : 'hover:opacity-80'
-            }`}
+            className={`w-16 h-16 relative cursor-pointer transition-opacity ${currentImageSrc === img ? 'ring-4' : 'hover:opacity-80'
+              }`}
             style={
               {
                 '--tw-ring-color': 'var(--ring-color)', // Custom ring color if needed
@@ -52,15 +51,15 @@ export default function ThumbnailList({
                 ? 'rgb(180, 180, 180)' // Light gray fill for selected in dark mode
                 : 'rgb(100, 100, 100)' // Dark gray fill for unselected in dark mode
               : isSelected
-              ? 'rgb(50, 50, 50)' // Darker fill for selected in light mode
-              : 'rgb(200, 200, 200)'; // Lighter fill for unselected in light mode
+                ? 'rgb(50, 50, 50)' // Darker fill for selected in light mode
+                : 'rgb(200, 200, 200)'; // Lighter fill for unselected in light mode
             const strokeColor = isDarkMode
               ? isSelected
                 ? 'rgb(80, 80, 80)' // Darker stroke for selected in dark mode
                 : 'rgb(200, 200, 200)' // Lighter stroke for unselected in dark mode
               : isSelected
-              ? 'rgb(100, 100, 100)' // Light stroke for selected in light mode
-              : 'rgb(150, 150, 150)'; // Neutral stroke for unselected in light mode
+                ? 'rgb(100, 100, 100)' // Light stroke for selected in light mode
+                : 'rgb(150, 150, 150)'; // Neutral stroke for unselected in light mode
 
             return (
               <div
@@ -72,9 +71,8 @@ export default function ThumbnailList({
                   size={14}
                   fill={fillColor}
                   stroke={strokeColor}
-                  className={`transition-colors ${
-                    isSelected ? 'scale-110' : ''
-                  } hover:scale-110`}
+                  className={`transition-colors ${isSelected ? 'scale-110' : ''
+                    } hover:scale-110`}
                 />
               </div>
             );

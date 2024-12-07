@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { usePathname } from 'next/navigation';
+import { AnimatePresence, motion } from 'framer-motion';
 import DesktopSidebar from '../components/DesktopSidebar';
 import Footer from '../components/Footer';
 import MobileDrawer from '../components/MobileDrawer';
@@ -13,11 +14,10 @@ import fr from '../translations/fr.json';
 
 interface ClientLayoutProps {
   children: React.ReactNode;
-  isLoading: boolean;
 }
 
-export default function ClientLayout({ children, isLoading }: ClientLayoutProps) {
-  const pathname = usePathname();
+export default function ClientLayout({ children }: ClientLayoutProps) {
+  const pathname = usePathname(); // Current route
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage } = useLanguage();
   const translations = language === 'EN' ? en : fr;
@@ -57,10 +57,19 @@ export default function ClientLayout({ children, isLoading }: ClientLayoutProps)
         toggleLanguage={toggleLanguage}
       />
 
-      {/* Main Content */}
-      <main id="main-content" className={`flex-1 ${pathname === '/image-viewer' ? '' : 'p-5 md:py-10 md:pr-10 md:pl-10'}`}>
-        {children}
-      </main>
+      {/* Main Content with Fade-in Animation */}
+      <AnimatePresence mode="wait">
+        <motion.main
+          key={pathname} // Unique key for each route
+          id="main-content"
+          className={`flex-1 ${pathname === '/image-viewer' ? '' : 'p-5 md:py-10 md:pr-10 md:pl-10'}`}
+          initial={{ opacity: 0.5 }} // Start hidden
+          animate={{ opacity: 1 }} // Fade in
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+        >
+          {children}
+        </motion.main>
+      </AnimatePresence>
 
       {/* ScrollArrows for Mobile */}
       <div className="md:hidden">
