@@ -28,9 +28,6 @@ export default function AboutPage() {
           <p className="text-sm md:text-base font-semibold font-nunito">
             {translations['artistStatement-02']}
           </p>
-          <p className="text-sm md:text-base font-semibold font-nunito">
-            {translations['artistStatement-03']}
-          </p>
         </div>
 
         <div className="w-full flex justify-center">
