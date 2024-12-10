@@ -11,7 +11,7 @@ export default function AboutPage() {
 
   return (
     <div className="w-full flex flex-col items-center md:max-w-3xl">
-      <div className="w-full">
+      <div className="w-full md:hidden">
         <h1 className='text-2xl mb-2 mt-0 font-nunito md:text-3xl md:mb-10 border-b dark:border-gray-700'>
           {translations.about}
         </h1>
@@ -19,7 +19,7 @@ export default function AboutPage() {
 
       <div className="flex flex-col gap-8 md:gap-14 mt-6 md:flex-row">
         <div className="w-full space-y-4">
-        <p className="text-sm md:text-base font-semibold font-nunito">
+          <p className="text-sm md:text-base font-semibold font-nunito">
             {translations['bio']}
           </p>
           <p className="text-sm md:text-base font-semibold font-nunito">
@@ -40,6 +40,9 @@ export default function AboutPage() {
               className="w-full h-auto"
             />
           </div>
+        </div>
+        <div className="absolute top-[50vh] left-20 transform -rotate-90 text-gray-200 tracking-widest text-5xl font-bold md:text-9xl whitespace-nowrap pointer-events-none hidden md:block" style={{ width: '200px' }}>
+          {translations.about}
         </div>
       </div>
     </div>

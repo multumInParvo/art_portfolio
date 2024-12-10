@@ -60,12 +60,6 @@ const ThumbnailsPage = () => {
 
   return (
     <div className="w-full flex flex-col items-center md:max-w-6xl">
-      <div className="w-full">
-        <h1 className="hidden md:block text-2xl mb-2 mt-0 font-nunito md:text-3xl md:mb-10 border-b dark:border-gray-700">
-          {translations.paintings_page}
-        </h1>
-      </div>
-
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 w-full md:gap-x-12 md:gap-y-20">
         {paintings.map((painting, index) => (
           <div key={painting.title} className="w-full space-y-2">
@@ -84,6 +78,9 @@ const ThumbnailsPage = () => {
           </div>
         ))}
       </div>
+      <div className="absolute top-[56vh] left-20 transform -rotate-90 text-gray-200 tracking-widest text-5xl font-bold md:text-9xl whitespace-nowrap pointer-events-none hidden md:block" style={{ width: '200px'}}>
+      {translations.paintings_page}
+        </div>
     </div>
   );
 };

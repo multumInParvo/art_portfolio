@@ -52,12 +52,6 @@ export default function ContactPage() {
 
     return (
         <div className="w-full flex flex-col items-center md:pr-16 md:max-w-3xl">
-            <div className='w-full'>
-                <h1 className='text-2xl mb-2 mt-0 font-nunito md:text-3xl md:mb-10 border-b dark:border-gray-700'>
-                    contact
-                </h1>
-            </div>
-
             <div className="w-full flex flex-col justify-between mb-10 gap-2">
                 <p className="font-semibold leading-relaxed font-nunito text-sm">
                     {translations.text}
@@ -138,6 +132,9 @@ export default function ContactPage() {
                     >
                         {translations.send}
                     </button>
+                </div>
+                <div className="absolute top-[41vh] left-20 transform -rotate-90 text-gray-200 tracking-widest text-5xl font-bold md:text-9xl whitespace-nowrap pointer-events-none hidden md:block" style={{ width: '200px' }}>
+                    contact
                 </div>
             </form>
         </div>
