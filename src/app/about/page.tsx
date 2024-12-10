@@ -17,7 +17,7 @@ export default function AboutPage() {
         </h1>
       </div>
 
-      <div className="flex flex-col gap-8 md:gap-14 mt-6 md:flex-row">
+      <div className="flex flex-col gap-8 md:gap-14 mt-6 md:flex-row md:mt-0">
         <div className="w-full space-y-4">
           <p className="text-sm md:text-base font-semibold font-nunito">
             {translations['bio']}
@@ -41,9 +41,16 @@ export default function AboutPage() {
             />
           </div>
         </div>
-        <div className="absolute top-[50vh] left-20 transform -rotate-90 text-gray-200 tracking-widest text-5xl font-bold md:text-9xl whitespace-nowrap pointer-events-none hidden md:block" style={{ width: '200px' }}>
-          {translations.about}
-        </div>
+        <div
+  className="absolute left-20 transform -rotate-90 text-gray-200 tracking-widest text-5xl font-bold md:text-9xl whitespace-nowrap pointer-events-none hidden md:block"
+  style={{
+    top: language === 'EN' ? '30vh' : '50vh',
+    width: '200px',
+  }}
+>
+  {translations.about}
+</div>
+
       </div>
     </div>
   );
