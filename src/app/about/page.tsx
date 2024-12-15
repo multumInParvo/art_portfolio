@@ -42,14 +42,14 @@ export default function AboutPage() {
           </div>
         </div>
         <div
-  className="absolute left-20 transform -rotate-90 text-gray-200 tracking-widest text-5xl font-bold md:text-9xl whitespace-nowrap pointer-events-none hidden md:block"
-  style={{
-    top: language === 'EN' ? '30vh' : '50vh',
-    width: '200px',
-  }}
->
-  {translations.about}
-</div>
+          className="absolute left-20 transform -rotate-90 text-gray-200 tracking-widest text-5xl font-bold md:text-9xl whitespace-nowrap pointer-events-none hidden md:block"
+          style={{
+            top: language === 'EN' ? '30vh' : '50vh',
+            width: '200px',
+          }}
+        >
+          {translations.about}
+        </div>
 
       </div>
     </div>
