@@ -60,7 +60,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
                                     href="/exhibitions"
                                     className="font-nunito inline-block relative after:content-[''] after:absolute after:-bottom-0 after:left-0 after:w-full after:h-[2px] after:scale-x-0 after:bg-gray-700 dark:after:bg-darkGold after:transition-transform after:duration-300 ease-in-out hover:after:scale-x-100"
                                 >
-                                    exhibitions
+                                    {translations.exhibitions}
                                 </Link>
                             </div>
 
