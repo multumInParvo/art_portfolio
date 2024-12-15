@@ -125,12 +125,12 @@ export default function ImageViewerClient() {
               height: '100%',
             }}
           >
-            <Image
-              src={currentImage.src}
-              alt={painting.title}
-              fill
-              className="object-cover md:w-full md:h-full md:p-12 py-12"
-            />
+<Image
+  src={currentImage.src}
+  alt={painting.title}
+  fill
+  className="object-contain md:w-full md:h-full md:p-10 py-12"
+/>
           </div>
         </div>
 
