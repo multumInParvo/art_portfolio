@@ -10,6 +10,7 @@ type MobileDrawerProps = {
   translations: {
     paintings: string;
     about: string;
+    exhibitions: string;
     switch_language: string;
   };
   theme: string;
@@ -122,6 +123,15 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {translations.about}
+                  </Link>
+                </div>
+                <div className="relative">
+                  <Link
+                    href="/exhibitions"
+                    className="font-nunito inline-block"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {translations.exhibitions}
                   </Link>
                 </div>
                 <div className="relative">
