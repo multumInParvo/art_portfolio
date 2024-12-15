@@ -125,17 +125,17 @@ export default function ImageViewerClient() {
               height: '100%',
             }}
           >
-<Image
-  src={currentImage.src}
-  alt={painting.title}
-  fill
-  className="object-contain md:w-full md:h-full md:p-10 py-12"
-/>
+            <Image
+              src={currentImage.src}
+              alt={painting.title}
+              fill
+              className="object-contain md:w-full md:h-full md:px-12 py-12"
+            />
           </div>
         </div>
 
         {/* Thumbnails */}
-        <div className="flex items-center justify-center max-w-xl px-4">
+        <div className="flex items-center justify-center max-w-xl px-4 py-11">
           <div className="md:hidden">
             <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
           </div>
