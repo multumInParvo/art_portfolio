@@ -26,9 +26,16 @@ export default function ThumbnailList({
         {images.map((img, index) => (
           <div
             key={index}
-            className={`w-16 h-16 relative cursor-pointer transition-opacity ${
-              currentImageSrc === img ? 'ring-4' : 'hover:opacity-80'
-            }`}
+            className={`w-16 h-16 relative cursor-pointer transition-all 
+            border-2 ${
+              currentImageSrc === img
+                ? isDarkMode
+                  ? 'border-white'
+                  : 'border-black'
+                : 'border-transparent'
+            } 
+            hover:border-black dark:hover:border-white 
+            hover:opacity-70`}
             onClick={() => onThumbnailClickAction(img)}
           >
             <Image src={img} alt={`Thumbnail ${index + 1}`} fill className="object-cover" />

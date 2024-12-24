@@ -18,10 +18,7 @@ export default function ImageViewerClient() {
     isMainImage: true,
   });
 
-  const [zoomActive, setZoomActive] = useState(false); // State to track if zoom is activated
-  const [zoomStyles, setZoomStyles] = useState({}); // Styles for zoomed image
-  const zoomContainerRef = useRef<HTMLDivElement>(null); // Ref for zoom container
-  const imageContainerRef = useRef<HTMLDivElement>(null); // Ref for animations
+  const imageContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const index = parseInt(searchParams.get('index') || '0', 10);
@@ -90,40 +87,6 @@ export default function ImageViewerClient() {
     trackTouch: true,
   });
 
-  const handleMouseMove = (event: React.MouseEvent) => {
-    if (zoomActive && zoomContainerRef.current) {
-      const { left, top, width, height } = zoomContainerRef.current.getBoundingClientRect();
-      let x = ((event.clientX - left) / width) * 100;
-      let y = ((event.clientY - top) / height) * 100;
-
-      // Clamp the x and y values to stay within bounds
-      const xMin = 50; // Minimum percentage for x-axis
-      const xMax = 50; // Maximum percentage for x-axis
-      const yMin = 0; // Minimum percentage for y-axis
-      const yMax = 100; // Maximum percentage for y-axis
-
-      x = Math.min(Math.max(x, xMin), xMax);
-      y = Math.min(Math.max(y, yMin), yMax);
-
-      setZoomStyles({
-        transform: `scale(2)`,
-        transformOrigin: `${x}% ${y}%`,
-      });
-    }
-  };
-
-  const toggleZoom = () => {
-    setZoomActive((prev) => !prev);
-
-    if (!zoomActive) {
-      // If zoom is being activated
-      setZoomStyles({ transform: 'scale(1)' });
-    } else {
-      // If zoom is being deactivated
-      setZoomStyles({});
-    }
-  };
-
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowRight') handleNext();
@@ -143,40 +106,21 @@ export default function ImageViewerClient() {
         <X className="h-8 w-8 md:h-12 md:w-12 stroke-1" />
       </button>
 
-      {/* Background Overlay */}
-      <div
-        className={`fixed inset-0 transition-colors duration-300 ${zoomActive ? 'bg-black/80' : 'bg-transparent'
-          } z-10 pointer-events-none`}
-      />
-
       {/* Main Image Viewer */}
       <div
-        className={`relative flex items-center justify-center w-full h-[calc(100vh-13rem)] overflow-hidden ${zoomActive ? 'z-20' : 'z-0'
-          }`}
+        className="relative flex items-center justify-center w-full h-[calc(100vh-13rem)] overflow-hidden"
         {...swipeHandlers}
       >
         <div className="hidden md:block">
           <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
         </div>
-        <div
-          ref={imageContainerRef}
-          className="relative w-full h-full"
-        >
-          <div
-            ref={zoomContainerRef}
-            onMouseMove={handleMouseMove}
-            onClick={toggleZoom}
-            className={`relative w-full h-full overflow-hidden ${zoomActive ? 'cursor-zoom-out' : 'cursor-pointer'
-              }`}
-          >
-            <Image
-              src={currentImage.src}
-              alt={painting.title}
-              fill
-              style={zoomStyles}
-              className="object-contain transition-transform duration-300"
-            />
-          </div>
+        <div ref={imageContainerRef} className="relative w-full h-full">
+          <Image
+            src={currentImage.src}
+            alt={painting.title}
+            fill
+            className="object-contain transition-transform duration-300"
+          />
         </div>
       </div>
 
