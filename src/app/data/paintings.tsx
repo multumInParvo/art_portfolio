@@ -12,8 +12,17 @@ export type Painting = {
   // Paintings array with the type annotation
   export const paintings: Painting[] = [
     {
-      src: "/images/unexpected_encounter_01.jpg",
-      additionalImages: ['/images/unexpected_encounter_02.jpg', '/images/unexpected_encounter_03.jpg','/images/unexpected_encounter_04.jpg','/images/unexpected_encounter_05.jpg'],
+      src: "/images/big_red_01.webp",
+      additionalImages: ['/images/big_red_02.webp', '/images/big_red_03.webp','/images/big_red_04.webp','/images/big_red_05.webp'],
+      title: "Big Red",
+      description: "owl and orchidea",
+      dimensions: "60 x 80 cm",
+      material: "oil on canvas",
+      year: 2024
+    },
+    {
+      src: "/images/unexpected_encounter_01.webp",
+      additionalImages: ['/images/unexpected_encounter_02.webp', '/images/unexpected_encounter_03.webp','/images/unexpected_encounter_04.webp','/images/unexpected_encounter_05.webp'],
       title: "An unexpected encounter",
       description: "owl and orchidea",
       dimensions: "60 x 80 cm",
@@ -22,7 +31,7 @@ export type Painting = {
     },
     {
       src: "/images/azaylerideau_01.webp",
-      additionalImages: ['/images/azaylerideau_02.jpg', '/images/azaylerideau_03.jpg', '/images/azaylerideau_04.jpg'],
+      additionalImages: ['/images/azaylerideau_02.webp', '/images/azaylerideau_03.webp', '/images/azaylerideau_04.webp'],
       title: "Azay-le-Rideau",
       description: "The house with red doors",
       dimensions: "60 x 80 cm",
@@ -39,8 +48,8 @@ export type Painting = {
       year: 2022
     },
     {
-      src: "/images/smoldering_promise_01.jpg",
-      additionalImages: ['/images/smoldering_promise_02.jpg', '/images/smoldering_promise_03.jpg', '/images/smoldering_promise_04.jpg'],
+      src: "/images/smoldering_promise_01.webp",
+      additionalImages: ['/images/smoldering_promise_02.webp', '/images/smoldering_promise_03.webp', '/images/smoldering_promise_04.webp'],
       title: "Smoldering promise",
       description: "Candle, owl, plant",
       dimensions: "60 x 80 cm",
@@ -57,8 +66,8 @@ export type Painting = {
       year: 2022
     },
     {
-      src: "/images/leaving_the_nest_01.jpg",
-      additionalImages: ['/images/leaving_the_nest_02.jpg', '/images/leaving_the_nest_03.jpg', '/images/leaving_the_nest_04.jpg'],
+      src: "/images/leaving_the_nest_01.webp",
+      additionalImages: ['/images/leaving_the_nest_02.webp', '/images/leaving_the_nest_03.webp', '/images/leaving_the_nest_04.webp'],
       title: "Leaving the nest",
       description: "Red Chicken",
       dimensions: "60 x 80 cm",
