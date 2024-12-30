@@ -12,10 +12,10 @@ export type Painting = {
   // Paintings array with the type annotation
   export const paintings: Painting[] = [
     {
-      src: "/images/big_red_01.webp",
-      additionalImages: ['/images/big_red_02.webp', '/images/big_red_03.webp','/images/big_red_04.webp','/images/big_red_05.webp'],
-      title: "Big Red",
-      description: "owl and orchidea",
+      src: "/images/prickly_distance_01.webp",
+      additionalImages: ['/images/prickly_distance_01.webp', '/images/prickly_distance_01.webp','/images/prickly_distance_01.webp','/images/prickly_distance_01.webp'],
+      title: "Prickly Distance",
+      description: "owl and cactus",
       dimensions: "60 x 80 cm",
       material: "oil on canvas",
       year: 2024
