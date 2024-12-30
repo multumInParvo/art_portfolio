@@ -19,7 +19,7 @@ export default function AboutPage() {
             <div className="flex flex-col gap-8 md:gap-14 mt-6 md:flex-row md:mt-0">
                 <div className="w-full space-y-4">
                     <p className="text-sm md:text-base font-semibold font-nunito">
-                        {translations['bio']}
+                        {/* {translations['bio']} */}
                     </p>
 
                 </div>
