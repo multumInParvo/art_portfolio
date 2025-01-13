@@ -30,8 +30,8 @@ const ThumbnailsPage = () => {
     >
       <div
         className="relative w-full overflow-hidden transition-transform-shadow duration-[900ms] md:group-hover:-translate-y-2
-          md:group-hover:shadow-[2px_5px_20px_2px_rgba(0,0,0,0.2)] 
-          dark:md:group-hover:shadow-[2px_10px_20px_2px_rgba(255,255,255,0.15)] z-10"
+          md:group-hover:shadow-[2px_5px_20px_2px_rgba(0,0,0,0.7)] 
+          dark:md:group-hover:shadow-[2px_10px_20px_2px_rgba(255,255,255,0.55)] z-10"
       >
         <Image
           src={painting.src}
