@@ -39,7 +39,7 @@ export type Painting = {
       year: 2024
     },
     {
-      src: "/images/leaving_the_nest_01.webp",
+      src: "/images/test.jpg",
       additionalImages: ['/images/leaving_the_nest_02.webp', '/images/leaving_the_nest_03.webp', '/images/leaving_the_nest_04.webp'],
       title: "Leaving the nest",
       description: "A red ceramic chicken figurine stands next to a bouquet of vibrant flowers in a glass jar. Sunlight casts dramatic shadows across the scene.",

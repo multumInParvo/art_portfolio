@@ -133,9 +133,6 @@ export default function ContactPage() {
                         {translations.send}
                     </button>
                 </div>
-                <div className="absolute top-[41vh] left-20 transform -rotate-90 text-gray-200 tracking-widest text-5xl font-bold md:text-9xl whitespace-nowrap pointer-events-none hidden md:block" style={{ width: '200px' }}>
-                    contact
-                </div>
             </form>
         </div>
     );

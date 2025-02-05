@@ -1,19 +1,13 @@
-// app/components/LayoutWrapper.tsx
-'use client';
+"use client"
 
-import { LanguageProvider } from '../context/LanguageContext';
-import ClientLayout from './ClientLayout';
+import type React from "react"
+import ClientLayout from "./ClientLayout"
 
-export default function LayoutWrapper({
-  children,
- 
-}: {
-  children: React.ReactNode;
-  isLoading: boolean;
-}) {
-  return (
-    <LanguageProvider>
-      <ClientLayout>{children}</ClientLayout>
-    </LanguageProvider>
-  );
+interface LayoutWrapperProps {
+  children: React.ReactNode
 }
+
+export default function LayoutWrapper({ children }: LayoutWrapperProps) {
+  return <ClientLayout>{children}</ClientLayout>
+}
+

@@ -1,140 +1,118 @@
-import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useSwipeable } from 'react-swipeable';
-import Image from 'next/image';
-import { X } from 'lucide-react';
-import { gsap } from 'gsap';
-import ThumbnailList from './ThumbnailsList';
-import ChevronButtons from './ChevronButtons';
-import { paintings } from '../data/paintings';
+"use client"
+
+import { useState, useEffect, useCallback } from "react"
+import Image from "next/image"
+import { useRouter, useSearchParams } from "next/navigation"
+import { ChevronLeft, ChevronRight, X } from "lucide-react"
+import { paintings } from "../data/paintings"
+import { motion, AnimatePresence } from "framer-motion"
 
 export default function ImageViewerClient() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentImage, setCurrentImage] = useState({
-    src: paintings[0].src,
-    isMainImage: true,
-  });
-
-  const imageContainerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
-    const index = parseInt(searchParams.get('index') || '0', 10);
-    setCurrentIndex(index);
-    setCurrentImage({
-      src: paintings[index].src,
-      isMainImage: true,
-    });
-  }, [searchParams]);
+    const index = Number(searchParams.get("index") || 0)
+    setCurrentIndex(index)
+  }, [searchParams])
 
-  const painting = paintings[currentIndex];
-  const relatedImages = useMemo(() => painting?.additionalImages || [], [painting]);
+  const closeViewer = useCallback(() => {
+    router.push("/")
+  }, [router])
 
-  const allImages = useMemo(() => [painting.src, ...relatedImages], [painting.src, relatedImages]);
+  const navigate = useCallback((newDirection: number) => {
+    setCurrentIndex((prevIndex) => {
+      let newIndex = prevIndex + newDirection
+      if (newIndex < 0) newIndex = paintings.length - 1
+      if (newIndex >= paintings.length) newIndex = 0
+      return newIndex
+    })
+  }, [])
 
-  const currentImageIndex = allImages.indexOf(currentImage.src);
-
-  const animateImageTransition = (direction: 'left' | 'right') => {
-    const container = imageContainerRef.current;
-
-    if (container) {
-      const fromX = direction === 'left' ? '100%' : '-100%';
-
-      gsap.fromTo(
-        container,
-        { x: fromX },
-        { x: '0%', duration: 0.6, ease: 'power1.out' }
-      );
-    }
-  };
-
-  const handleNext = useCallback(() => {
-    const nextIndex = (currentImageIndex + 1) % allImages.length;
-    animateImageTransition('left');
-    setCurrentImage({
-      src: allImages[nextIndex],
-      isMainImage: nextIndex === 0,
-    });
-  }, [currentImageIndex, allImages]);
-
-  const handlePrev = useCallback(() => {
-    const prevIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
-    animateImageTransition('right');
-    setCurrentImage({
-      src: allImages[prevIndex],
-      isMainImage: prevIndex === 0,
-    });
-  }, [currentImageIndex, allImages]);
-
-  const handleThumbnailClick = useCallback(
-    (imageSrc: string) => {
-      setCurrentImage({
-        src: imageSrc,
-        isMainImage: imageSrc === painting.src,
-      });
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") navigate(-1)
+      if (event.key === "ArrowRight") navigate(1)
+      if (event.key === "Escape") closeViewer()
     },
-    [painting.src]
-  );
-
-  const closeViewer = useCallback(() => router.push('/thumbnails'), [router]);
-
-  const swipeHandlers = useSwipeable({
-    onSwipedLeft: handleNext,
-    onSwipedRight: handlePrev,
-    preventScrollOnSwipe: true,
-    trackTouch: true,
-  });
+    [navigate, closeViewer],
+  )
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'ArrowRight') handleNext();
-      if (event.key === 'ArrowLeft') handlePrev();
-      if (event.key === 'Escape') closeViewer();
-    };
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [handleKeyDown])
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleNext, handlePrev, closeViewer]);
+  const currentPainting = paintings[currentIndex]
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <button onClick={closeViewer} className="absolute top-5 right-3 z-10">
-        <X className="h-8 w-8 md:h-12 md:w-12 stroke-1" />
+    <div className="fixed inset-y-0 right-0 w-[calc(100%-16rem)] bg-white dark:bg-gray-900 flex flex-col">
+      <button
+        onClick={closeViewer}
+        className="absolute top-4 right-4 z-10 p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+        aria-label="Close viewer"
+      >
+        <X className="w-6 h-6" />
       </button>
 
-      {/* Main Image Viewer */}
-      <div
-        className="relative flex items-center justify-center w-full h-[calc(100vh-13rem)] overflow-hidden"
-        {...swipeHandlers}
-      >
-        <div className="hidden md:block">
-          <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
-        </div>
-        <div ref={imageContainerRef} className="relative w-full h-full">
-          <Image
-            src={currentImage.src}
-            alt={painting.title}
-            fill
-            className="object-contain transition-transform duration-300"
-          />
-        </div>
-      </div>
+      <div className="h-full flex flex-col items-center justify-center py-10">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.1, ease: "easeInOut" }}
+            className="flex flex-col items-start"
+          >
+            {/* Image Container */}
+            <div className="bg-gray-100 dark:bg-gray-800 p-8">
+              <div className="relative">
+                <Image
+                  src={currentPainting.src || "/placeholder.svg"}
+                  alt={currentPainting.title}
+                  width={800}
+                  height={600}
+                  style={{
+                    width: "auto",
+                    height: "auto",
+                    maxHeight: "calc(100vh - 280px)",
+                    objectFit: "contain",
+                  }}
+                  priority
+                />
+              </div>
+            </div>
 
-      {/* Thumbnails */}
-      <div className="flex items-center justify-center max-w-xl px-4 py-4">
-        <div className="md:hidden">
-          <ChevronButtons onPrev={handlePrev} onNext={handleNext} />
-        </div>
-        <ThumbnailList
-          images={allImages}
-          currentImageSrc={currentImage.src}
-          onThumbnailClickAction={handleThumbnailClick}
-        />
+            {/* Painting Information - Now Properly Aligned with the Left Edge */}
+            <div className="mt-3 max-w-[800px]">
+              <h2 className="text-xl font-semibold">{currentPainting.title}</h2>
+              <p className="text-sm text-gray-600 dark:text-gray-300">{currentPainting.year}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">oil on canvas</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">{currentPainting.dimensions}</p>
+            </div>
+
+            {/* Navigation Buttons */}
+            <div className="mt-6 flex items-center justify-between w-full max-w-2xl px-4">
+              <button
+                onClick={() => navigate(-1)}
+                className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => navigate(1)}
+                className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+                aria-label="Next image"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
-  );
+  )
 }
