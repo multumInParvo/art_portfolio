@@ -71,8 +71,9 @@ export default function ImageViewerClient() {
           {paintings.map((painting, index) => (
             <div
               key={index}
-              className={`relative cursor-pointer transition-opacity hover:opacity-80 ${index === currentIndex ? "ring-2 ring-black dark:ring-white" : ""
-                }`}
+              className={`relative cursor-pointer transition-opacity hover:opacity-80 ${
+                index === currentIndex ? "ring-2 ring-black dark:ring-white" : ""
+              }`}
               onClick={() => setCurrentIndex(index)}
             >
               <Image
@@ -115,8 +116,8 @@ export default function ImageViewerClient() {
       </div>
 
       {/* Main Image Display */}
-      <div className="flex-1 h-full flex items-center justify-center">
-        <div className="w-full h-full flex flex-col justify-center mb-4">
+   
+        <div className="w-full h-full flex flex-col justify-center mb-4 mt-4">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
@@ -124,21 +125,20 @@ export default function ImageViewerClient() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.1, ease: "easeInOut" }}
-              className="flex flex-col items-end justify-center w-full h-full"
+              className="flex flex-col justify-center w-full h-full"
             >
               {/* Image Container */}
               <div
                 ref={imageRef}
-                className="relative w-full flex-col"
-                style={{ maxHeight: "calc(100% - 100px)" }}
+                className="relative w-full flex-col max-h-full left-5"
               >
                 <Image
                   src={currentPainting.src || "/placeholder.svg"}
                   alt={currentPainting.title}
-                  className="object-contain object-left-center max-h-full w-auto"
+                  className="object-contain object-left-center max-h-[calc(100%-146px)] w-auto"
                   width={2500}
                   height={2500}
-                  style={{ maxHeight: "80%", width: "auto" }}
+                  
                   priority
                 />
                 {/* Text Container */}
@@ -153,7 +153,6 @@ export default function ImageViewerClient() {
           </AnimatePresence>
         </div>
       </div>
-    </div>
+  
   )
 }
-

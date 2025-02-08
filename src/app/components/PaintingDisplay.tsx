@@ -21,7 +21,7 @@ const PaintingDisplay: React.FC<PaintingDisplayProps> = ({ painting, index }) =>
   };
 
   return (
-    <div className="mb-16 flex flex-col items-center">
+    <div className="mb-16 flex flex-col items-start">
       <div
         className="relative cursor-pointer flex flex-col items-center gap-6"
         onClick={handleClick}
