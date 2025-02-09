@@ -26,9 +26,11 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
   return (
     <aside className="hidden md:flex flex-col justify-between w-64 fixed h-full bg-white dark:bg-gray-900 pl-12 pt-14 pb-8 z-50">
       <div className="space-y-8">
-        <Logo />
+        <Link href="/home" className="block w-fit">
+          <Logo />
+        </Link>
         <nav className="space-y-4">
-          <Link href="/" className="block font-nunito relative w-fit">
+          <Link href="/home?view=paintings" className="block font-nunito relative w-fit">
             <span className="relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-gray-800 dark:after:bg-gray-200 after:transition-transform after:duration-300 hover:after:scale-x-100">
               {translations.paintings}
             </span>

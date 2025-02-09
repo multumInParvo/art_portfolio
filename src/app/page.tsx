@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
-import { paintings } from "./data/paintings"
-import PaintingDisplay from "./components/PaintingDisplay"
+import Image from "next/image"
 import ThumbnailsPage from "./thumbnails/page"
 import ImageViewerClient from "./components/ImageViewerClient"
 import ContactPage from "./contact/page"
@@ -32,12 +31,10 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="max-w-6xl mx-auto px-4 py-8"
+              transition={{ duration: 0.5 }}
+              className="relative w-full h-screen"
             >
-              {paintings.map((painting, index) => (
-                <PaintingDisplay key={index} painting={painting} index={index} />
-              ))}
+              <Image src="/images/brushes.JPG" alt="Brushes" layout="fill" objectFit="cover" quality={100} priority />
             </motion.div>
           )}
           {view === "thumbnails" && (
@@ -70,7 +67,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-40" // Updated className
+              className="fixed inset-0 z-40"
             >
               <ImageViewerClient />
             </motion.div>

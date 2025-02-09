@@ -30,6 +30,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   }, [])
 
   const showFooter = pathname !== "/image-viewer"
+  const isMainPage = pathname === "/"
 
   return (
     <div className="flex min-h-screen">
@@ -65,7 +66,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
       <main
         ref={mainRef}
         id="main-content"
-        className={`flex-1 ${pathname.includes("image-viewer") ? "ml-64" : "p-5 md:py-10 md:pr-10 md:pl-10"}`}
+        className={`flex-1 ${isMainPage ? "ml-64" : "p-5 md:py-10 md:pr-10 md:pl-74"}`}
       >
         {children}
       </main>
@@ -74,7 +75,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
       <div className="md:hidden">
         <ScrollArrows />
       </div>
-      {showFooter && (
+      {showFooter && !isMainPage && (
         <div className="md:hidden">
           <Footer />
         </div>
