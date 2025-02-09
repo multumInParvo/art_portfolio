@@ -64,60 +64,61 @@ export default function ImageViewerClient() {
   const currentPainting = paintings[currentIndex]
 
   return (
-    <div className="fixed inset-y-0 right-0 w-[calc(100%-16rem)] bg-white dark:bg-gray-900 flex">
-      {/* Thumbnails Section */}
-      <div className="w-36 h-full overflow-y-auto border-r border-gray-200 dark:border-gray-800 py-4">
-        <div className="space-y-2 px-2">
-          {paintings.map((painting, index) => (
-            <div
-              key={index}
-              className={`relative cursor-pointer transition-opacity hover:opacity-80 ${
-                index === currentIndex ? "ring-2 ring-black dark:ring-white" : ""
-              }`}
-              onClick={() => setCurrentIndex(index)}
+    <div className="fixed inset-y-0 right-0 left-64 bg-white dark:bg-gray-900 flex z-40">
+      <div className="absolute inset-0 bg-black bg-opacity-50" onClick={closeViewer}></div>
+      <div className="relative z-10 flex w-full bg-white dark:bg-gray-900">
+        {/* Thumbnails Section */}
+        <div className="w-36 h-full overflow-y-auto border-r border-gray-200 dark:border-gray-800 py-4">
+          <div className="space-y-2 px-2">
+            {paintings.map((painting, index) => (
+              <div
+                key={index}
+                className={`relative cursor-pointer transition-opacity hover:opacity-80 ${
+                  index === currentIndex ? "ring-2 ring-black dark:ring-white" : ""
+                }`}
+                onClick={() => setCurrentIndex(index)}
+              >
+                <Image
+                  src={painting.src || "/placeholder.svg"}
+                  alt={painting.title}
+                  width={120}
+                  height={90}
+                  className="object-cover w-full aspect-[4/3]"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Navigation Controls */}
+        <div className="flex flex-col justify-end w-24 border-x border-gray-200 dark:border-gray-800">
+          <div className="flex justify-center items-center space-x-2 py-4">
+            <button
+              onClick={() => navigate(-1)}
+              className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+              aria-label="Previous image"
             >
-              <Image
-                src={painting.src || "/placeholder.svg"}
-                alt={painting.title}
-                width={120}
-                height={90}
-                className="object-cover w-full aspect-[4/3]"
-              />
-            </div>
-          ))}
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={closeViewer}
+              className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+              aria-label="Close viewer"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <button
+              onClick={() => navigate(1)}
+              className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+              aria-label="Next image"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Navigation Controls */}
-      <div className="flex flex-col justify-end w-24 border-x border-gray-200 dark:border-gray-800">
-        <div className="flex justify-center items-center space-x-2 py-4">
-          <button
-            onClick={() => navigate(-1)}
-            className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-            aria-label="Previous image"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
-            onClick={closeViewer}
-            className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-            aria-label="Close viewer"
-          >
-            <X className="w-6 h-6" />
-          </button>
-          <button
-            onClick={() => navigate(1)}
-            className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-            aria-label="Next image"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-        </div>
-      </div>
-
-      {/* Main Image Display */}
-   
-        <div className="w-full h-full flex flex-col justify-center mb-4 mt-4">
+        {/* Main Image Display */}
+        <div className="flex-1 h-full flex flex-col justify-center mb-4 mt-4">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
@@ -128,17 +129,13 @@ export default function ImageViewerClient() {
               className="flex flex-col justify-center w-full h-full"
             >
               {/* Image Container */}
-              <div
-                ref={imageRef}
-                className="relative w-full flex-col max-h-full left-5"
-              >
+              <div ref={imageRef} className="relative w-full flex-col max-h-full left-5">
                 <Image
                   src={currentPainting.src || "/placeholder.svg"}
                   alt={currentPainting.title}
                   className="object-contain object-left-center max-h-[calc(100%-146px)] w-auto"
                   width={2500}
                   height={2500}
-                  
                   priority
                 />
                 {/* Text Container */}
@@ -153,6 +150,7 @@ export default function ImageViewerClient() {
           </AnimatePresence>
         </div>
       </div>
-  
+    </div>
   )
 }
+

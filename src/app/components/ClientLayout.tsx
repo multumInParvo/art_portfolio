@@ -1,43 +1,38 @@
-'use client';
+"use client"
 
-import React, { useEffect, useRef } from 'react';
-import { usePathname } from 'next/navigation';
-import DesktopSidebar from '../components/DesktopSidebar';
-import Footer from '../components/Footer';
-import MobileDrawer from '../components/MobileDrawer';
-import ScrollArrows from '../components/ScrollArrows';
-import { useTheme } from '../context/ThemeContext';
-import { useLanguage } from '../context/LanguageContext';
-import en from '../translations/en.json';
-import fr from '../translations/fr.json';
-import { gsap } from 'gsap';
+import type React from "react"
+import { useEffect, useRef } from "react"
+import { usePathname } from "next/navigation"
+import DesktopSidebar from "./DesktopSidebar"
+import Footer from "./Footer"
+import MobileDrawer from "./MobileDrawer"
+import ScrollArrows from "./ScrollArrows"
+import { useTheme } from "../context/ThemeContext"
+import { useLanguage } from "../context/LanguageContext"
+import en from "../translations/en.json"
+import fr from "../translations/fr.json"
+import { gsap } from "gsap"
 
 interface ClientLayoutProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export default function ClientLayout({ children }: ClientLayoutProps) {
-  const pathname = usePathname(); // Current route
-  const { theme, toggleTheme } = useTheme();
-  const { language, toggleLanguage } = useLanguage();
-  const translations = language === 'EN' ? en : fr;
+  const pathname = usePathname()
+  const { theme, toggleTheme } = useTheme()
+  const { language, toggleLanguage } = useLanguage()
+  const translations = language === "EN" ? en : fr
 
-  const mainRef = useRef(null); // Reference to the main content
+  const mainRef = useRef(null)
 
   useEffect(() => {
-    // Animate the main content on route change
-    gsap.fromTo(
-      mainRef.current,
-      { opacity: 0.5 }, // Start opacity
-      { opacity: 1, duration: 0.8, ease: 'power1.out' } // End opacity
-    );
-  }, [pathname]);
+    gsap.fromTo(mainRef.current, { opacity: 0.5 }, { opacity: 1, duration: 0.8, ease: "power1.out" })
+  }, [])
 
-  const showSidebar = pathname !== '/image-viewer';
-  const showFooter = pathname !== '/image-viewer';
+  const showFooter = pathname !== "/image-viewer"
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
+    <div className="flex min-h-screen">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:p-2 focus:bg-blue-500 focus:text-white"
@@ -46,18 +41,16 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
         Skip to main content
       </a>
 
-      {/* Desktop Sidebar */}
-      {showSidebar && (
-        <DesktopSidebar
-          showPaintingDetails={pathname === '/'}
-          pathname={pathname}
-          translations={translations}
-          theme={theme}
-          toggleTheme={toggleTheme}
-          language={language}
-          toggleLanguage={toggleLanguage}
-        />
-      )}
+      {/* Desktop Sidebar - Always visible */}
+      <DesktopSidebar
+        showPaintingDetails={pathname === "/"}
+        pathname={pathname}
+        translations={translations}
+        theme={theme}
+        toggleTheme={toggleTheme}
+        language={language}
+        toggleLanguage={toggleLanguage}
+      />
 
       {/* Mobile Drawer */}
       <MobileDrawer
@@ -72,7 +65,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
       <main
         ref={mainRef}
         id="main-content"
-        className={`flex-1 ${pathname === '/image-viewer' ? '' : 'p-5 md:py-10 md:pr-10 md:pl-10'}`}
+        className={`flex-1 ${pathname.includes("image-viewer") ? "ml-64" : "p-5 md:py-10 md:pr-10 md:pl-10"}`}
       >
         {children}
       </main>
@@ -87,5 +80,6 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
         </div>
       )}
     </div>
-  );
+  )
 }
+

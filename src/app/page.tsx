@@ -23,9 +23,8 @@ export default function Home() {
   }, [searchParams])
 
   return (
-    <div className="flex min-h-screen overflow-hidden">
-      <div className="w-64 flex-shrink-0">{/* Sidebar will be rendered here */}</div>
-      <div className="flex-grow overflow-y-auto">
+    <div className="flex min-h-screen">
+      <div className="flex-grow">
         <AnimatePresence mode="wait">
           {view === "main" && (
             <motion.div
@@ -34,7 +33,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="max-w-6xl mx-auto"
+              className="max-w-6xl mx-auto px-4 py-8"
             >
               {paintings.map((painting, index) => (
                 <PaintingDisplay key={index} painting={painting} index={index} />
@@ -64,22 +63,20 @@ export default function Home() {
               <ContactPage />
             </motion.div>
           )}
+          {view === "imageViewer" && (
+            <motion.div
+              key="imageViewer"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-40" // Updated className
+            >
+              <ImageViewerClient />
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
-      <AnimatePresence>
-        {view === "imageViewer" && (
-          <motion.div
-            key="imageViewer"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50"
-          >
-            <ImageViewerClient />
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }
