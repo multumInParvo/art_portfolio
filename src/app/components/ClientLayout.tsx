@@ -1,33 +1,34 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useEffect, useRef } from "react"
-import { usePathname } from "next/navigation"
-import DesktopSidebar from "./DesktopSidebar"
-import MobileDrawer from "./MobileDrawer"
-import { useTheme } from "../context/ThemeContext"
-import { useLanguage } from "../context/LanguageContext"
-import en from "../translations/en.json"
-import fr from "../translations/fr.json"
-import { gsap } from "gsap"
+import React, { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation"; // Ensure this import is present
+import DesktopSidebar from "./DesktopSidebar";
+import MobileDrawer from "./MobileDrawer";
+import { useTheme } from "../context/ThemeContext";
+import { useLanguage } from "../context/LanguageContext";
+import en from "../translations/en.json";
+import fr from "../translations/fr.json";
+import { gsap } from "gsap";
 
 interface ClientLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function ClientLayout({ children }: ClientLayoutProps) {
-  const pathname = usePathname()
-  const { theme, toggleTheme } = useTheme()
-  const { language, toggleLanguage } = useLanguage()
-  const translations = language === "EN" ? en : fr
+  const pathname = usePathname(); // Ensure this works
+  const { theme, toggleTheme } = useTheme();
+  const { language, toggleLanguage } = useLanguage();
+  const translations = language === "EN" ? en : fr;
 
-  const mainRef = useRef(null)
+  const mainRef = useRef(null);
 
   useEffect(() => {
-    gsap.fromTo(mainRef.current, { opacity: 0.5 }, { opacity: 1, duration: 0.8, ease: "power1.out" })
-  }, [])
-
-  const isMainPage = pathname === "/"
+    gsap.fromTo(
+      mainRef.current,
+      { opacity: 0.5 },
+      { opacity: 1, duration: 0.8, ease: "power1.out" }
+    );
+  }, []);
 
   return (
     <div className="flex min-h-screen">
@@ -39,9 +40,8 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
         Skip to main content
       </a>
 
-      {/* Desktop Sidebar - Always visible */}
+      {/* Desktop Sidebar */}
       <DesktopSidebar
-
         pathname={pathname}
         translations={translations}
         theme={theme}
@@ -60,16 +60,9 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
       />
 
       {/* Main Content */}
-      <main
-        ref={mainRef}
-        id="main-content"
-        className={`flex-1 ${isMainPage ? "ml-64" : "p-5 md:py-10 md:pr-10 md:pl-74"}`}
-      >
+      <main ref={mainRef} id="main-content" className="flex-1 p-5 md:py-10 md:pl-64 md:pr-10">
         {children}
       </main>
-
-
     </div>
-  )
+  );
 }
-
