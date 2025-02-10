@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import en from '../translations/en.json'
 import fr from '../translations/fr.json'
 import { useLanguage } from '../context/LanguageContext';
@@ -28,18 +27,6 @@ export default function AboutPage() {
           <p className="text-sm md:text-base font-semibold font-nunito">
             {translations['artistStatement-02']}
           </p>
-        </div>
-
-        <div className="w-full flex justify-center">
-          <div className="relative w-full max-w-[364px]">
-            <Image
-              src="/images/artist.webp"
-              alt="Artist"
-              width={364}
-              height={364}
-              className="w-full h-auto"
-            />
-          </div>
         </div>
       </div>
     </div>

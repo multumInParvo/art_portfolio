@@ -4,9 +4,7 @@ import type React from "react"
 import { useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 import DesktopSidebar from "./DesktopSidebar"
-import Footer from "./Footer"
 import MobileDrawer from "./MobileDrawer"
-import ScrollArrows from "./ScrollArrows"
 import { useTheme } from "../context/ThemeContext"
 import { useLanguage } from "../context/LanguageContext"
 import en from "../translations/en.json"
@@ -29,7 +27,6 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     gsap.fromTo(mainRef.current, { opacity: 0.5 }, { opacity: 1, duration: 0.8, ease: "power1.out" })
   }, [])
 
-  const showFooter = pathname !== "/image-viewer"
   const isMainPage = pathname === "/"
 
   return (
@@ -44,7 +41,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
 
       {/* Desktop Sidebar - Always visible */}
       <DesktopSidebar
-        showPaintingDetails={pathname === "/"}
+
         pathname={pathname}
         translations={translations}
         theme={theme}
@@ -71,15 +68,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
         {children}
       </main>
 
-      {/* ScrollArrows for Mobile */}
-      <div className="md:hidden">
-        <ScrollArrows />
-      </div>
-      {showFooter && !isMainPage && (
-        <div className="md:hidden">
-          <Footer />
-        </div>
-      )}
+
     </div>
   )
 }

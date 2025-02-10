@@ -5,13 +5,12 @@ import { useSearchParams } from "next/navigation"
 import Image from "next/image"
 import { paintings } from "../data/paintings"
 import PaintingDisplay from "../components/PaintingDisplay"
-import ThumbnailsPage from "../thumbnails/page"
 import ImageViewerClient from "../components/ImageViewerClient"
 import ContactPage from "../contact/page"
 import { motion, AnimatePresence } from "framer-motion"
 
 export default function Home() {
-  const [view, setView] = useState<"main" | "paintings" | "thumbnails" | "imageViewer" | "contact">("main")
+  const [view, setView] = useState<"main" | "paintings" | "imageViewer" | "contact">("main")
   const searchParams = useSearchParams()
 
   useEffect(() => {
@@ -56,18 +55,6 @@ export default function Home() {
               {paintings.map((painting, index) => (
                 <PaintingDisplay key={index} painting={painting} index={index} />
               ))}
-            </motion.div>
-          )}
-          {view === "thumbnails" && (
-            <motion.div
-              key="thumbnails"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="pt-16"
-            >
-              <ThumbnailsPage />
             </motion.div>
           )}
           {view === "contact" && (

@@ -4,7 +4,6 @@ import type React from "react"
 import Link from "next/link"
 import { FaInstagram } from "react-icons/fa"
 import { Moon, Sun } from "lucide-react"
-import Logo from "../components/Logo"
 
 interface DesktopSidebarProps {
   pathname: string
@@ -26,8 +25,8 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
   return (
     <aside className="hidden md:flex flex-col justify-between w-64 fixed h-full bg-white dark:bg-gray-900 pl-12 pt-14 pb-8 z-50">
       <div className="space-y-8">
-        <Link href="/home" className="block w-fit">
-          <Logo />
+        <Link href="/home" className="block w-fit text-xl font-bold">
+          Oleksandr Pryvalov
         </Link>
         <nav className="space-y-4">
           <Link href="/home?view=paintings" className="block font-nunito relative w-fit">
@@ -72,16 +71,6 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
           </button>
         </div>
       </div>
-      <footer className="text-xs font-nunito">
-        <Link
-          href="https://oleksandrpryvalov.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="transition-opacity duration-200 hover:opacity-70"
-        >
-          © 2025 by Oleksandr Pryvalov
-        </Link>
-      </footer>
     </aside>
   )
 }

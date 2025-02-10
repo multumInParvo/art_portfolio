@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import Image from "next/image"
-import ThumbnailsPage from "./thumbnails/page"
 import ImageViewerClient from "./components/ImageViewerClient"
 import ContactPage from "./contact/page"
 import { motion, AnimatePresence } from "framer-motion"
@@ -35,18 +34,6 @@ export default function Home() {
               className="relative w-full h-screen"
             >
               <Image src="/images/brushes.JPG" alt="Brushes" layout="fill" objectFit="cover" quality={100} priority />
-            </motion.div>
-          )}
-          {view === "thumbnails" && (
-            <motion.div
-              key="thumbnails"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="pt-16"
-            >
-              <ThumbnailsPage />
             </motion.div>
           )}
           {view === "contact" && (
