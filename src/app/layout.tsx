@@ -2,8 +2,6 @@ import type { Metadata } from "next"
 import { Playfair_Display, Nunito, Cinzel_Decorative } from "next/font/google"
 import "./globals.css"
 import { PaintingProvider } from "./context/PaintingContext"
-import { ThemeProvider } from "../app/context/ThemeContext"
-import { LanguageProvider } from "./context/LanguageContext"
 import LayoutWrapper from "./components/LayoutWrapper"
 import type React from "react" 
 
@@ -88,13 +86,9 @@ export default function RootLayout({
         <link rel="alternate" href="https://oleksandrpryvalov.art/" hrefLang="fr" />
       </head>
       <body>
-        <ThemeProvider>
           <PaintingProvider>
-            <LanguageProvider>
               <LayoutWrapper>{children}</LayoutWrapper>
-            </LanguageProvider>
           </PaintingProvider>
-        </ThemeProvider>
       </body>
     </html>
   )

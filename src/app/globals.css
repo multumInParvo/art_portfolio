@@ -9,13 +9,6 @@
     --ring-color: #000000;
     color: var(--foreground);
   }
-
-  :root[class~="dark"] {
-    --background: linear-gradient(0deg, #1b1f31, #203752);
-    --foreground: #f3f4f6;
-    --ring-color: #ffffff;
-    color: var(--foreground);
-  }
 }
 
 ::selection {
