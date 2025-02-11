@@ -1,68 +1,34 @@
-"use client";
+"use client"
 
-import React, { useEffect, useRef } from "react";
-import { usePathname } from "next/navigation"; // Ensure this import is present
-import DesktopSidebar from "./DesktopSidebar";
-import MobileDrawer from "./MobileDrawer";
-import { useTheme } from "../context/ThemeContext";
-import { useLanguage } from "../context/LanguageContext";
-import en from "../translations/en.json";
-import fr from "../translations/fr.json";
-import { gsap } from "gsap";
+import type React from "react"
+import type { ReactNode } from "react"
+import { usePathname } from "next/navigation"
+import MobileDrawer from "./MobileDrawer"
+import DesktopSidebar from "./DesktopSidebar"
 
-interface ClientLayoutProps {
-  children: React.ReactNode;
+type ClientLayoutProps = {
+  children: ReactNode
 }
 
-export default function ClientLayout({ children }: ClientLayoutProps) {
-  const pathname = usePathname(); // Ensure this works
-  const { theme, toggleTheme } = useTheme();
-  const { language, toggleLanguage } = useLanguage();
-  const translations = language === "EN" ? en : fr;
-
-  const mainRef = useRef(null);
-
-  useEffect(() => {
-    gsap.fromTo(
-      mainRef.current,
-      { opacity: 0.5 },
-      { opacity: 1, duration: 0.8, ease: "power1.out" }
-    );
-  }, []);
+const ClientLayout: React.FC<ClientLayoutProps> = ({ children }) => {
+  const pathname = usePathname()
+  const isImageViewer = pathname === "/image-viewer"
 
   return (
-    <div className="flex min-h-screen">
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:p-2 focus:bg-blue-500 focus:text-white"
-        aria-label="Skip to main content"
-      >
-        Skip to main content
-      </a>
+    <div className="min-h-screen flex flex-col md:flex-row">
+      {/* Mobile Navigation */}
+      <MobileDrawer />
 
-      {/* Desktop Sidebar */}
-      <DesktopSidebar
-        pathname={pathname}
-        translations={translations}
-        theme={theme}
-        toggleTheme={toggleTheme}
-        language={language}
-        toggleLanguage={toggleLanguage}
-      />
-
-      {/* Mobile Drawer */}
-      <MobileDrawer
-        translations={translations}
-        theme={theme}
-        toggleTheme={toggleTheme}
-        language={language}
-        toggleLanguage={toggleLanguage}
-      />
+      {/* Sidebar for larger screens */}
+      <DesktopSidebar />
 
       {/* Main Content */}
-      <main ref={mainRef} id="main-content" className="flex-1 p-5 md:py-10 md:pl-64 md:pr-10">
+      <main className={`flex-1 ${isImageViewer ? "" : "p-5 md:p-8"} transition-all duration-300 md:ml-64`}>
         {children}
       </main>
     </div>
-  );
+  )
 }
+
+export default ClientLayout
+

@@ -1,24 +1,19 @@
-import Image from "next/image";
-import type { Painting } from "../data/paintings";
-import { useLanguage } from "../context/LanguageContext";
-import en from "../translations/en.json";
-import fr from "../translations/fr.json";
-import type React from "react";
-import { useRouter } from "next/navigation";
+import Image from "next/image"
+import type { Painting } from "../data/paintings"
+import type React from "react"
+import { useRouter } from "next/navigation"
 
 interface PaintingDisplayProps {
-  painting: Painting;
-  index: number;
+  painting: Painting
+  index: number
 }
 
 const PaintingDisplay: React.FC<PaintingDisplayProps> = ({ painting, index }) => {
-  const { language } = useLanguage();
-  const translations = language === "EN" ? en : fr;
-  const router = useRouter();
+  const router = useRouter()
 
   const handleClick = () => {
-    router.push(`/?index=${index}`);
-  };
+    router.push(`/?index=${index}`)
+  }
 
   return (
     <div className="mb-16 flex flex-col items-start">
@@ -51,13 +46,14 @@ const PaintingDisplay: React.FC<PaintingDisplayProps> = ({ painting, index }) =>
         {/* Information */}
         <div className="text-left w-full">
           <h2 className="text-xl mb-2">{painting.title}</h2>
-          <p className="text-gray-600 dark:text-gray-300">{painting.year}</p>
-          <p className="text-gray-600 dark:text-gray-300">{translations.material}</p>
-          <p className="text-gray-600 dark:text-gray-300">{painting.dimensions}</p>
+          <p className="text-gray-600">{painting.year}</p>
+          <p className="text-gray-600">oil on canvas</p>
+          <p className="text-gray-600">{painting.dimensions}</p>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PaintingDisplay;
+export default PaintingDisplay
+
