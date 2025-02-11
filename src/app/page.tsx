@@ -30,10 +30,8 @@ export default function Home() {
   }, [searchParams])
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen overflow-hidden">
       <div className="flex-grow ml-64">
-        {" "}
-        {/* Add left margin to account for sidebar */}
         <AnimatePresence mode="wait">
           {view === "main" && (
             <motion.div
@@ -42,9 +40,17 @@ export default function Home() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="relative w-full h-screen"
+              className="relative w-full h-[100vh] overflow-hidden"
             >
-              <Image src="/images/brushes.JPG" alt="Brushes" layout="fill" objectFit="cover" quality={100} priority />
+              <Image 
+                src="/images/brushes.JPG" 
+                alt="Brushes" 
+                layout="fill" 
+                objectFit="cover" 
+                quality={100} 
+                priority
+                className="absolute inset-0"
+              />
             </motion.div>
           )}
           {view === "paintings" && (
@@ -80,6 +86,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
+              className="h-[100vh] overflow-hidden"
             >
               <ContactPage />
             </motion.div>
@@ -101,4 +108,3 @@ export default function Home() {
     </div>
   )
 }
-
