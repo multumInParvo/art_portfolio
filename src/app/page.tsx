@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen overflow-hidden">
-      <div className="flex-grow ml-64">
+      <div className="flex-grow ml-64 overflow-hidden">
         <AnimatePresence mode="wait">
           {view === "main" && (
             <motion.div
@@ -98,7 +98,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-40"
+              className="fixed inset-0 z-40 overflow-hidden"
             >
               <ImageViewerClient />
             </motion.div>
@@ -106,5 +106,5 @@ export default function Home() {
         </AnimatePresence>
       </div>
     </div>
-  )
+  );
 }
