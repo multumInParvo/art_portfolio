@@ -9,7 +9,6 @@
     "lint": "pnpm next lint"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
     "@next/font": "^14.2.15",
     "framer-motion": "^12.4.2",
     "gsap": "^3.12.5",
