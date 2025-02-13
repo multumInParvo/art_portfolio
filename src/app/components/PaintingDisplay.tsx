@@ -16,11 +16,11 @@ const PaintingDisplay: React.FC<PaintingDisplayProps> = ({ painting, index }) =>
   }
 
   return (
-    <div className="mb-16 flex flex-col items-start">
+    <div className=" mb-10 flex flex-col">
       <div
-        className="relative cursor-pointer flex flex-col items-center gap-6"
+        className="relative cursor-pointer flex flex-col items-center gap-4"
         onClick={handleClick}
-        style={{ maxWidth: "800px", width: "100%" }}
+        style={{ maxWidth: "1200px", width: "100%" }}
       >
         {/* Image */}
         <div
@@ -37,18 +37,18 @@ const PaintingDisplay: React.FC<PaintingDisplayProps> = ({ painting, index }) =>
             fill
             style={{
               objectFit: "contain",
-              objectPosition: "left center", // Align content to the left
+              objectPosition: "left", // Align content to the left
             }}
             priority
           />
         </div>
 
         {/* Information */}
-        <div className="text-left w-full">
-          <h2 className="text-xl mb-2">{painting.title}</h2>
-          <p className="text-gray-600">{painting.year}</p>
-          <p className="text-gray-600">oil on canvas</p>
-          <p className="text-gray-600">{painting.dimensions}</p>
+        <div className="text-left w-full font-nunito text-sm space-y-1">
+          <h2>{painting.title}</h2>
+          <p>{painting.year}</p>
+          <p>oil on canvas</p>
+          <p>{painting.dimensions}</p>
         </div>
       </div>
     </div>

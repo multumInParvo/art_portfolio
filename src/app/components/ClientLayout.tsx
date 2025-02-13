@@ -26,7 +26,7 @@ const ClientLayout: React.FC<ClientLayoutProps> = ({ children }) => {
 
       {/* Main Content */}
       <main 
-        className={`flex-1 ${isImageViewer ? 'overflow-hidden' : 'p-5 md:p-8'} transition-all duration-300 md:ml-64`}
+        className={`flex-1 ${isImageViewer ? 'overflow-hidden' : 'p-5 md:p-8'} transition-all duration-300 md:mr-64`}
       >
         {children}
       </main>
