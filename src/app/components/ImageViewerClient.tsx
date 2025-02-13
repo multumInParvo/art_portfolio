@@ -92,7 +92,7 @@ export default function ImageViewerClient() {
                   alt={painting.title}
                   width={120}
                   height={90}
-                  className="object-cover w-full aspect-[4/3]"
+                  className="object-cover w-full"
                 />
               </div>
             ))}

@@ -6,9 +6,9 @@ import { FaInstagram } from "react-icons/fa"
 
 const DesktopSidebar: React.FC = () => {
   return (
-    <aside className="hidden md:flex flex-col justify-between w-64 fixed h-full bg-white dark:bg-gray-900 pl-12 pt-14 pb-8 z-50">
+    <aside className="hidden md:flex flex-col justify-between w-64 fixed h-full bg-white dark:bg-gray-900 pl-12 pt-16 pb-8 pr-4 z-50">
       <div className="space-y-8">
-        <Link href="/" className="block w-fit text-xl font-bold">
+        <Link href="/" className="block w-fit text-2xl">
           Oleksandr Pryvalov
         </Link>
         <nav className="space-y-4">
